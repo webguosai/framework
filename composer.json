@@ -1,0 +1,27 @@
+{
+    "name": "webguosai/framework",
+    "description": "framework",
+    "keywords": ["framework"],
+    "support": {
+        "issues": "https://github.com/webguosai/framework/issues",
+        "source": "https://github.com/webguosai/framework"
+    },
+    "authors": [
+        {
+            "name": "webguosai",
+            "email": "501807312@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "ext-openssl": "*",
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webguosai\\": "src"
+        }
+    },
+    "license": "MIT"
+}
