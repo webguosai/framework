@@ -13,10 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
-        "ext-openssl": "*",
-        "ext-json": "*",
-        "ext-curl": "*"
+        "php": ">=7.2"
     },
     "autoload": {
         "psr-4": {

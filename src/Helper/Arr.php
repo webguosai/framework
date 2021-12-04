@@ -39,7 +39,7 @@ class Arr
      * @param array $array
      * @return mixed
      */
-    public static function hump(array $array = [])
+    public static function studly(array $array = [])
     {
         if (!is_array($array) || empty($array)) {
             return $array;
@@ -49,7 +49,7 @@ class Arr
 
         $rex  = '#[,{]+"([^"]+)":#i';
         $json = preg_replace_callback($rex, function ($mat) {
-            return Str::hump($mat[0]);
+            return Str::studly($mat[0]);
         }, $json);
 
         return json_decode($json, true);
