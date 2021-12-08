@@ -54,4 +54,8 @@ class Arr
 
         return json_decode($json, true);
     }
+    public static function isLast($array, $value)
+    {
+        return $value == end($array);
+    }
 }

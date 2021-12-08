@@ -251,4 +251,24 @@ class Str
     {
         return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
     }
+
+    /**
+     * 隐藏手机号
+     * @param string|int $str 手机号码
+     * @param int $start 开始位置，从0开始
+     * @param int $length 隐藏长度
+     * @return bool|string|string[]
+     */
+    public static function hidePhone($str, int $start = 3, int $length = 4) {
+        //获取最后一位
+        $end = $start + $length;
+        //判断传参是否正确
+        if ($start < 0 || $end > 11) return false;
+        $replace = ''; //用于判断多少
+        for ($i = 0; $i < $length; $i++) $replace .= '*';
+        return substr_replace($str, $replace, $start, $length);
+    }
+
+
+
 }
