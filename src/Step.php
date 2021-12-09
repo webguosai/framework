@@ -49,6 +49,10 @@ class Step
             $get = $get[$field];
         }
 
+        if ($field !== null) {
+            $get = '无数据';
+        }
+
         return $get;
     }
 
@@ -96,12 +100,12 @@ class Step
     {
         if (empty($steps)) {
             //throw new \Exception('请指定一组数据');
-            $steps = [
-                [
-                    'name' => '没有数据',
-                    $this->rangeField => '-',
-                ]
-            ];
+//            $steps = [
+//                [
+//                    'name' => '没有数据',
+//                    $this->rangeField => '-',
+//                ]
+//            ];
             //var_dump($steps);
         }
         return $steps;
@@ -149,39 +153,3 @@ class Step
         return $steps;
     }
 }
-
-
-require_once '../vendor/autoload.php';
-$points = [
-    [
-        'point' => '4000',
-        'level' => 'L1',
-        'name'  => '筑基学徒',
-        'pic'   => 'https://cdn.hnsy17.com/upload/2021-12-09/cf0acbf3bc6c3e555fc319226a714468.png',
-    ], [
-        'point' => '9000',
-        'level' => 'L2',
-        'name'  => '安全里手',
-        'pic'   => 'https://cdn.hnsy17.com/upload/2021-12-09/bd4d6eb751d06c60deb7d4778ffdaf6a.png',
-    ], [
-        'point' => '15000',
-        'level' => 'L3',
-        'name'  => '资深专家',
-        'pic'   => 'https://cdn.hnsy17.com/upload/2021-12-09/c2aab1fff86a83a47d3c104c3261a387.png',
-    ], [
-        'point' => '20000',
-        'level' => 'L4',
-        'name'  => '一代宗师',
-        'pic'   => 'https://cdn.hnsy17.com/upload/2021-12-09/872db0c0c5c8837f180aa57c1467dc15.png',
-    ], [
-        'point' => '-',
-        'level' => 'L5',
-        'name'  => '大神传说',
-        'pic'   => 'https://cdn.hnsy17.com/upload/2021-12-09/b07fa1f2b3465086053a8bff79c32835.png',
-    ]
-];
-$points = [];
-$step   = new Step($points, 'point');
-var_dump($step->get('24999'));
-var_dump($step->getName('24999'));
-//var_dump($step->all());
