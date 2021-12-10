@@ -4,54 +4,67 @@ namespace Webguosai;
 
 class Runtime
 {
-    private static function getTime()
-    {
-        list($usec, $sec) = explode(" ", microtime());
-        return ((float)$usec + (float)$sec);
-    }
-    public static function start()
-    {
-        return self::getTime();
-    }
-    private static function end()
-    {
-        return self::getTime();
-    }
+    static $starts = [];
+
     /**
-     * 
-     * 
-     * @access     public
-     * @param      int		$runtime_start	计算的开始时间
-     * @param      int		$precision	         小数点位数
-     * @return     string
+     * 开始一个标记
+     *
+     * @param mixed $key 标记
      */
-    static function show($runtime_start, $format = '', $float_num = 2)
+    public static function start($key)
     {
-        $time_diff = self::end() - $runtime_start;
+        static::$starts[$key] = self::getMicrosecond();
+    }
+
+    /**
+     * 显示一个标记的时间
+     *
+     * @param mixed $key
+     * @param string $format
+     * @param int $floatNum
+     * @return string
+     */
+    static function show($key, $format = '', $floatNum = 2)
+    {
+        $endTime      = self::getMicrosecond();
+        $runtimeStart = self::$starts[$key];
+
+        $timeDiff = $endTime - $runtimeStart;
         if (!is_array($format)) {
-            //$format = array('ms' => '毫秒', 's'  => '秒', 'i'  => '分', 'h'  => '小时','d'  => '天');
-            $format = array(
+            //$format = ['ms' => '毫秒', 's'  => '秒', 'i'  => '分', 'h'  => '小时','d'  => '天'];
+            $format = [
                 'ms' => 'ms ',
                 's'  => 's ',
                 'i'  => 'm ',
                 'h'  => 'H ',
-                'd'  => 'D ');
+                'd'  => 'D '
+            ];
         }
 
-        if($time_diff < 1) return '0'.$format['s'];
+        if ($timeDiff < 1) return '0' . $format['s'];
         $str = '';
-        if($time_diff >= 3600) {
-            $str .= floor($time_diff / 3600) . $format['h'];//'小时';
-            $time_diff = $time_diff % 3600;
+        if ($timeDiff >= 3600) {
+            $str      .= floor($timeDiff / 3600) . $format['h'];//'小时';
+            $timeDiff = $timeDiff % 3600;
         }
-        if($time_diff >= 60) {
-            $str .= floor($time_diff / 60) . $format['i'];//'分钟';
-            $time_diff = $time_diff % 60;
+        if ($timeDiff >= 60) {
+            $str      .= floor($timeDiff / 60) . $format['i'];//'分钟';
+            $timeDiff = $timeDiff % 60;
         }
-        if($time_diff > 0){
+        if ($timeDiff > 0) {
 
-            $str .= round($time_diff, $float_num) . $format['s'];//'秒';
+            $str .= round($timeDiff, $floatNum) . $format['s'];//'秒';
         }
         return $str;
     }
+
+    /**
+     * 返回当前 Unix 时间戳的微秒数
+     * @return float
+     */
+    private static function getMicrosecond()
+    {
+        return microtime(true);
+    }
+
 }
