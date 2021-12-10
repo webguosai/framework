@@ -4,18 +4,18 @@ namespace Webguosai;
 
 class Runtime
 {
-    static private function _gettime()
+    private static function getTime()
     {
         list($usec, $sec) = explode(" ", microtime());
         return ((float)$usec + (float)$sec);
     }
-    static function start()
+    public static function start()
     {
-        return self::_gettime();
+        return self::getTime();
     }
-    static function end()
+    private static function end()
     {
-        return self::_gettime();
+        return self::getTime();
     }
     /**
      * 
