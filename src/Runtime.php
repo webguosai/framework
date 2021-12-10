@@ -11,7 +11,7 @@ class Runtime
      *
      * @param mixed $key 标记
      */
-    public static function start($key)
+    public static function start($key = 'key1')
     {
         static::$starts[$key] = self::getMicrosecond();
     }
@@ -24,7 +24,7 @@ class Runtime
      * @param int $floatNum
      * @return string
      */
-    static function show($key, $format = '', $floatNum = 2)
+    static function show($key = 'key1', $format = '', $floatNum = 2)
     {
         $endTime      = self::getMicrosecond();
         $runtimeStart = self::$starts[$key];
