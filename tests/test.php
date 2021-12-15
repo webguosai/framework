@@ -2,10 +2,42 @@
 
 namespace Tests;
 
+use Webguosai\Message\DingRobot;
+use Webguosai\Message\MyWxPush;
+use Webguosai\Message\Qmsg;
+use Webguosai\Message\ServerJ;
+use Webguosai\Message\WxPusher;
 use Webguosai\Runtime;
 use Webguosai\Step;
 
 require_once '../vendor/autoload.php';
+
+/** 测试通知类 **/
+//$a = DingTalk::pushRobotMsg('1211', 'https://oapi.dingtalk.com/robot/send?access_token=7719bef116d2f0369e3f84ce1e849c03f1224b25acf788937be864dfb61747d4', 'SECc1f4accd76fd0367a67c5740e5ae26023a17f997c4e9f79c8c9083a6efb3f65c');
+//var_dump($a);
+//$s = new ServerJ([
+//    'sendKey' => 'SCT101377TMCywBFWg8HGw07lWinqPnxsv'
+//]);
+//$s = new DingRobot([
+//    'webhook' => 'https://oapi.dingtalk.com/robot/send?access_token=7719bef116d2f0369e3f84ce1e849c03f1224b25acf788937be864dfb61747d4',
+//    'secret'  => 'SECc1f4accd76fd0367a67c5740e5ae26023a17f997c4e9f79c8c9083a6efb3f65c',
+//    'atAll' => true,
+//]);
+//$s = new WxPusher([
+//    'appToken' => 'AT_SuRUeH96RKRpqTAOF3cMDghEgAj1IysV',
+//    'uid' => 'UID_PpIoqyvU6kHqQOP9Ru3ip3MEDShv',
+//]);
+//$s = new Qmsg([
+//    'key' => '1040a08dcc5549f55c5ebdf52d2020a4',
+//]);
+$s = new MyWxPush([
+    //'app_id'  => 'wx15fc2152e1406d02',
+    //'secret'  => 'd21d9cbc97a62c4c596b43220b3d4acd',
+    //'open_id'     => '',
+    //'template_id' => '',
+]);
+$send = $s->send('我是标题', "### 支持md吗?\n> 可以");
+dd($send);
 
 /** 获取随机内容 **/
 //var_dump(\Webguosai\Helper\Str::random(10));
@@ -53,13 +85,13 @@ require_once '../vendor/autoload.php';
 
 /** 测试运行类 **/
 
-Runtime::start(1);
-sleep(1);
-var_dump(Runtime::show(1));
-
-Runtime::start(2);
-sleep(2);
-var_dump(Runtime::show(2));
-
-
-var_dump(Runtime::show(1));
+//Runtime::start(1);
+//sleep(1);
+//var_dump(Runtime::show(1));
+//
+//Runtime::start(2);
+//sleep(2);
+//var_dump(Runtime::show(2));
+//
+//
+//var_dump(Runtime::show(1));
