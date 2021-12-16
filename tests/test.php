@@ -30,14 +30,24 @@ require_once '../vendor/autoload.php';
 //$s = new Qmsg([
 //    'key' => '1040a08dcc5549f55c5ebdf52d2020a4',
 //]);
-$s = new MyWxPush([
-    //'app_id'  => 'wx15fc2152e1406d02',
-    //'secret'  => 'd21d9cbc97a62c4c596b43220b3d4acd',
-    //'open_id'     => '',
-    //'template_id' => '',
-]);
-$send = $s->send('我是标题', "### 支持md吗?\n> 可以");
-dd($send);
+// 文物总店
+//$s = new MyWxPush([
+//    'token'       => '78a87KEYHfeTD3N7',
+//    'app_id'      => '',
+//    'secret'      => '',
+//    'open_id'     => 'oRkvhvjnhRsyG0KMlZmJXZvAixZg',
+//    'template_id' => 'oI4d7o8pwjxQhanAnA1SYBhBM_QGV_pCT1VI6k2jD5M',
+//]);
+//// 螳螂科技
+//$s = new MyWxPush([
+//    'token'       => '78a87KEYHfeTD3N7',
+//    'app_id'      => '',
+//    'secret'      => '',
+//    'open_id'     => 'o-KSp6Zrg7LwNjcyL8RTxeTEQ7Qw',
+//    'template_id' => 'Dzf7dYLlHHdG6j3gr0hz5SUs8wF-4wty9XSJHlpDGXU',
+//]);
+//$send = $s->send('我是标题', "### 支持md吗?\n> 可以".mt_rand(1000, 9999));
+//dd($send);
 
 /** 获取随机内容 **/
 //var_dump(\Webguosai\Helper\Str::random(10));

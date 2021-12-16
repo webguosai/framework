@@ -16,21 +16,25 @@ use Webguosai\Support\MessageAbstract;
 class MyWxPush extends MessageAbstract
 {
     protected $config = [
-        //'app_id'  => '',
-        //'secret'  => '',
-        //'open_id'     => '',
-        //'template_id' => '',
-
+        'token'       => '',
+        'app_id'      => '',
+        'secret'      => '',
+        'open_id'     => '',
+        'template_id' => '',
     ];
 
     public function send($title, $content = '')
     {
         $client   = new HttpClient();
-        $url      = 'http://wxpush.otayy.cn';
+        $url      = 'http://wxpush.otayy.cn?a=push';
         $data     = [
-            'config'  => $this->config,
-            'title'   => $title,
-            'content' => $content,
+            'token'       => $this->config['token'],
+            'app_id'      => $this->config['app_id'],
+            'secret'      => $this->config['secret'],
+            'open_id'     => $this->config['open_id'],
+            'template_id' => $this->config['template_id'],
+            'title'       => $title,
+            'content'     => $content,
         ];
         $response = $client->post($url, json_encode($data));
 

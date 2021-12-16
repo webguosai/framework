@@ -33,6 +33,13 @@ class Arr
         return false;
     }
 
+//    public static function find(string $string, array $array = [])
+//    {
+//        foreach ($array as $value) {
+//
+//        }
+//    }
+
     /**
      * 将数组的key名转换为小驼峰 (user_info => userInfo)
      *
