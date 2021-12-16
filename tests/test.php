@@ -12,43 +12,6 @@ use Webguosai\Step;
 
 require_once '../vendor/autoload.php';
 
-/** 测试通知类 **/
-//$a = DingTalk::pushRobotMsg('1211', 'https://oapi.dingtalk.com/robot/send?access_token=7719bef116d2f0369e3f84ce1e849c03f1224b25acf788937be864dfb61747d4', 'SECc1f4accd76fd0367a67c5740e5ae26023a17f997c4e9f79c8c9083a6efb3f65c');
-//var_dump($a);
-//$s = new ServerJ([
-//    'sendKey' => 'SCT101377TMCywBFWg8HGw07lWinqPnxsv'
-//]);
-//$s = new DingRobot([
-//    'webhook' => 'https://oapi.dingtalk.com/robot/send?access_token=7719bef116d2f0369e3f84ce1e849c03f1224b25acf788937be864dfb61747d4',
-//    'secret'  => 'SECc1f4accd76fd0367a67c5740e5ae26023a17f997c4e9f79c8c9083a6efb3f65c',
-//    'atAll' => true,
-//]);
-//$s = new WxPusher([
-//    'appToken' => 'AT_SuRUeH96RKRpqTAOF3cMDghEgAj1IysV',
-//    'uid' => 'UID_PpIoqyvU6kHqQOP9Ru3ip3MEDShv',
-//]);
-//$s = new Qmsg([
-//    'key' => '1040a08dcc5549f55c5ebdf52d2020a4',
-//]);
-// 文物总店
-//$s = new MyWxPush([
-//    'token'       => '78a87KEYHfeTD3N7',
-//    'app_id'      => '',
-//    'secret'      => '',
-//    'open_id'     => 'oRkvhvjnhRsyG0KMlZmJXZvAixZg',
-//    'template_id' => 'oI4d7o8pwjxQhanAnA1SYBhBM_QGV_pCT1VI6k2jD5M',
-//]);
-//// 螳螂科技
-//$s = new MyWxPush([
-//    'token'       => '78a87KEYHfeTD3N7',
-//    'app_id'      => '',
-//    'secret'      => '',
-//    'open_id'     => 'o-KSp6Zrg7LwNjcyL8RTxeTEQ7Qw',
-//    'template_id' => 'Dzf7dYLlHHdG6j3gr0hz5SUs8wF-4wty9XSJHlpDGXU',
-//]);
-//$send = $s->send('我是标题', "### 支持md吗?\n> 可以".mt_rand(1000, 9999));
-//dd($send);
-
 /** 获取随机内容 **/
 //var_dump(\Webguosai\Helper\Str::random(10));
 //var_dump(\Webguosai\Helper\Str::random(10, 0));
