@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Webguosai\Http\HttpHeader;
 use Webguosai\Message\DingRobot;
 use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
@@ -9,8 +10,13 @@ use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
 use Webguosai\Runtime;
 use Webguosai\Step;
+use Webguosai\Http\Response;
 
 require_once '../vendor/autoload.php';
+
+Response::error('6666', 88, 200);
+
+dump('next');
 
 /** 获取随机内容 **/
 //var_dump(\Webguosai\Helper\Str::random(10));

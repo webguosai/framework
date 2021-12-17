@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * QQ消息推送平台 (未测试)
+ *
+ * 文档地址：https://qmsg.zendee.cn/api.html
+ */
 namespace Webguosai\Message;
 
 use Webguosai\HttpClient;
@@ -10,7 +14,7 @@ class Qmsg extends MessageAbstract
     public $config = [
         'key' => '',
     ];
-    public function send($title, $content)
+    public function send($title, $content, $jumpUrl = '')
     {
         $client = new HttpClient();
         $url = 'https://qmsg.zendee.cn/send/'.$this->config['key'];

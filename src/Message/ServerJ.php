@@ -16,8 +16,13 @@ class ServerJ extends MessageAbstract
         'sendKey' => '',
     ];
 
-    public function send($title, $content = '')
+    public function send($title, $content = '', $jumpUrl = '')
     {
+        if ($jumpUrl) {
+            //$content.= " [链接>>]({$jumpUrl})";
+            $content = "[{$content}]({$jumpUrl})";
+        }
+
         $url      = "https://sctapi.ftqq.com/{$this->config['sendKey']}.send";
         $post     = [
             'title' => $title,

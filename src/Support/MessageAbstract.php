@@ -25,7 +25,8 @@ abstract class MessageAbstract
      * 发送
      * @param string $title 标题
      * @param string $content 内容
+     * @param string $url url跳转地址
      * @return bool
      */
-    abstract function send($title, $content);
+    abstract function send($title, $content, $url);
 }

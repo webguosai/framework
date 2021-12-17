@@ -19,9 +19,12 @@ class DingRobot extends MessageAbstract
     ];
     protected $timestamp = '';
 
-    public function send($title, $content = '')
+    public function send($title, $content = '', $jumpUrl = '')
     {
-        $client = new HttpClient();
+        if ($jumpUrl) {
+            //$content.= " [链接>>]({$jumpUrl})";
+            $content = "[{$content}]({$jumpUrl})";
+        }
 
         $sign      = $this->sign();
         $timestamp = $this->timestamp();
@@ -38,6 +41,7 @@ class DingRobot extends MessageAbstract
             ]
         ];
         $headers  = ['Content-Type' => 'application/json; charset=utf-8'];
+        $client = new HttpClient();
         $response = $client->post($url, json_encode($data), $headers);
 
         if ($response->ok()) {
