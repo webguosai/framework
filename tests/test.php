@@ -3,6 +3,8 @@
 namespace Tests;
 
 use Webguosai\Http\HttpHeader;
+use Webguosai\Map\BaiduMap;
+use Webguosai\Map\TencentMap;
 use Webguosai\Message\DingRobot;
 use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
@@ -14,6 +16,48 @@ use Webguosai\Http\Response;
 
 require_once '../vendor/autoload.php';
 
+/** 地图测试 **/
+
+/* 腾讯地图 */
+$map = new TencentMap('');
+
+//$location = $map->geocoderLocation('39.984154', '116.307490');
+//dump($location);
+
+//$address = $map->geocoderAddress('湖南省长沙市');
+//dump($address);
+
+//$address = $map->geocoderAddress('北京市海淀区彩和坊路海淀西大街74号');
+//dump($address);
+
+//$staticMap = $map->getStaticMap('500*500', [
+//    'center' => '28.231092,112.875958', //辰泰 28.231092,112.875958 // 四方坪 28.23608,113.008044
+//    'zoom'   => '18',
+//    //'markers' => 'color:blue|28.240042,112.864545',
+//]);
+//file_put_contents('map.png', $staticMap);
+//dump($staticMap);
+
+$direction = $map->direction('28.231092,112.875958', '28.23608,113.008044');
+dump($direction);
+
+
+/* 百度地图 */
+//$baidu = new BaiduMap([
+//    'ak' => ''
+//]);
+//获取 经纬度
+//dd($baidu->geocoding([
+//    'address' => '北京市海淀区上地十街10号'
+//]));
+//获取 地区信息
+//dd($baidu->reverse_geocoding([
+//    'location' => '38.76623,116.43213'
+//]));
+
+
+
+/** 响应类测试 **/
 Response::error('6666', 88, 200);
 
 dump('next');
