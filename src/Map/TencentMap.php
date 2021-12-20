@@ -4,6 +4,7 @@
  * 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceGcoder
  * key申请：https://lbs.qq.com/dev/console/application/mine
  */
+
 namespace Webguosai\Map;
 
 use Webguosai\Helper\Arr;
@@ -23,13 +24,13 @@ class TencentMap
      * 坐标转地址
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceGcoder
      *
-     * @param string|float $lat 纬度：39.984154
-     * @param string|float $lng 经度：116.307490
+     * @param string|double $lat 纬度：39.984154
+     * @param string|double $lng 经度：116.307490
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
      * @throws \Exception
      */
-    public function geocoderLocation($lat, $lng, $extraParams = [])
+    public function geoLocation($lat, $lng, $extraParams = [])
     {
         $extraParams['location'] = "{$lat},{$lng}";
         return $this->request('/ws/geocoder/v1/', $extraParams);
@@ -44,7 +45,7 @@ class TencentMap
      * @return mixed
      * @throws \Exception
      */
-    public function geocoderAddress(string $address, $extraParams = [])
+    public function geoAddress(string $address, $extraParams = [])
     {
         $extraParams['address'] = $address;
         return $this->request('/ws/geocoder/v1/', $extraParams);
@@ -59,10 +60,79 @@ class TencentMap
      * @return mixed
      * @throws \Exception
      */
-    public function geocoderSmartAddress(string $smartAddress, $extraParams = [])
+    public function geoSmartAddress(string $smartAddress, $extraParams = [])
     {
         $extraParams['smart_address'] = $smartAddress;
         return $this->request('/ws/geocoder/v1/', $extraParams);
+    }
+
+    /**
+     * 驾车规划
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute#2
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirDriving($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        $extraParams['get_mp'] = 1; //返回多个方案
+        return $this->direction('driving', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 公交规划
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute#5
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirTransit($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('transit', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 步行规划
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute#3
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirWalking($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('walking', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 骑行规划
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute#4
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirBicycling($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('bicycling', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
     }
 
     /**
@@ -74,19 +144,58 @@ class TencentMap
      * @return mixed
      * @throws \Exception
      */
-    public function getStaticMap($size = '500*500', $extraParams = [])
+    public function staticMap($size = '500*500', $extraParams = [])
     {
         $extraParams['size'] = $size;
         return $this->request('/ws/staticmap/v2/', $extraParams);
     }
 
-    //规划
-    public function direction($from, $to, $extraParams = [])
+    /**
+     * ip定位
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceIp
+     *
+     * @param string $ip
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function ip($ip, $extraParams = [])
     {
-        $extraParams['from'] = $from;
-        $extraParams['to'] = $to;
-        $extraParams['get_mp'] = 1; //返回多个方案
-        return $this->request('/ws/direction/v1/driving/', $extraParams);
+        $extraParams['ip'] = $ip;
+        return $this->request('/ws/location/v1/ip/', $extraParams);
+    }
+
+    /**
+     * 获取省市区列表
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceDistrict#2
+     *
+     * @param array $extraParams
+     * @return mixed
+     * @throws \Exception
+     */
+    public function regions($extraParams = [])
+    {
+        return $this->request('/ws/district/v1/list', $extraParams);
+    }
+
+    /**
+     * 封装的规划方向
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute
+     *
+     * @param string $direction 规划方式：驾车(driving) 步行(walking) 骑行(bicycling) 公交(transit)
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    protected function direction($direction, $fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        $extraParams['from'] = $fromLat . ',' . $fromLng;
+        $extraParams['to']   = $toLat . ',' . $toLng;
+        return $this->request('/ws/direction/v1/' . $direction . '/', $extraParams);
     }
 
     /**
@@ -100,7 +209,7 @@ class TencentMap
     protected function request(string $url, $params = [])
     {
         $params['output'] = 'json';
-        $params['key'] = $this->key;
+        $params['key']    = $this->key;
 
         $url = $this->host . $url . '?' . http_build_query($params);
 

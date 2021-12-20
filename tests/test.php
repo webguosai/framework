@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Webguosai\File\File;
 use Webguosai\Http\HttpHeader;
 use Webguosai\Map\BaiduMap;
 use Webguosai\Map\TencentMap;
@@ -16,35 +17,63 @@ use Webguosai\Http\Response;
 
 require_once '../vendor/autoload.php';
 
+
 /** 地图测试 **/
 
 /* 腾讯地图 */
 $map = new TencentMap('');
 
-//$location = $map->geocoderLocation('39.984154', '116.307490');
+//坐标转地址
+//$location = $map->geoLocation('39.984154', '116.307490');
 //dump($location);
 
-//$address = $map->geocoderAddress('湖南省长沙市');
+//地址转坐标
+//$address = $map->geoAddress('湖南省长沙市岳麓区辰泰科技园A座');
 //dump($address);
 
-//$address = $map->geocoderAddress('北京市海淀区彩和坊路海淀西大街74号');
+//湖南省长沙市岳麓区辰泰科技园A座
+//-湖南省长沙市开福区四方坪商贸城B-2 东四门 7楼703
+//湖南省长沙市雨花区高桥大市场
+//湖南省长沙市岳麓区旺龙路56号
+//$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
 //dump($address);
 
-//$staticMap = $map->getStaticMap('500*500', [
-//    'center' => '28.231092,112.875958', //辰泰 28.231092,112.875958 // 四方坪 28.23608,113.008044
-//    'zoom'   => '18',
-//    //'markers' => 'color:blue|28.240042,112.864545',
+//静态图
+//$staticMap = $map->staticMap('500*500', [
+//    'center' => $address['location']['lat'].','.$address['location']['lng'],//'28.231092,112.875958', //辰泰 28.231092,112.875958 // 四方坪 28.23608,113.008044
+//    'zoom'   => '14',
+//    'markers' => 'color:blue|'.$address['location']['lat'].','.$address['location']['lng'],
 //]);
 //file_put_contents('map.png', $staticMap);
 //dump($staticMap);
 
-$direction = $map->direction('28.231092,112.875958', '28.23608,113.008044');
-dump($direction);
+//驾车
+//$direction = $map->dirDriving(28.231092,112.875958, 28.23608, 113.008044);
+//dump($direction);
 
+//公交
+//$direction = $map->dirTransit(28.231092,112.875958, 28.23608, 113.008044);
+//dump($direction);
+
+//步行
+//$direction = $map->dirWalking(28.231092,112.875958, 28.23608, 113.008044);
+//dump($direction);
+
+//骑行
+//$direction = $map->dirBicycling(28.231092,112.875958, 28.23608, 113.008044);
+//dump($direction);
+
+//ip定位
+//$ip = $map->ip('113.246.95.120');
+//dump($ip);
+
+//$regions = $map->regions();
+//File::save('regions.php', ($regions));
+//var_dump($regions);
 
 /* 百度地图 */
 //$baidu = new BaiduMap([
-//    'ak' => ''
+//    'ak' => 'B615d4b3ad53e51854eb3a75356acc17'
 //]);
 //获取 经纬度
 //dd($baidu->geocoding([
@@ -58,9 +87,8 @@ dump($direction);
 
 
 /** 响应类测试 **/
-Response::error('6666', 88, 200);
+//Response::error('6666', 88, 200);
 
-dump('next');
 
 /** 获取随机内容 **/
 //var_dump(\Webguosai\Helper\Str::random(10));
