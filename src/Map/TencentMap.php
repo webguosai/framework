@@ -169,13 +169,30 @@ class TencentMap
      * 获取省市区列表
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceDistrict#2
      *
-     * @param array $extraParams
+     * @param array $extraParams 额外参数请参照文档
      * @return mixed
      * @throws \Exception
      */
     public function regions($extraParams = [])
     {
         return $this->request('/ws/district/v1/list', $extraParams);
+    }
+
+    /**
+     * 坐标转换
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceTranslate
+     *
+     * @param string $locations 纬度前,经度后,纬度和经度之间用【,】分隔，每组坐标之间使用【;】分隔(39.12,116.83;30.21,115.43)
+     * @param int $type 类型：3=baidu经纬度，其它类型参考文档
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function translate($locations, $type, $extraParams = [])
+    {
+        $extraParams['locations'] = $locations;
+        $extraParams['type']      = $type;
+        return $this->request('/ws/coord/v1/translate', $extraParams);
     }
 
     /**

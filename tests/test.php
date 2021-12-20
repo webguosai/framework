@@ -21,7 +21,7 @@ require_once '../vendor/autoload.php';
 /** 地图测试 **/
 
 /* 腾讯地图 */
-$map = new TencentMap('');
+$map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 
 //坐标转地址
 //$location = $map->geoLocation('39.984154', '116.307490');
