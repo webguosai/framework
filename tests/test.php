@@ -73,6 +73,7 @@ $map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 
 /* 百度地图 */
 //$baidu = new BaiduMap([
+//    'ak' => '4ZFS3XTiggfZcGnDl87asoaPbvxVePZo',//某个公众号的ak
 //    'ak' => 'B615d4b3ad53e51854eb3a75356acc17'
 //]);
 //获取 经纬度
