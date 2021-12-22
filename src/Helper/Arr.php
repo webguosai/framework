@@ -33,12 +33,30 @@ class Arr
         return false;
     }
 
-//    public static function find(string $string, array $array = [])
-//    {
-//        foreach ($array as $value) {
-//
-//        }
-//    }
+    /**
+     * 数组中某个key的value值是否包含指定内容，并返回相应内容
+     * Arr::containsKey('张三', 'name', [[ 'id'   => 1, 'name' => '张三', 'desc' => 'zs'], [ 'id'   => 2, 'name' => '李四', 'desc' => 'ls']], 'desc');
+     *
+     * @param string $string 要查找的内容
+     * @param string $searchKeyName 要查找的key名
+     * @param array $array 要查找的数组
+     * @param string $retKeyName 返回的key名
+     * @return mixed|null
+     */
+    public static function containsKey(string $string, string $searchKeyName, array $array = [], $retKeyName = '')
+    {
+        foreach ($array as $value) {
+            if (Str::contains($value[$searchKeyName], $string) !== false) {
+                if ($retKeyName) {// && isset($value[$retKeyName])
+                    return $value[$retKeyName];
+                } else {
+                    return $value;
+                }
+            }
+        }
+
+        return null;
+    }
 
     /**
      * 将数组的key名转换为小驼峰 (user_info => userInfo)

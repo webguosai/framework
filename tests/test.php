@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Webguosai\File\File;
+use Webguosai\Helper\Arr;
 use Webguosai\Http\HttpHeader;
 use Webguosai\Map\BaiduMap;
 use Webguosai\Map\TencentMap;
@@ -17,14 +18,14 @@ use Webguosai\Http\Response;
 
 require_once '../vendor/autoload.php';
 
-
 /** 地图测试 **/
 
 /* 腾讯地图 */
-$map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
+//$map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 
 //坐标转地址
 //$location = $map->geoLocation('39.984154', '116.307490');
+//$location = $map->geoLocation('28.20057227', '112.83502147');
 //dump($location);
 
 //地址转坐标
@@ -86,7 +87,6 @@ $map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 //]));
 
 
-
 /** 响应类测试 **/
 //Response::error('6666', 88, 200);
 
@@ -98,6 +98,9 @@ $map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 //var_dump(\Webguosai\Helper\Str::random(10, 2));
 //var_dump(\Webguosai\Helper\Str::random(10, 3));
 //var_dump(\Webguosai\Helper\Str::random(10, 4));
+
+
+
 
 /** 测试阶梯类 **/
 //$points = [

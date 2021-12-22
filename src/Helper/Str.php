@@ -41,8 +41,8 @@ class Str
 
     /**
      * 检查字符串中是否包含某些字符串
-     * @param string $haystack
-     * @param string|array $needles
+     * @param string $haystack 完整的内容,如：abc123abc
+     * @param string|array $needles 需要的内容,如：123
      * @return bool
      */
     public static function contains(string $haystack, $needles)
