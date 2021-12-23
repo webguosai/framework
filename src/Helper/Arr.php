@@ -16,7 +16,7 @@ class Arr
         if ($onlyKeys) {
             $array = static::only($array, $onlyKeys);
         }
-        
+
         return md5(json_encode($array));
     }
 
