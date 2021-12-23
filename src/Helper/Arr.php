@@ -8,10 +8,15 @@ class Arr
      * 得到一个数组的md5值
      *
      * @param array $array
+     * @param array|string $onlyKeys
      * @return string
      */
-    public static function md5(array $array = [])
+    public static function md5(array $array = [], $onlyKeys = [])
     {
+        if ($onlyKeys) {
+            $array = static::only($array, $onlyKeys);
+        }
+        
         return md5(json_encode($array));
     }
 
@@ -31,6 +36,16 @@ class Arr
             }
         }
         return false;
+    }
+
+    /**
+     * @param array $array
+     * @param array|string $keys
+     * @return array
+     */
+    public static function only(array $array, $keys)
+    {
+        return array_intersect_key($array, array_flip((array) $keys));
     }
 
     /**
