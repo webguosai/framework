@@ -26,6 +26,11 @@ class Response
         static::response($code, $message, false, [], $httpCode);
     }
 
+    // 用于cli下输出
+    public static function cliResponse($message) {
+        echo "[". date('Y-m-d H:i:s')."] {$message}\n";
+    }
+
     protected static function response($code, $message = '', $data = [], $var = [], $httpCode = 200)
     {
         $json = [
