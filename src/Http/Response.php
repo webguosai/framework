@@ -27,8 +27,20 @@ class Response
     }
 
     // 用于cli下输出
-    public static function cliResponse($message) {
-        echo "[". date('Y-m-d H:i:s')."] {$message}\n";
+    public static function cliResponse($message = '', $status = 'info') {
+        /**
+         * 颜色值对照
+         * https://blog.yzmcms.com/php/219.html
+         */
+        if ($status == 'info') {
+            $fontColor = 34; //37=白色
+        } elseif ($status == 'error') {
+            $fontColor = 31;
+        } elseif ($status == 'success') {
+            $fontColor = 32;
+        }
+
+        echo "\e[;{$fontColor}m[". date('Y-m-d H:i:s')."] {$message} \e[0m\e[0m\n";
     }
 
     protected static function response($code, $message = '', $data = [], $var = [], $httpCode = 200)
