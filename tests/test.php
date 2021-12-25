@@ -5,6 +5,7 @@ namespace Tests;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
 use Webguosai\Http\HttpHeader;
+use Webguosai\HttpClient;
 use Webguosai\Map\BaiduMap;
 use Webguosai\Map\TencentMap;
 use Webguosai\Message\DingRobot;
@@ -17,6 +18,78 @@ use Webguosai\Step;
 use Webguosai\Http\Response;
 
 require_once '../vendor/autoload.php';
+
+class Push
+{
+    public $cursor = 1;
+    public $errorMsg = '';
+    public $callback;
+    public function start($url, $num, callable $callback)
+    {
+        $client = new HttpClient([
+            'timeout' => 1,
+        ]);
+
+        while (true) {
+            $response = $client->get($url);
+            dump($response->body);
+
+            if ($response->errorCode === 0) {
+                $callRet = call_user_func_array($callback, [$response->httpStatus, $response->body]);
+
+                if ($callRet) {
+                    return true;
+                }
+
+            }
+
+            if ($this->cursor > $num){
+                $this->cursor = 1;
+                return false;
+            }
+
+            dump('run '.$this->cursor);
+            $this->cursor++;
+
+
+
+//
+//            $this->callback = $callback;
+//            $callRet = call_user_func_array($callback, [$response->httpStatus, $response->body]);
+//
+//            $this->cursor++;
+//            return $callRet;
+        }
+
+    }
+    public function again()
+    {
+        $this->cursor++;
+        dump($this->cursor);
+        dump($this->callback);
+    }
+}
+
+$url = 'http://127.0.0.1:10111/js.php';
+$push = new Push();
+
+$ret = $push->start($url, 2, function ($httpStatus, $body) {
+    if ($httpStatus === 200){
+        return true;
+    }
+    return false;
+    throw new \Exception("错误，不是我想要的HTTP状态[{$httpStatus}]");
+    //dump($body);
+    //return $httpStatus;
+});
+
+//try {
+//
+//} catch (\Exception $e) {
+//    $push->again(2);
+//}
+
+dump($ret);
 
 /** 地图测试 **/
 
