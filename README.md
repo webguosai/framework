@@ -16,10 +16,11 @@
 ## 安装
 
 ```Shell
-$ composer require webguosai/framework -vvv
+composer require webguosai/framework -vvv
 ```
 
 
 ## License
 
 MIT
+
