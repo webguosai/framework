@@ -7,7 +7,6 @@
 
 namespace Webguosai\Map;
 
-use Webguosai\Helper\Arr;
 use Webguosai\HttpClient;
 
 class TencentMap
