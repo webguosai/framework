@@ -31,6 +31,8 @@ class Push
         ]);
 
         while (true) {
+
+            dump('run '.$this->cursor);
             $response = $client->get($url);
             dump($response->body);
 
@@ -43,12 +45,11 @@ class Push
 
             }
 
-            if ($this->cursor > $num){
+            if ($this->cursor >= $num){
                 $this->cursor = 1;
                 return false;
             }
 
-            dump('run '.$this->cursor);
             $this->cursor++;
 
 
@@ -73,7 +74,7 @@ class Push
 $url = 'http://127.0.0.1:10111/js.php';
 $push = new Push();
 
-$ret = $push->start($url, 2, function ($httpStatus, $body) {
+$ret = $push->start($url, 3, function ($httpStatus, $body) {
     if ($httpStatus === 200){
         return true;
     }
