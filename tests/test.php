@@ -16,73 +16,31 @@ use Webguosai\Message\WxPusher;
 use Webguosai\Runtime;
 use Webguosai\Step;
 use Webguosai\Http\Response;
+use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-class Push
-{
-    public $cursor = 1;
-    public $errorMsg = '';
-    public $callback;
-    public function start($url, $num, callable $callback)
-    {
-        $client = new HttpClient([
-            'timeout' => 1,
-        ]);
-
-        while (true) {
-
-            dump('run '.$this->cursor);
-            $response = $client->get($url);
-            dump($response->body);
-
-            if ($response->errorCode === 0) {
-                $callRet = call_user_func_array($callback, [$response->httpStatus, $response->body]);
-
-                if ($callRet) {
-                    return true;
-                }
-
-            }
-
-            if ($this->cursor >= $num){
-                $this->cursor = 1;
-                return false;
-            }
-
-            $this->cursor++;
-
-
-
-//
-//            $this->callback = $callback;
-//            $callRet = call_user_func_array($callback, [$response->httpStatus, $response->body]);
-//
-//            $this->cursor++;
-//            return $callRet;
-        }
-
-    }
-    public function again()
-    {
-        $this->cursor++;
-        dump($this->cursor);
-        dump($this->callback);
-    }
-}
 
 $url = 'http://127.0.0.1:10111/js.php';
-$push = new Push();
 
-$ret = $push->start($url, 3, function ($httpStatus, $body) {
-    if ($httpStatus === 200){
+//$ret = Push::start($url, function ($httpStatus, $body) {
+//    if ($httpStatus === 200){
+//        return true;
+//    }
+//    return false;
+//});
+//dump('最终返回结果：', $ret);
+//dump('失败次数：', Push::$error);
+
+$client = new HttpClient();
+$ret = Push::start2(function() use ($client, $url) {
+    $response = $client->get($url);
+    if ($response->httpStatus === 200) {
         return true;
     }
     return false;
-    throw new \Exception("错误，不是我想要的HTTP状态[{$httpStatus}]");
-    //dump($body);
-    //return $httpStatus;
-});
+}, 3);
+dump($ret);
 
 //try {
 //
@@ -90,7 +48,27 @@ $ret = $push->start($url, 3, function ($httpStatus, $body) {
 //    $push->again(2);
 //}
 
-dump($ret);
+
+/** 图表测试 **/
+//use Hisune\EchartsPHP\ECharts;
+//$chart = new ECharts();
+//$chart->tooltip->show = true;
+//$chart->legend->data[] = '销量';
+//$chart->xAxis[] = array(
+//    'type' => 'category',
+//    'data' => array("衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子")
+//);
+//$chart->yAxis[] = array(
+//    'type' => 'value'
+//);
+//$chart->series[] = array(
+//    'name' => '销量',
+//    'type' => 'bar',
+//    'data' => array(5, 20, 40, 10, 10, 20)
+//);
+//echo $chart->render('simple-custom-id'); exit;
+
+
 
 /** 地图测试 **/
 
