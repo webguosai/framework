@@ -20,27 +20,18 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-
 $url = 'http://127.0.0.1:10111/js.php';
 
-//$ret = Push::start($url, function ($httpStatus, $body) {
-//    if ($httpStatus === 200){
-//        return true;
-//    }
-//    return false;
-//});
-//dump('最终返回结果：', $ret);
-//dump('失败次数：', Push::$error);
-
 $client = new HttpClient();
-$ret = Push::start2(function() use ($client, $url) {
+$ret = Push::start(function() use ($client, $url) {
     $response = $client->get($url);
+
     if ($response->httpStatus === 200) {
         return true;
     }
-    return false;
 }, 3);
-dump($ret);
+dump('最终返回结果：', $ret);
+dump('失败次数：', Push::$error);
 
 //try {
 //

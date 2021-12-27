@@ -6,7 +6,7 @@ require_once '../vendor/autoload.php';
 
 $js = file_get_contents('js.txt');
 
-if ($js % 3 !== 0) {
+if ($js % 5 !== 0) {
     \Webguosai\Http\HttpHeader::setHttpCode(502);
 
     echo json_encode([
