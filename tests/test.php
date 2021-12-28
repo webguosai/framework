@@ -7,6 +7,7 @@ use Webguosai\Helper\Arr;
 use Webguosai\Http\HttpHeader;
 use Webguosai\HttpClient;
 use Webguosai\Map\BaiduMap;
+use Webguosai\Map\GaodeMap;
 use Webguosai\Map\TencentMap;
 use Webguosai\Message\DingRobot;
 use Webguosai\Message\MyWxPush;
@@ -20,24 +21,20 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-$url = 'http://127.0.0.1:10111/js.php';
 
-$client = new HttpClient();
-$ret = Push::start(function() use ($client, $url) {
-    $response = $client->get($url);
 
-    if ($response->httpStatus === 200) {
-        return true;
-    }
-}, 3);
-dump('最终返回结果：', $ret);
-dump('失败次数：', Push::$error);
-
-//try {
+/** 推送测试 **/
+//$url = 'http://127.0.0.1:10111/js.php';
+//$client = new HttpClient();
+//$ret = Push::start(function() use ($client, $url) {
+//    $response = $client->get($url);
 //
-//} catch (\Exception $e) {
-//    $push->again(2);
-//}
+//    if ($response->httpStatus === 200) {
+//        return true;
+//    }
+//}, 3);
+//dump('最终返回结果：', $ret);
+//dump('失败次数：', Push::$error);
 
 
 /** 图表测试 **/
@@ -66,15 +63,7 @@ dump('失败次数：', Push::$error);
 /* 腾讯地图 */
 //$map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
 
-//坐标转地址
-//$location = $map->geoLocation('39.984154', '116.307490');
-//$location = $map->geoLocation('28.20057227', '112.83502147');
-//dump($location);
-
 //地址转坐标
-//$address = $map->geoAddress('湖南省长沙市岳麓区辰泰科技园A座');
-//dump($address);
-
 //湖南省长沙市岳麓区辰泰科技园A座
 //-湖南省长沙市开福区四方坪商贸城B-2 东四门 7楼703
 //湖南省长沙市雨花区高桥大市场
@@ -82,9 +71,12 @@ dump('失败次数：', Push::$error);
 //$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
 //dump($address);
 
+//坐标转地址
+//$location = $map->geoLocation($address['location']['lat'], $address['location']['lng']);
+//dump($location);
+
 //静态图
-//$staticMap = $map->staticMap('500*500', [
-//    'center' => $address['location']['lat'].','.$address['location']['lng'],//'28.231092,112.875958', //辰泰 28.231092,112.875958 // 四方坪 28.23608,113.008044
+//$staticMap = $map->staticMap($address['location']['lng'], $address['location']['lat'], 500, 500, [
 //    'zoom'   => '14',
 //    'markers' => 'color:blue|'.$address['location']['lat'].','.$address['location']['lng'],
 //]);
@@ -116,19 +108,72 @@ dump('失败次数：', Push::$error);
 //var_dump($regions);
 
 /* 百度地图 */
-//$baidu = new BaiduMap([
-//    'ak' => '4ZFS3XTiggfZcGnDl87asoaPbvxVePZo',//某个公众号的ak
-//    'ak' => 'B615d4b3ad53e51854eb3a75356acc17'
-//]);
-//获取 经纬度
-//dd($baidu->geocoding([
-//    'address' => '北京市海淀区上地十街10号'
-//]));
-//获取 地区信息
-//dd($baidu->reverse_geocoding([
-//    'location' => '38.76623,116.43213'
-//]));
+//4ZFS3XTiggfZcGnDl87asoaPbvxVePZo //某个公众号的ak
+//$map = new BaiduMap('B615d4b3ad53e51854eb3a75356acc17');
 
+//地址转坐标
+//$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
+//dump($address);
+
+//坐标转地址
+//$location = $map->geoLocation($address['location']['lat'], $address['location']['lng']);
+//dump($location);
+
+//静态图
+//$staticMap = $map->staticMap($address['location']['lng'], $address['location']['lat'], 400, 400, [
+//    'zoom'   => '14',
+//    'markers' => $address['location']['lng'].','.$address['location']['lat'],
+//    'markerStyles' => 'l,'
+//]);
+//file_put_contents('map.png', $staticMap);
+//dump($staticMap);
+
+//驾车(轻量)
+//$direction = $map->dirDriving(28.236919,112.88282, 28.242623, 113.011237);
+//dump($direction);
+
+//公交规划(轻量)
+//$direction = $map->dirTransit(28.236919,112.88282, 28.242623, 113.011237);
+//dump($direction);
+
+//步行规划(轻量)
+//$direction = $map->dirWalking(28.236919,112.88282, 28.242623, 113.011237);
+//dump($direction);
+
+//骑行规划(轻量)
+//$direction = $map->dirBicycling(28.236919,112.88282, 28.242623, 113.011237);
+//dump($direction);
+
+//ip定位
+//$ip = $map->ip('113.246.95.120');
+//dump($ip);
+
+/* 高德地图 */
+$map = new GaodeMap('8566b47583450c2570256cf578697e42');
+
+//地址转坐标
+$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
+//dump($address);
+
+//坐标转地址
+//$lnglat = explode(',', $address['geocodes'][0]['location']);
+//$lng = $lnglat[0];
+//$lat = $lnglat[1];
+//$location = $map->geoLocation($lat, $lng);
+//dump($location);
+
+//静态图
+//$staticMap = $map->staticMap($lng, $lat, 400, 400, [
+//    'zoom'   => '14',
+//    'markers' => "mid,0xFF0000,A:{$lng},{$lat}",
+//]);
+//file_put_contents('map.png', $staticMap);
+//dump($staticMap);
+
+//ip定位
+//$ip = $map->ip('113.246.95.120');
+//$ip = $map->ip('fe80::250:56ff:fec0:8%7');
+//dump($ip);
 
 /** 响应类测试 **/
 //Response::error('6666', 88, 200);

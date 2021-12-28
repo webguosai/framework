@@ -21,7 +21,7 @@ class Push
     /**
      * 推送
      *
-     * @param callable $callback
+     * @param callable $callback 回调函数
      * @param int $tryCount 重试次数
      * @return bool
      */

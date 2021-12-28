@@ -7,47 +7,241 @@
 
 namespace Webguosai\Map;
 
+use Webguosai\HttpClient;
+
 class BaiduMap
 {
-    protected $config = [
-        'ak' => '',
-    ];
+    protected $ak = '';
+    protected $host = 'https://api.map.baidu.com';
 
-    protected $api = 'https://api.map.baidu.com';
-    protected $version = 'v3';
-
-    public function __construct($config = [])
+    public function __construct($ak)
     {
-        $this->config = $config;
+        $this->ak = $ak;
     }
 
-//    public function geocoding($params)
-//    {
-//        return $this->request('geocoding', $params);
-//    }
-
-    public function __call($name, $arguments)
+    /**
+     * 地址转坐标
+     * https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding
+     *
+     * @param string $address 地址：湖南省长沙市
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function geoAddress(string $address, $extraParams = [])
     {
-        return $this->request($name, $arguments[0]);
+        $extraParams['address'] = $address;
+        return $this->request('/geocoding/v3/', $extraParams);
     }
 
-    protected function request($port, $params = [])
+    /**
+     * 坐标转地址
+     * https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding-abroad
+     *
+     * @param string|double $lat 纬度：39.984154
+     * @param string|double $lng 经度：116.307490
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function geoLocation($lat, $lng, $extraParams = [])
     {
-        $params['ak']     = $this->config['ak'];
+        $extraParams['location'] = "{$lat},{$lng}";
+        return $this->request('/reverse_geocoding/v3/', $extraParams);
+    }
+
+    /**
+     * 智能地址解析(适用于收货地址)(需要开通高级功能)
+     * https://lbsyun.baidu.com/index.php?title=webapi/address_analyze
+     *
+     *
+     * @param string $address 详细地址：北京市海淀区彩和坊路海淀西大街74号
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function geoSmartAddress(string $address, $extraParams = [])
+    {
+        $extraParams['address'] = $address;
+        return $this->request('/address_analyzer/v1', $extraParams);
+    }
+
+    /**
+     * 驾车规划(轻量)
+     * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1#service-page-anchor-1-0
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirDriving($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('driving', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 公交规划(轻量)
+     * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1#service-page-anchor-1-3
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirTransit($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('transit', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 步行规划(轻量)
+     * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1#service-page-anchor-1-2
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirWalking($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('walking', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 骑行规划(轻量)
+     * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1#service-page-anchor-1-1
+     *
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function dirBicycling($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        return $this->direction('riding', $fromLat, $fromLng, $toLat, $toLng, $extraParams);
+    }
+
+    /**
+     * 静态图
+     * https://lbsyun.baidu.com/index.php?title=static
+     *
+     * @param string|double $lng 经度
+     * @param string|double $lat 纬度
+     * @param int $width 宽度(单位：像素)
+     * @param int $height 高度(单位：像素)
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function staticMap($lng, $lat, $width = 400, $height = 400, $extraParams = [])
+    {
+        $extraParams['width']  = $width;
+        $extraParams['height'] = $height;
+        $extraParams['center'] = $lng . ',' . $lat;
+        return $this->request('/staticimage/v2/', $extraParams);
+    }
+
+    /**
+     * ip定位
+     * https://lbsyun.baidu.com/index.php?title=webapi/ip-api
+     *
+     * @param string $ip
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function ip($ip, $extraParams = [])
+    {
+        $extraParams['ip'] = $ip;
+        return $this->request('/location/ip', $extraParams);
+    }
+
+    /**
+     * 坐标转换
+     * https://lbsyun.baidu.com/index.php?title=webapi/guide/changeposition
+     *
+     * @param string $lngLats 经度前,纬度后,中间用【,】分隔，每组坐标之间使用【;】分隔(116.83,39.12;115.43,30.21)
+     * @param int $type 类型：3=火星坐标（gcj02），即高德地图、腾讯地图和MapABC等地图使用的坐标，其它类型参考文档
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function translate($lngLats, $type, $extraParams = [])
+    {
+        $extraParams['coords'] = $lngLats;
+        $extraParams['from']   = $type;
+        return $this->request('/geoconv/v1/', $extraParams);
+    }
+
+    /**
+     * 封装的规划方向(轻量)
+     * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1
+     *
+     * @param string $direction 规划方式：驾车(driving) 步行(walking) 骑行(riding) 公交(transit)
+     * @param string|double $fromLat 起点纬度
+     * @param string|double $fromLng 起点经度
+     * @param string|double $toLat 终点纬度
+     * @param string|double $toLng 终点经度
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    protected function direction($direction, $fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
+    {
+        $extraParams['origin']      = $fromLat . ',' . $fromLng;
+        $extraParams['destination'] = $toLat . ',' . $toLng;
+        return $this->request('/directionlite/v1/' . $direction, $extraParams);
+    }
+
+    /**
+     * 封装的请求
+     *
+     * @param string $path
+     * @param array $params
+     * @return mixed
+     * @throws \Exception
+     */
+    protected function request($path, $params = [])
+    {
         $params['output'] = 'json';
-        $url              = $this->api . '/' . $port . '/' . $this->version . '/?' . http_build_query($params);
+        $params['ak']     = $this->ak;
 
-        $client   = new \Webguosai\HttpClient();
+        $url = $this->host . $path . '?' . http_build_query($params);
+
+        $client   = new HttpClient();
         $response = $client->get($url);
-
+        //dump($response->body);
         if ($response->ok()) {
-            $data = $response->json();
-
-            if ($data['status'] === 0) {
-                return $data['result'];
+            //如果为图片，直接返回
+            if ($response->isImg()) {
+                return $response->body;
             }
 
-            throw new \Exception('状态码返回[' . $data['status'] . ']');
+            $data = $response->json();
+            //dump($data);
+            if ($data['status'] === 0) {
+
+                if (isset($data['result'])) {
+                    return $data['result'];
+                } else {
+                    return $data;
+                }
+            }
+
+            throw new \Exception($data['message']);
         }
         throw new \Exception($response->getErrorMsg());
     }

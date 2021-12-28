@@ -20,6 +20,21 @@ class TencentMap
     }
 
     /**
+     * 地址转坐标
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceGeocoder
+     *
+     * @param string $address 地址：湖南省长沙市
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function geoAddress(string $address, $extraParams = [])
+    {
+        $extraParams['address'] = $address;
+        return $this->request('/ws/geocoder/v1/', $extraParams);
+    }
+
+    /**
      * 坐标转地址
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceGcoder
      *
@@ -36,22 +51,7 @@ class TencentMap
     }
 
     /**
-     * 地址转坐标
-     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceGeocoder
-     *
-     * @param string $address 地址：湖南省长沙市
-     * @param array $extraParams 额外参数请参照文档
-     * @return mixed
-     * @throws \Exception
-     */
-    public function geoAddress(string $address, $extraParams = [])
-    {
-        $extraParams['address'] = $address;
-        return $this->request('/ws/geocoder/v1/', $extraParams);
-    }
-
-    /**
-     * 智能地址解析(适用于收货地址)
+     * 智能地址解析(适用于收货地址)(1天1次)
      * https://lbs.qq.com/service/webService/webServiceGuide/SmartGeocoder
      *
      * @param string $smartAddress 详细地址：北京市海淀区彩和坊路海淀西大街74号
@@ -138,14 +138,18 @@ class TencentMap
      * 静态图
      * https://lbs.qq.com/service/staticV2/staticGuide/staticDoc
      *
-     * @param string $size 图片尺寸(单位：像素)
+     * @param string|double $lng 经度
+     * @param string|double $lat 纬度
+     * @param int $width 宽度(单位：像素)
+     * @param int $height 高度(单位：像素)
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
      * @throws \Exception
      */
-    public function staticMap($size = '500*500', $extraParams = [])
+    public function staticMap($lng, $lat, $width = 400, $height = 400, $extraParams = [])
     {
-        $extraParams['size'] = $size;
+        $extraParams['size']   = $width . '*' . $height;
+        $extraParams['center'] = $lat . ',' . $lng;
         return $this->request('/ws/staticmap/v2/', $extraParams);
     }
 
@@ -181,15 +185,15 @@ class TencentMap
      * 坐标转换
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceTranslate
      *
-     * @param string $locations 纬度前,经度后,纬度和经度之间用【,】分隔，每组坐标之间使用【;】分隔(39.12,116.83;30.21,115.43)
+     * @param string $latLngs 纬度前,经度后,纬度和经度之间用【,】分隔，每组坐标之间使用【;】分隔(39.12,116.83;30.21,115.43)
      * @param int $type 类型：3=baidu经纬度，其它类型参考文档
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
      * @throws \Exception
      */
-    public function translate($locations, $type, $extraParams = [])
+    public function translate($latLngs, $type, $extraParams = [])
     {
-        $extraParams['locations'] = $locations;
+        $extraParams['locations'] = $latLngs;
         $extraParams['type']      = $type;
         return $this->request('/ws/coord/v1/translate', $extraParams);
     }
@@ -217,17 +221,17 @@ class TencentMap
     /**
      * 封装的请求
      *
-     * @param string $url
+     * @param string $path
      * @param array $params
      * @return mixed
      * @throws \Exception
      */
-    protected function request(string $url, $params = [])
+    protected function request(string $path, $params = [])
     {
         $params['output'] = 'json';
         $params['key']    = $this->key;
 
-        $url = $this->host . $url . '?' . http_build_query($params);
+        $url = $this->host . $path . '?' . http_build_query($params);
 
         $client   = new HttpClient();
         $response = $client->get($url);
