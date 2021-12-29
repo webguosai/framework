@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Webguosai\Chart;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
 use Webguosai\Http\HttpHeader;
@@ -21,8 +22,6 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-
-
 /** 推送测试 **/
 //$url = 'http://127.0.0.1:10111/js.php';
 //$client = new HttpClient();
@@ -38,23 +37,9 @@ require_once '../vendor/autoload.php';
 
 
 /** 图表测试 **/
-//use Hisune\EchartsPHP\ECharts;
-//$chart = new ECharts();
-//$chart->tooltip->show = true;
-//$chart->legend->data[] = '销量';
-//$chart->xAxis[] = array(
-//    'type' => 'category',
-//    'data' => array("衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子")
-//);
-//$chart->yAxis[] = array(
-//    'type' => 'value'
-//);
-//$chart->series[] = array(
-//    'name' => '销量',
-//    'type' => 'bar',
-//    'data' => array(5, 20, 40, 10, 10, 20)
-//);
-//echo $chart->render('simple-custom-id'); exit;
+$chart = new Chart();
+echo $chart->pie();
+
 
 
 
@@ -149,10 +134,10 @@ require_once '../vendor/autoload.php';
 //dump($ip);
 
 /* 高德地图 */
-$map = new GaodeMap('8566b47583450c2570256cf578697e42');
+//$map = new GaodeMap('8566b47583450c2570256cf578697e42');
 
 //地址转坐标
-$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
+//$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
 //dump($address);
 
 //坐标转地址
