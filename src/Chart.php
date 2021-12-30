@@ -59,19 +59,19 @@ class Chart
                             'name' => 'Video Ads',
                         ],
                     ],
-                    'emphasis' => [
-                        'itemStyle' => [
-                            'shadowBlur' => 10,
-                            'shadowOffsetX' => 0,
-                            'shadowColor' => 'rgba(0, 0, 0, 0.5)',
-                        ],
-                    ],
+//                    'emphasis' => [
+//                        'itemStyle' => [
+//                            'shadowBlur' => 10,
+//                            'shadowOffsetX' => 0,
+//                            'shadowColor' => 'rgba(0, 0, 0, 0.5)',
+//                        ],
+//                    ],
                 ],
             ],
         ];
         $this->chart->setOption($option);
 
-        return $this->chart->render('simple-custom-id');
+        return $this->chart->render('simple-custom-id', ['style' => 'height: 500px;']);
     }
 
 
