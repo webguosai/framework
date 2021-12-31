@@ -199,6 +199,22 @@ class TencentMap
     }
 
     /**
+     * 输入提示
+     * https://lbs.qq.com/service/webService/webServiceGuide/webServiceSuggestion
+     *
+     * @param string $keyword 关键字
+     * @param sting $region 缺省时侧进行全国范围搜索
+     * @return mixed
+     * @throws \Exception
+     */
+    public function suggestion($keyword, $region)
+    {
+        $extraParams['keyword'] = $keyword;
+        $extraParams['region']  = $region;
+        return $this->request('/ws/place/v1/suggestion', $extraParams);
+    }
+
+    /**
      * 封装的规划方向
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceRoute
      *
@@ -242,11 +258,18 @@ class TencentMap
             if ($response->isImg()) {
                 return $response->body;
             }
-
             $data = $response->json();
 
             if ($data['status'] === 0) {
-                return $data['result'];
+                if (isset($data['result'])) {
+                    return $data['result'];
+                }
+
+                if (isset($data['data'])) {
+                    return $data['data'];
+                }
+
+                return $data;
             }
 
             throw new \Exception($data['message']);

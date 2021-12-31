@@ -95,6 +95,38 @@ class GaodeMap
     }
 
     /**
+     * 天气查询
+     * https://lbs.amap.com/api/webservice/guide/api/weatherinfo
+     *
+     * @param string $cityCode 行政区划编码 编码列表下载：https://a.amap.com/lbs/static/amap_3dmap_lite/AMap_adcode_citycode.zip
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function weather($cityCode = '430101', $extraParams = [])
+    {
+        $extraParams['city']       = $cityCode;
+        $extraParams['extensions'] = 'all';
+        return $this->request('/v3/weather/weatherInfo', $extraParams);
+    }
+
+    /**
+     * 输入提示
+     * https://lbs.amap.com/api/webservice/guide/api/inputtips
+     *
+     * @param string $keyword 关键字
+     * @param sting $region 缺省时侧进行全国范围搜索
+     * @return mixed
+     * @throws \Exception
+     */
+    public function suggestion($keyword, $region)
+    {
+        $extraParams['keywords'] = $keyword;
+        $extraParams['city']     = $region;
+        return $this->request('/v3/assistant/inputtips', $extraParams);
+    }
+
+    /**
      * 封装的请求
      *
      * @param string $url

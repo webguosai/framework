@@ -187,6 +187,38 @@ class BaiduMap
     }
 
     /**
+     * 天气查询
+     * https://lbsyun.baidu.com/index.php?title=webapi/weather
+     *
+     * @param string $cityCode 行政区划编码 编码列表下载(districtcode)：https://mapopen-website-wiki.cdn.bcebos.com/cityList/weather_district_id.csv
+     * @param array $extraParams 额外参数请参照文档
+     * @return mixed
+     * @throws \Exception
+     */
+    public function weather($cityCode = '430101', $extraParams = [])
+    {
+        $extraParams['district_id'] = $cityCode;
+        $extraParams['data_type']   = 'all';
+        return $this->request('/weather/v1/', $extraParams);
+    }
+
+    /**
+     * 输入提示
+     * https://lbsyun.baidu.com/index.php?title=webapi/place-suggestion-api
+     *
+     * @param string $query 关键字
+     * @param sting $region 支持城市及对应百度编码(citycode)https://mapopen-website-wiki.bj.bcebos.com/static_zip/BaiduMap_cityCode_1102.zip
+     * @return mixed
+     * @throws \Exception
+     */
+    public function suggestion($query, $region)
+    {
+        $extraParams['query']  = $query;
+        $extraParams['region'] = $region;
+        return $this->request('/place/v2/suggestion', $extraParams);
+    }
+
+    /**
      * 封装的规划方向(轻量)
      * https://lbsyun.baidu.com/index.php?title=webapi/directionlite-v1
      *

@@ -22,6 +22,10 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
+/** 图表测试 **/
+$chart = new Chart();
+echo $chart->pie();
+
 /** 推送测试 **/
 //$url = 'http://127.0.0.1:10111/js.php';
 //$client = new HttpClient();
@@ -35,18 +39,14 @@ require_once '../vendor/autoload.php';
 //dump('最终返回结果：', $ret);
 //dump('失败次数：', Push::$error);
 
-
-/** 图表测试 **/
-$chart = new Chart();
-echo $chart->pie();
-
-
-
-
 /** 地图测试 **/
 
 /* 腾讯地图 */
 //$map = new TencentMap('X6LBZ-PKOW3-ZE23D-YIH4K-I2YOZ-WPBKK');
+
+// 输入提示
+//$suggestion = $map->suggestion('天安门', '北京市');
+//dump($suggestion);
 
 //地址转坐标
 //湖南省长沙市岳麓区辰泰科技园A座
@@ -96,6 +96,14 @@ echo $chart->pie();
 //4ZFS3XTiggfZcGnDl87asoaPbvxVePZo //某个公众号的ak
 //$map = new BaiduMap('B615d4b3ad53e51854eb3a75356acc17');
 
+// 输入提示
+//$suggestion = $map->suggestion('天安门', '北京市');
+//dump($suggestion);
+
+// 天气查询
+//$weather = $map->weather(430101);
+//dump($weather);
+
 //地址转坐标
 //$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
 //dump($address);
@@ -135,6 +143,14 @@ echo $chart->pie();
 
 /* 高德地图 */
 //$map = new GaodeMap('8566b47583450c2570256cf578697e42');
+
+// 输入提示
+//$suggestion = $map->suggestion('天安门', '北京市');
+//dump($suggestion);
+
+// 天气查询
+//$weather = $map->weather(430101);
+//dump($weather);
 
 //地址转坐标
 //$address = $map->geoAddress('湖南省长沙市雨花区高桥大市场');
