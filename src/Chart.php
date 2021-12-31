@@ -17,7 +17,7 @@ class Chart
     /**
      * 饼图
      */
-    public function pie()
+    public function pie($id)
     {
         $option = [
             'title' => [
@@ -71,7 +71,7 @@ class Chart
         ];
         $this->chart->setOption($option);
 
-        return $this->chart->render('simple-custom-id', ['style' => 'height: 500px;']);
+        return $this->chart->render($id, ['style' => 'height: 500px;']);
     }
 
 

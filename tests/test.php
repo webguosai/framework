@@ -24,7 +24,9 @@ require_once '../vendor/autoload.php';
 
 /** 图表测试 **/
 $chart = new Chart();
-echo $chart->pie();
+echo $chart->pie('id1');
+echo '<hr>';
+echo $chart->pie('id2');
 
 /** 推送测试 **/
 //$url = 'http://127.0.0.1:10111/js.php';
