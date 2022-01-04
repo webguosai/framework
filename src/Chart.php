@@ -14,56 +14,33 @@ class Chart
         $this->chart = new ECharts();
     }
 
-    /**
-     * 饼图
-     */
-    public function pie($id)
+    // 饼图
+    public function pie($id, $data = [], $height = 500)
     {
         $option = [
-            'title' => [
-                'text' => '标题',
+            'title'   => [
+                'text'    => '标题',
                 'subtext' => '描述',
-                'left' => 'center',
+                'left'    => 'center',
             ],
             'tooltip' => [
                 'trigger' => 'item',
             ],
-            'legend' => [
+            'legend'  => [
                 'orient' => 'vertical',
-                'left' => 'left',
+                'left'   => 'left',
             ],
-            'series' => [
+            'series'  => [
                 [
                     //'name' => 'Access From',
-                    'type' => 'pie',
-                    'radius' => '50%',
-                    'data' => [
-                        [
-                            'value' => 1048,
-                            'name' => 'Search Engine',
-                        ],
-                        [
-                            'value' => 735,
-                            'name' => 'Direct',
-                        ],
-                        [
-                            'value' => 580,
-                            'name' => 'Email',
-                        ],
-                        [
-                            'value' => 484,
-                            'name' => 'Union Ads',
-                        ],
-                        [
-                            'value' => 300,
-                            'name' => 'Video Ads',
-                        ],
-                    ],
+                    'type'     => 'pie',
+                    'radius'   => '50%',
+                    'data'     => $data,
                     'emphasis' => [
                         'itemStyle' => [
-                            'shadowBlur' => 10,
+                            'shadowBlur'    => 10,
                             'shadowOffsetX' => 0,
-                            'shadowColor' => 'rgba(0, 0, 0, 0.5)',
+                            'shadowColor'   => 'rgba(0, 0, 0, 0.5)',
                         ],
                     ],
                 ],
@@ -71,7 +48,7 @@ class Chart
         ];
         $this->chart->setOption($option);
 
-        return $this->chart->render($id, ['style' => 'height: 500px;']);
+        return $this->chart->render($id, ['style' => 'height: '.$height.'px;']);
     }
 
 
