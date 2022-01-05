@@ -42,9 +42,14 @@ $data = [
     ],
 ];
 $chart = new Chart();
-echo $chart->pie('id1', $data);
+echo $chart->pieSimple('id1', $data, [
+    'text'    => '浏览器使用比率',
+    'subtext' => '12月份',
+]);
 echo '<hr>';
-echo $chart->pie('id2', $data);
+echo $chart->pieDoughnut('id2', $data);
+echo '<hr>';
+echo $chart->barBackground('id3', $data);
 
 /** 推送测试 **/
 //$url = 'http://127.0.0.1:10111/js.php';

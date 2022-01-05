@@ -9,20 +9,19 @@ use Hisune\EchartsPHP\ECharts;
 class Chart
 {
     protected $chart;
+
     public function __construct()
     {
         $this->chart = new ECharts();
     }
 
     // 饼图
-    public function pie($id, $data = [], $height = 500)
+    // https://echarts.apache.org/examples/zh/editor.html?c=pie-simple
+    public function pieSimple($id, $data = [], $title = [], $height = 300)
     {
+        $title = array_merge(['left' => 'center'], $title);
+
         $option = [
-            'title'   => [
-                'text'    => '标题',
-                'subtext' => '描述',
-                'left'    => 'center',
-            ],
             'tooltip' => [
                 'trigger' => 'item',
             ],
@@ -30,6 +29,7 @@ class Chart
                 'orient' => 'vertical',
                 'left'   => 'left',
             ],
+            'title'   => $title,
             'series'  => [
                 [
                     //'name' => 'Access From',
@@ -46,33 +46,88 @@ class Chart
                 ],
             ],
         ];
+        $this->chart->_options = [];
         $this->chart->setOption($option);
 
-        return $this->chart->render($id, ['style' => 'height: '.$height.'px;']);
+        return $this->chart->render($id, ['style' => 'height: ' . $height . 'px;']);
     }
 
-
-    /**
-     * 柱状图(未测试)
-     * @return string
-     */
-    public function bar()
+    // https://echarts.apache.org/examples/zh/editor.html?c=pie-doughnut
+    public function pieDoughnut($id, $data = [], $height = 300)
     {
-        $this->chart->tooltip->show = true;
-        $this->chart->legend->data[] = '销量';
-        $this->chart->xAxis[] = array(
-            'type' => 'category',
-            'data' => array("衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子")
-        );
-        $this->chart->yAxis[] = array(
-            'type' => 'value'
-        );
-        $this->chart->series[] = array(
-            'name' => '销量',
-            'type' => 'bar',
-            'data' => array(5, 20, 40, 10, 10, 20)
-        );
-        return $this->chart->render('simple-custom-id');
+        $option = [
+            'tooltip' => [
+                'trigger' => 'item',
+            ],
+            'legend'  => [
+                'top'  => '5%',
+                'left' => 'center',
+            ],
+            'series'  => [
+                [
+                    'type'              => 'pie',
+                    'radius'            => ['40%', '70%'],
+                    'avoidLabelOverlap' => false,
+                    'label'             => [
+                        'show'     => false,
+                        'position' => 'center',
+                    ],
+                    'emphasis'          => [
+                        'label' => [
+                            'show'       => true,
+                            'fontSize'   => '20',
+                            'fontWeight' => 'bold',
+                        ],
+                    ],
+                    'labelLine'         => [
+                        'show' => false,
+                    ],
+                    'data'              => $data,
+                ],
+            ],
+        ];
+
+        $this->chart->_options = [];
+        $this->chart->setOption($option);
+
+        return $this->chart->render($id, ['style' => 'height: ' . $height . 'px;']);
+    }
+
+    //柱状图
+    //https://echarts.apache.org/examples/zh/editor.html?c=bar-background
+    public function barBackground($id, $data = [], $height = 300)
+    {
+        $data1 = [];
+        $data2 = [];
+        foreach ($data as $value) {
+            $data1[] = $value['name'];
+            $data2[] = $value['value'];
+        }
+
+        $option = [
+            'xAxis' => [
+                'type' => 'category',
+                'data' => $data1,
+            ],
+            'yAxis' => [
+                'type' => 'value',
+            ],
+            'series' => [
+                [
+                    'data' => $data2,
+                    'type' => 'bar',
+                    'showBackground' => true,
+                    'backgroundStyle' => [
+                        'color' => 'rgba(180, 180, 180, 0.2)',
+                    ],
+                ],
+            ],
+        ];
+
+        $this->chart->_options = [];
+        $this->chart->setOption($option);
+
+        return $this->chart->render($id, ['style' => 'height: ' . $height . 'px;']);
     }
 
 }
