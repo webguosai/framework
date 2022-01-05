@@ -5,6 +5,7 @@ namespace Tests;
 use Webguosai\Chart;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
+use Webguosai\Helper\Str;
 use Webguosai\Http\HttpHeader;
 use Webguosai\HttpClient;
 use Webguosai\Map\BaiduMap;
@@ -23,24 +24,31 @@ use Webguosai\Api\Push;
 require_once '../vendor/autoload.php';
 
 /** 图表测试 **/
-$data = [
-    [
-        'value' => 1048,
-        'name' => 'chrome',
-    ],
-    [
-        'value' => 735,
-        'name' => 'firefox',
-    ],
-    [
-        'value' => 580,
-        'name' => 'ie',
-    ],
-    [
-        'value' => 484,
-        'name' => 'QQ',
-    ],
-];
+$data = [];
+for ($i = 0; $i < 10; $i++) {
+    $data[] = [
+        'value' => mt_rand(1000, 5000),
+        'name'  => Str::random(5, 4),
+    ];
+}
+//$data = [
+//    [
+//        'value' => 1048,
+//        'name' => 'chrome',
+//    ],
+//    [
+//        'value' => 735,
+//        'name' => 'firefox',
+//    ],
+//    [
+//        'value' => 580,
+//        'name' => 'ie',
+//    ],
+//    [
+//        'value' => 484,
+//        'name' => 'QQ',
+//    ],
+//];
 $chart = new Chart();
 echo $chart->pieSimple('id1', $data, [
     'text'    => '浏览器使用比率',
