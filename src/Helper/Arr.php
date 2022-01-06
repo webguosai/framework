@@ -39,6 +39,8 @@ class Arr
     }
 
     /**
+     * 只要指定的字段
+     *
      * @param array $array
      * @param array|string $keys
      * @return array
@@ -94,8 +96,28 @@ class Arr
 
         return json_decode($json, true);
     }
-    public static function isLast($array, $value)
+
+    /**
+     * 是否为最后一个
+     *
+     * @param array $array
+     * @param mixed $value
+     * @return bool
+     */
+    public static function isLast(array $array, $value)
     {
         return $value == end($array);
+    }
+
+    /**
+     * 合并数组
+     *
+     * @param array $default
+     * @param array $options
+     * @return array
+     */
+    public static function merge(array $default, array $options)
+    {
+        return \Graze\ArrayMerger\RecursiveArrayMerger::lastNonNull($default, $options);
     }
 }

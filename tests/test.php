@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Graze\ArrayMerger\RecursiveArrayMerger;
+use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Chart;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
@@ -23,41 +25,27 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-/** 图表测试 **/
-$data = [];
-for ($i = 0; $i < 10; $i++) {
-    $data[] = [
-        'value' => mt_rand(1000, 5000),
-        'name'  => Str::random(5, 4),
-    ];
-}
-//$data = [
-//    [
-//        'value' => 1048,
-//        'name' => 'chrome',
-//    ],
-//    [
-//        'value' => 735,
-//        'name' => 'firefox',
-//    ],
-//    [
-//        'value' => 580,
-//        'name' => 'ie',
-//    ],
-//    [
-//        'value' => 484,
-//        'name' => 'QQ',
-//    ],
-//];
-$chart = new Chart();
-echo $chart->pieSimple('id1', $data, [
-    'text'    => '浏览器使用比率',
-    'subtext' => '12月份',
-]);
-echo '<hr>';
-echo $chart->pieDoughnut('id2', $data);
-echo '<hr>';
-echo $chart->barBackground('id3', $data);
+/** test array_merge **/
+$default = [
+    'name' => '111',
+    'title' => [
+        'text' => '',
+        'subtext' => '',
+        'left' => 'center'
+    ],
+];
+$options = [
+    'name' => '222',
+    'title' => [
+//        'text' => '222',
+//        'subtext' => '222'
+        'left' => 'right'
+    ],
+];
+
+dump(Arr::merge($default, $options));
+
+
 
 /** 推送测试 **/
 //$url = 'http://127.0.0.1:10111/js.php';
