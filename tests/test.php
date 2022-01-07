@@ -25,25 +25,15 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-/** test array_merge **/
-$default = [
-    'name' => '111',
-    'title' => [
-        'text' => '',
-        'subtext' => '',
-        'left' => 'center'
-    ],
-];
-$options = [
-    'name' => '222',
-    'title' => [
-//        'text' => '222',
-//        'subtext' => '222'
-        'left' => 'right'
-    ],
-];
+$arr = [];
+for ($i = 0; $i < 10; $i++) {
+    $arr[] = [
+        'num' => mt_rand(111,999),
+    ];
+}
 
-dump(Arr::merge($default, $options));
+dump(Arr::column($arr, 'num'));
+//dump($arr);
 
 
 

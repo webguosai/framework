@@ -120,4 +120,17 @@ class Arr
     {
         return \Graze\ArrayMerger\RecursiveArrayMerger::lastNonNull($default, $options);
     }
+
+    /**
+     * 返回输入数组中某个单一列的值
+     *
+     * @param array $array
+     * @param string $column
+     * @param null $index_key
+     * @return array
+     */
+    public static function column(array $array, $column, $index_key = null)
+    {
+        return array_column($array, $column, $index_key);
+    }
 }

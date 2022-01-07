@@ -12,18 +12,143 @@ class Chart
     protected $chart;
 
     public function __construct($dist = '//cdn.jsdelivr.net/npm/echarts/dist')
+    //public function __construct($dist = '//lib.baomitu.com/echarts/4.2.1')
     {
         $this->chart = new ECharts($dist);
     }
 
+    /**
+     * 柱状图
+     * https://echarts.apache.org/examples/zh/index.html#chart-type-bar
+     *
+     * @param array $data
+     * @param array $option
+     * @param string $height
+     * @return string
+     */
+    public function bar($data = [], $option = [], $height = '300px')
+    {
+        $labels = $data['name'];
+        $legend = [];
+        $series = [];
 
-    // 饼图
-    // https://echarts.apache.org/examples/zh/editor.html?c=pie-simple
-    public function pieSimple($data = [], $option = [], $height = '300px')
+        foreach ($data['data'] as $value) {
+            $legend[] = $value['name'];
+            $series[] = [
+                'name' => $value['name'],
+                'type' => 'bar',
+                'label'    => [
+                    'show'     => true,
+                    'position' => 'top',
+                ],
+                'data' => $value['data'],
+            ];
+        }
+
+        $default = [
+            'tooltip' => [
+                'trigger' => 'axis',
+                'axisPointer' => [
+                    'type' => 'shadow',//cross
+                ],
+
+            ],
+            'legend' => [
+                'data' => $legend,
+            ],
+            'grid' => [
+                'left'         => '2%',
+                'right'        => '2%',
+                'bottom'       => '3%',
+                'containLabel' => true,
+            ],
+            'xAxis' => [
+                [
+                    'type' => 'category',
+                    'data' => $labels,
+                ],
+            ],
+            'yAxis' => [
+                [
+                    'type' => 'value',
+                ],
+            ],
+            'series' => $series,
+        ];
+
+        return $this->render($default, $option, $height);
+    }
+
+    /**
+     * 折线图
+     * https://echarts.apache.org/examples/zh/index.html#chart-type-line
+     *
+     * @param array $data
+     * @param array $option
+     * @param string $height
+     * @return string
+     */
+    public function line($data = [], $option = [], $height = '300px')
+    {
+        $labels = $data['name'];
+        $legend = [];
+        $series = [];
+
+        foreach ($data['data'] as $value) {
+            $legend[] = $value['name'];
+            $series[] = [
+                'name'  => $value['name'],
+                'type'  => 'line',
+                'stack' => 'Total',
+                'label'    => [
+                    'show'     => true,
+                    'position' => 'top',
+                ],
+                'data'  => $value['data'],
+            ];
+        }
+        $default = [
+            'tooltip' => [
+                'trigger' => 'axis',
+            ],
+            'legend' => [
+                'data' => $legend,
+            ],
+            'grid' => [
+                'left'         => '2%',
+                'right'        => '2%',
+                'bottom'       => '3%',
+                'containLabel' => true,
+            ],
+            'xAxis' => [
+                'type'        => 'category',
+                'boundaryGap' => false,
+                'data'        => $labels,
+            ],
+            'yAxis' => [
+                'type' => 'value',
+            ],
+            'series' => $series,
+        ];
+
+        return $this->render($default, $option, $height);
+    }
+
+    /**
+     * 饼图
+     * https://echarts.apache.org/examples/zh/index.html#chart-type-pie
+     *
+     * @param array $data
+     * @param array $option
+     * @param string $height
+     * @return string
+     */
+    public function pie($data = [], $option = [], $height = '300px')
     {
         $default = [
             'tooltip' => [
                 'trigger' => 'item',
+                'formatter' => '{b} : {c} ({d}%)',
             ],
             'legend'  => [
                 'orient' => 'vertical',
@@ -38,6 +163,7 @@ class Chart
                 [
                     'type'     => 'pie',
                     'radius'   => '50%',
+//                    'radius' => ['70%', '40%'],
                     'data'     => $data,
                     'emphasis' => [
                         'itemStyle' => [
@@ -53,328 +179,69 @@ class Chart
         return $this->render($default, $option, $height);
     }
 
-    // https://echarts.apache.org/examples/zh/editor.html?c=pie-doughnut
-    public function pieDoughnut($data = [], $option = [], $height = '300px')
+    // 漏斗
+    public function funnel($data = [], $option = [], $height = '300px')
     {
+        foreach ($data as $value) {
+            $legend[] = $value['name'];
+        }
+
         $default = [
             'tooltip' => [
                 'trigger' => 'item',
             ],
-            'legend'  => [
-                'top'  => '5%',
-                'left' => 'center',
-            ],
-            'series'  => [
-                [
-                    'type'              => 'pie',
-                    'radius'            => ['40%', '70%'],
-                    'avoidLabelOverlap' => false,
-                    'label'             => [
-                        'show'     => false,
-                        'position' => 'center',
-                    ],
-                    'emphasis'          => [
-                        'label' => [
-                            'show'       => true,
-                            'fontSize'   => '20',
-                            'fontWeight' => 'bold',
-                        ],
-                    ],
-                    'labelLine'         => [
-                        'show' => false,
-                    ],
-                    'data'              => $data,
-                ],
-            ],
-        ];
-
-        return $this->render($default, $option, $height);
-    }
-
-    //https://echarts.apache.org/examples/zh/editor.html?c=bar-tick-align
-    public function barTickAlign($data = [], $option = [], $height = '300px')
-    {
-        $label = [];
-        $data2 = [];
-        foreach ($data as $value) {
-            $label[] = $value['name'];
-            $data2[] = $value['value'];
-        }
-
-        $default = [
-            'tooltip' => [
-                'trigger'     => 'axis',
-                'axisPointer' => [
-                    'type' => 'shadow',
-                ],
-            ],
-            'grid'    => [
-                'left'         => '3%',
-                'right'        => '4%',
-                'bottom'       => '3%',
-                'containLabel' => true,
-            ],
-            'xAxis'   => [
-                [
-                    'type'     => 'category',
-                    'data'     => $label,
-                    'axisTick' => [
-                        'alignWithLabel' => true,
-                    ],
-                ],
-            ],
-            'yAxis'   => [
-                [
-                    'type' => 'value',
-                ],
-            ],
-            'series'  => [
-                [
-                    'type'     => 'bar',
-                    'label'    => [
-                        'show'     => true,
-                        'position' => 'top',
-                    ],
-                    'barWidth' => '60%',
-                    'data'     => $data2,
-                ],
-            ],
-        ];
-
-        return $this->render($default, $option, $height);
-    }
-
-    //https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple0
-    public function barDatasetSimple0($data = [], $option = [], $height = '300px')
-    {
-        $default = [
-            'tooltip' => [
-                'trigger'     => 'axis',
-                'axisPointer' => [
-                    'type' => 'shadow',
-                ],
-            ],
-            'dataset' => [
-                'source' => [
-                    [
-                        '',
-                        '2020',
-                        '2021',
-                        '2022'
-                    ],
-                    [
-                        '项目1',
-                        43.3,
-                        85.8,
-                        93.7,
-                    ],
-                    [
-                        '项目2',
-                        83.1,
-                        73.4,
-                        55.1,
-                    ],
-                    [
-                        '项目3',
-                        86.4,
-                        65.2,
-                        82.5,
-                    ],
-                    [
-                        '项目4',
-                        72.4,
-                        53.9,
-                        39.1,
-                    ],
-                ],
-            ],
-            'xAxis' => [
-                'type' => 'category',
-            ],
-            'yAxis' => [
-                'gridIndex' => 0
-            ],
-            'series' => [
-                [
-                    'type' => 'bar',
-                    'label'    => [
-                        'show'     => true,
-                        'position' => 'top',
-                    ],
-                    'showBackground'  => true,
-                ],
-                [
-                    'type' => 'bar',
-                    'label'    => [
-                        'show'     => true,
-                        'position' => 'top',
-                    ],
-                    'showBackground'  => true,
-                ],
-                [
-                    'type' => 'bar',
-                    'label'    => [
-                        'show'     => true,
-                        'position' => 'top',
-                    ],
-                    'showBackground'  => true,
-                ],
-            ],
-        ];
-
-        return $this->render($default, $option, $height);
-    }
-
-    // 折线图
-    // https://echarts.apache.org/examples/zh/index.html#chart-type-line
-    public function line($data = [], $option = [], $height = '300px')
-    {
-        $legend = [];
-        $labels = [];
-        $series = [];
-
-//        $legend = [
-//            'Email',
-//            'Union Ads',
-//            'Video Ads',
-//            'Direct',
-//            'Search Engine',
-//        ];
-//
-//        $labels = [
-//            'Mon',
-//            'Tue',
-//            'Wed',
-//            'Thu',
-//            'Fri',
-//            'Sat',
-//            'Sun',
-//        ];
-
-        foreach ($data as $value) {
-            $legend[] = $value['name'];
-            $label[] = $value['name'];
-            $series[] = [
-                'name' => $value['name'],
-                'type' => 'line',
-                'stack' => 'Total',
-                'data' => $value['data'],
-            ];
-        }
-        dump($legend);
-        //dump($series);
-
-        $default = [
-            'tooltip' => [
-                'trigger' => 'axis',
-//                'axisPointer' => [
-//                    'type' => 'shadow',
-//                ],
-            ],
             'legend' => [
                 'data' => $legend,
             ],
-            'grid' => [
-                'left' => '2%',
-                'right' => '2%',
-                'bottom' => '3%',
-                'containLabel' => true,
-            ],
-//            'toolbox' => [
-//                'feature' => [
-//                    'saveAsImage' => [
-//                    ],
-//                ],
-//            ],
-            'xAxis' => [
-                'type' => 'category',
-                'boundaryGap' => false,
-                'data' => $labels,
-            ],
-            'yAxis' => [
-                'type' => 'value',
-            ],
-            'ser1ies' => $series,
+            'calculable' => true,
             'series' => [
-                [
-                    'name' => 'Email',
-                    'type' => 'line',
-                    'stack' => 'Total',
-                    'data' => [
-                        120,
-                        132,
-                        101,
-                        134,
-                        90,
-                        230,
-                        210,
+                'type' => 'funnel',
+                'left' => '10%',
+                'top' => 60,
+                'bottom' => 60,
+                'width' => '80%',
+                'min' => 0,
+                'max' => 100,
+                'minSize' => '0%',
+                'maxSize' => '100%',
+                'sort' => 'descending',
+                'gap' => 2,
+                'label' => [
+                    'show' => true,
+                    'position' => 'inside',
+                ],
+                'labelLine' => [
+                    'length' => 10,
+                    'lineStyle' => [
+                        'width' => 1,
+                        'type' => 'solid',
                     ],
                 ],
-                [
-                    'name' => 'Union Ads',
-                    'type' => 'line',
-                    'stack' => 'Total',
-                    'data' => [
-                        220,
-                        182,
-                        191,
-                        234,
-                        290,
-                        330,
-                        310,
+                'itemStyle' => [
+                    'borderColor' => '#fff',
+                    'borderWidth' => 1,
+                ],
+                'emphasis' => [
+                    'label' => [
+                        'fontSize' => 20,
                     ],
                 ],
-                [
-                    'name' => 'Video Ads',
-                    'type' => 'line',
-                    'stack' => 'Total',
-                    'data' => [
-                        150,
-                        232,
-                        201,
-                        154,
-                        190,
-                        330,
-                        410,
-                    ],
-                ],
-                [
-                    'name' => 'Direct',
-                    'type' => 'line',
-                    'stack' => 'Total',
-                    'data' => [
-                        320,
-                        332,
-                        301,
-                        334,
-                        390,
-                        330,
-                        320,
-                    ],
-                ],
-                [
-                    'name' => 'Search Engine',
-                    'type' => 'line',
-                    'stack' => 'Total',
-                    'data' => [
-                        820,
-                        932,
-                        901,
-                        934,
-                        1290,
-                        1330,
-                        1320,
-                    ],
-                ],
+                'data' => $data
             ],
         ];
 
         return $this->render($default, $option, $height);
     }
 
-
-    // 渲染
-    protected function render($default, $option, $height)
+    /**
+     * 渲染
+     *
+     * @param array $default
+     * @param array $option
+     * @param string $height
+     * @return string
+     */
+    protected function render(array $default, array $option, $height)
     {
         $option = Arr::merge($default, $option);
 
