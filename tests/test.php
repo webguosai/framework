@@ -4,6 +4,7 @@ namespace Tests;
 
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
+use Webguosai\Ai\BaiduAi;
 use Webguosai\Chart;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
@@ -25,14 +26,43 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-$arr = [];
-for ($i = 0; $i < 10; $i++) {
-    $arr[] = [
-        'num' => mt_rand(111,999),
-    ];
-}
+/** 文字 **/
+$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
+$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
+$ai = new BaiduAi($apiKey, $secretKey);
 
-dump(Arr::column($arr, 'num'));
+//图片识别为文字
+//dump($ai->image2text('image/s.jpg'));
+
+//识别身份证
+dump($ai->imageIdCard('image/s1.jpg'));
+
+/** 语音 **/
+//$apiKey    = 'PMa2TaEedcRsu7ToSDxyZ9RC';
+//$secretKey = 'HFtslkENgNsbGAuWafvVc7eIeiy2mirR';
+//$ai = new BaiduAi($apiKey, $secretKey);
+
+//
+//$audio = $ai->getAudio('你好世界', 6, [
+//    'spd'  => 5,//语速，取值0-15，默认为5中语速
+//    'pit'  => 5,//音调，取值0-15，默认为5中语调
+//    'vol'  => 5,//音量，取值0-9，默认为5中音量
+//]);
+//file_put_contents('ai/wow.wav', $audio);
+//
+////$text = $ai->getText('https://gw.alipayobjects.com/os/bmw-prod/0574ee2e-f494-45a5-820f-63aee583045a.wav');
+//$text = $ai->getText('ai/wow.wav');
+//dump($text);
+
+/**  **/
+//$arr = [];
+//for ($i = 0; $i < 10; $i++) {
+//    $arr[] = [
+//        'num' => mt_rand(111,999),
+//    ];
+//}
+
+//dump(Arr::column($arr, 'num'));
 //dump($arr);
 
 

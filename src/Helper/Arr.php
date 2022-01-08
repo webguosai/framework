@@ -133,4 +133,14 @@ class Arr
     {
         return array_column($array, $column, $index_key);
     }
+
+    /**
+     * 在数组中查询是否存在
+     * @param $text
+     * @param array $array
+     * @return bool
+     */
+    public static function in($text, array $array) {
+        return in_array($text, $array);
+    }
 }
