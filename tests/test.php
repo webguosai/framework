@@ -6,6 +6,7 @@ use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
 use Webguosai\Chart;
+use Webguosai\Factory;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
 use Webguosai\Helper\Str;
@@ -26,16 +27,19 @@ use Webguosai\Api\Push;
 
 require_once '../vendor/autoload.php';
 
-/** 文字 **/
-$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
-$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
-$ai = new BaiduAi($apiKey, $secretKey);
+
+
+
+/** 文字识别 **/
+//$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
+//$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
+//$ai = new BaiduAi($apiKey, $secretKey);
 
 //图片识别为文字
 //dump($ai->image2text('image/s.jpg'));
 
 //识别身份证
-dump($ai->imageIdCard('image/s1.jpg'));
+//dump($ai->imageIdCard('image/s1.jpg'));
 
 /** 语音 **/
 //$apiKey    = 'PMa2TaEedcRsu7ToSDxyZ9RC';
