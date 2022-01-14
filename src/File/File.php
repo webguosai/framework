@@ -23,7 +23,7 @@ class File
     public static function save($path, $data)
     {
         if (is_array($data)) {
-            $data = var_export($data, true);
+            $data = "<?php\nreturn " . var_export($data, true) . ";\n?>";
         }
 
         return file_put_contents($path, $data, LOCK_EX);
