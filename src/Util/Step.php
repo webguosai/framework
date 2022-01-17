@@ -3,7 +3,7 @@
  * 阶梯
  */
 
-namespace Webguosai;
+namespace Webguosai\Util;
 
 use Webguosai\Helper\Arr;
 

@@ -5,6 +5,9 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\Request;
+use Webguosai\Util\Arithmetic;
+use Webguosai\Util\Category;
 use Webguosai\Chart;
 use Webguosai\Factory;
 use Webguosai\File\File;
@@ -20,13 +23,43 @@ use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
-use Webguosai\Runtime;
-use Webguosai\Step;
+use Webguosai\Util\Runtime;
+use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
+use Webguosai\Util\Zip;
 
 require_once '../vendor/autoload.php';
 
+
+/** 压缩 **/
+//$zip = Zip::create('image.zip', 'image');
+
+//Zip::extract('images.zip', '.');
+
+
+/** 文件类 **/
+//$a = File::mkFile('./a/b/c/d\\asp.txt');
+//$a = File::mkFile('asp2.txt');
+//$a = File::mkFile('c/');
+//dd($a);
+
+/** 红包 **/
+
+//$a = Arithmetic::getRedPackage(999, 30,10, 50);
+//dd($a);
+
+/** 无限级分类 **/
+//$list = [
+//    ['class_id' => 1, 'name' => '1-1', 'parent_id' => 0],
+//    ['class_id' => 2, 'name' => '1-2', 'parent_id' => 1],
+//    ['class_id' => 3, 'name' => '1-3', 'parent_id' => 1],
+//    ['class_id' => 4, 'name' => '1-2-1', 'parent_id' => 2],
+//    ['class_id' => 5, 'name' => '2-1', 'parent_id' => 0],
+//    ['class_id' => 6, 'name' => '2-2', 'parent_id' => 4],
+//];
+//$category = new Category(['class_id', 'parent_id', 'name', 'cname']);
+//dump($category->getTree($list));
 
 
 
