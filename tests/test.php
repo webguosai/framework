@@ -5,6 +5,8 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\CrackCaptcha\Chaojiying;
+use Webguosai\HttpAgentIp\Xq;
 use Webguosai\Request;
 use Webguosai\Util\Arithmetic;
 use Webguosai\Util\Category;
@@ -31,6 +33,30 @@ use Webguosai\Util\Zip;
 
 require_once '../vendor/autoload.php';
 
+/** 代理ip **/
+$xq = new Xq([
+    'uid'  => '81275',
+    'ukey' => '327AA79E7FBE4B0346893D957BD2E0A4',//在绑定白名单时需要
+    'vkey' => '4178C765155FC46CF91BA7673F418CDF',//在获取代理ip时需要
+]);
+//绑定服务器ip白名单
+//$a = $xq->bindWhiteList('113.247.20.201');
+//dd($a);
+
+//获取代理ip
+$list = $xq->get(5);
+dump($list);
+
+
+/** 验证码接口 **/
+//$c = new Chaojiying([
+//    'user'     => 'a3298445815',
+//    'pass'     => 'a5436511',
+//    'softid'   => '928030',
+//]);
+//$a = $c->get('./captcha/3.jpg');
+//dd($a);
+//$c->getStr(base64_encode(file_get_contents('./captcha/1.jpg')));
 
 /** 压缩 **/
 //$zip = Zip::create('image.zip', 'image');
