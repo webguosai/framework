@@ -30,7 +30,7 @@ class Arr
      */
     public static function stripos(string $string, array $array = [])
     {
-        foreach ($array AS $value) {
+        foreach ($array as $value) {
             if (stripos($string, $value) !== false) {
                 return true;
             }
@@ -47,7 +47,7 @@ class Arr
      */
     public static function only(array $array, $keys)
     {
-        return array_intersect_key($array, array_flip((array) $keys));
+        return array_intersect_key($array, array_flip((array)$keys));
     }
 
     /**
@@ -140,7 +140,19 @@ class Arr
      * @param array $array
      * @return bool
      */
-    public static function in($text, array $array) {
+    public static function in($text, array $array)
+    {
         return in_array($text, $array);
+    }
+
+    /**
+     * 获取一个数组中的随机数
+     * 
+     * @param array $array
+     * @return mixed
+     */
+    public static function random(array $array)
+    {
+        return $array[array_rand($array)];
     }
 }
