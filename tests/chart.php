@@ -18,6 +18,12 @@ echo '<style>fieldset{margin-bottom:20px;text-align:center;font-weight: bold}</s
 //    echo '</fieldset>';
 //}
 
+//地图
+showDemo('地图 map', [
+    ['name' => '湖南', 'value' => 66],
+    ['name' => '内蒙古', 'value' => 55],
+    ['name' => '新疆', 'value' => 11],
+], 'map', [], $chart);
 
 
 

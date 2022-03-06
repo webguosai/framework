@@ -1,6 +1,6 @@
 <?php
 
-namespace Webguosai;
+namespace Webguosai\Util;
 /**
  * 分页类
  * @author  xiaojiong & 290747680@qq.com

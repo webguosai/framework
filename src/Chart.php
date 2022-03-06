@@ -233,6 +233,48 @@ class Chart
         return $this->render($default, $option, $height);
     }
 
+    //地图
+    public function map($data = [], $option = [], $height = '300px')
+    {
+        $series = [];
+
+        $series[] = [
+            'type' => 'map',
+            'geoIndex' => 0,
+            'data' => $data,
+        ];
+
+        $default = [
+            'tooltip' => [
+                'trigger' => 'item',
+            ],
+            'visualMap' => [
+                'left' => 'left',
+                'top' => 'top',
+                'type' => 'piecewise',
+                'orient' => 'horizontal',
+                'text' => ['高', '低'],
+                'calculable' => true
+            ],
+            'geo' => [
+                'map' => 'china',
+                'roam' => false,
+                'zoom' => 1.23,
+                'label' => [
+                ],
+                'itemStyle' => [
+                    'normal' => [
+                        'borderColor' => '#cccccc'
+                    ],
+                ],
+            ],
+            'series' => $series
+        ];
+        \Hisune\EchartsPHP\Config::addExtraScript('china.js', 'http://cdn.otayy.cn/');
+
+        return $this->render($default, $option, $height);
+    }
+
     /**
      * 渲染
      *

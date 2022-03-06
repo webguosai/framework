@@ -5,7 +5,13 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\CrackCaptcha\Chaojiying;
+use Webguosai\HttpAgentIp\Xq;
+use Webguosai\Request;
+use Webguosai\Util\Arithmetic;
+use Webguosai\Util\Category;
 use Webguosai\Chart;
+use Webguosai\Factory;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
 use Webguosai\Helper\Str;
@@ -19,23 +25,80 @@ use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
-use Webguosai\Runtime;
-use Webguosai\Step;
+use Webguosai\Util\Runtime;
+use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
+use Webguosai\Util\Zip;
 
 require_once '../vendor/autoload.php';
 
-/** 文字 **/
-$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
-$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
-$ai = new BaiduAi($apiKey, $secretKey);
+/** 代理ip **/
+$xq = new Xq([
+    'uid'  => '81275',
+    'ukey' => '327AA79E7FBE4B0346893D957BD2E0A4',//在绑定白名单时需要
+    'vkey' => '4178C765155FC46CF91BA7673F418CDF',//在获取代理ip时需要
+]);
+//绑定服务器ip白名单
+//$a = $xq->bindWhiteList('113.247.20.201');
+//dd($a);
+
+//获取代理ip
+$list = $xq->get(5);
+dump($list);
+
+
+/** 验证码接口 **/
+//$c = new Chaojiying([
+//    'user'     => 'a3298445815',
+//    'pass'     => 'a5436511',
+//    'softid'   => '928030',
+//]);
+//$a = $c->get('./captcha/3.jpg');
+//dd($a);
+//$c->getStr(base64_encode(file_get_contents('./captcha/1.jpg')));
+
+/** 压缩 **/
+//$zip = Zip::create('image.zip', 'image');
+
+//Zip::extract('images.zip', '.');
+
+
+/** 文件类 **/
+//$a = File::mkFile('./a/b/c/d\\asp.txt');
+//$a = File::mkFile('asp2.txt');
+//$a = File::mkFile('c/');
+//dd($a);
+
+/** 红包 **/
+
+//$a = Arithmetic::getRedPackage(999, 30,10, 50);
+//dd($a);
+
+/** 无限级分类 **/
+//$list = [
+//    ['class_id' => 1, 'name' => '1-1', 'parent_id' => 0],
+//    ['class_id' => 2, 'name' => '1-2', 'parent_id' => 1],
+//    ['class_id' => 3, 'name' => '1-3', 'parent_id' => 1],
+//    ['class_id' => 4, 'name' => '1-2-1', 'parent_id' => 2],
+//    ['class_id' => 5, 'name' => '2-1', 'parent_id' => 0],
+//    ['class_id' => 6, 'name' => '2-2', 'parent_id' => 4],
+//];
+//$category = new Category(['class_id', 'parent_id', 'name', 'cname']);
+//dump($category->getTree($list));
+
+
+
+/** 文字识别 **/
+//$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
+//$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
+//$ai = new BaiduAi($apiKey, $secretKey);
 
 //图片识别为文字
 //dump($ai->image2text('image/s.jpg'));
 
 //识别身份证
-dump($ai->imageIdCard('image/s1.jpg'));
+//dump($ai->imageIdCard('image/s1.jpg'));
 
 /** 语音 **/
 //$apiKey    = 'PMa2TaEedcRsu7ToSDxyZ9RC';
