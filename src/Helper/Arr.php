@@ -157,7 +157,7 @@ class Arr
     }
 
     /**
-     * 数组映射
+     * 数组映射 (目前只支持一维)
      *
      * @param array $array  要映射的数组 ['name1' => '111']
      * @param array $table  要映射的对应表 ['name1' => 'name']
