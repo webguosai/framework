@@ -147,12 +147,41 @@ class Arr
 
     /**
      * 获取一个数组中的随机数
-     * 
+     *
      * @param array $array
      * @return mixed
      */
     public static function random(array $array)
     {
         return $array[array_rand($array)];
+    }
+
+    /**
+     * 数组映射
+     *
+     * @param array $array  要映射的数组 ['name1' => '111']
+     * @param array $table  要映射的对应表 ['name1' => 'name']
+     * @param bool $convertEmpty    将null等空内容，转换为''
+     * @return array ['name' => '111']
+     */
+    public static function map(array $array, array $table, $convertEmpty = true)
+    {
+        $keys = array_keys($table);
+
+        $new = [];
+        foreach ($array as $key => $value) {
+
+            if ($convertEmpty && empty($value)){
+                $value = '';
+            }
+
+            if (in_array($key, $keys)){
+                $new[$table[$key]] = $value;
+            } else {
+                $new[$key] = $value;
+            }
+        }
+
+        return $new;
     }
 }
