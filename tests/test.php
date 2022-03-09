@@ -38,6 +38,8 @@ $arr = [
     'sex1' => '男',
     'job1' => null,
     'age' => null,
+    'other' => [],
+    'other2' => [1,2,3],
 ];
 $table = [
     'name1' => 'name',

@@ -162,9 +162,9 @@ class Arr
      * $table = ['name1' => 'name']
      * 映射后 ['name' => '111']
      *
-     * @param array $array  要映射的数组
-     * @param array $table  要映射的对应表
-     * @param bool $convertEmpty    将null等空内容，转换为''
+     * @param array $array 要映射的数组
+     * @param array $table 要映射的对应表
+     * @param bool $convertEmpty 将null等空内容，转换为''
      * @return array
      */
     public static function map(array $array, array $table, $convertEmpty = true)
@@ -174,11 +174,11 @@ class Arr
         $new = [];
         foreach ($array as $key => $value) {
 
-            if ($convertEmpty && empty($value)){
+            if ($convertEmpty && empty($value) && is_string($value)) {
                 $value = '';
             }
 
-            if (in_array($key, $keys)){
+            if (in_array($key, $keys)) {
                 $new[$table[$key]] = $value;
             } else {
                 $new[$key] = $value;
