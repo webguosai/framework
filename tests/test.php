@@ -38,13 +38,13 @@ $arr = [
     'sex1' => '男',
     'job1' => null,
     'age' => null,
-    'other' => [],
+    'other1' => [],
     'other2' => [1,2,3],
 ];
 $table = [
-    'name1' => 'name',
-    'job1' => 'job',
-    'sex1'  => 'sex',
+    'name' => 'name1',
+    'job'  => 'job1',
+    'sex'  => 'sex1',
 ];
 
 dd(Arr::map($arr, $table));
