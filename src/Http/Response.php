@@ -40,6 +40,10 @@ class Response
             $fontColor = 32;
         }
 
+        if (is_array($message)) {
+            $message = json_encode($message, JSON_UNESCAPED_UNICODE);
+        }
+
         echo "\e[;{$fontColor}m[". date('Y-m-d H:i:s')."] {$message} \e[0m\e[0m\n";
     }
 
