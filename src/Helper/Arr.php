@@ -30,11 +30,14 @@ class Arr
      */
     public static function stripos(string $string, array $array = [])
     {
-        foreach ($array as $value) {
-            if (stripos($string, $value) !== false) {
-                return true;
+        if (is_array($array)) {
+            foreach ($array as $value) {
+                if (stripos($string, $value) !== false) {
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
