@@ -25,10 +25,10 @@ class Arr
      * Arr::stripos('中华人民共和国', ['人民']);
      *
      * @param string $string
-     * @param array $array
+     * @param mixed $array
      * @return bool
      */
-    public static function stripos(string $string, array $array = [])
+    public static function stripos(string $string, $array = [])
     {
         if (is_array($array)) {
             foreach ($array as $value) {
