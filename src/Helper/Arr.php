@@ -28,9 +28,9 @@ class Arr
      * @param mixed $array
      * @return bool
      */
-    public static function stripos(string $string, $array = [])
+    public static function stripos($string, $array = [])
     {
-        if (is_array($array)) {
+        if (is_array($array) && !empty($string)) {
             foreach ($array as $value) {
                 if (stripos($string, $value) !== false) {
                     return true;
