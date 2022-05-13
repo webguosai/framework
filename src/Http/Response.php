@@ -65,7 +65,7 @@ class Response
         HttpHeader::setHttpCode($httpCode);
         HttpHeader::setJson();
 
-        echo json_encode($json);
+        echo json_encode($json, JSON_UNESCAPED_UNICODE);
         exit;
     }
 }
