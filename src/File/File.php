@@ -1,15 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | xxx
-// +----------------------------------------------------------------------
-// | Copyright (c) 2019~2021 www.duxphp.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: json. <501807312@qq.com>
-// +----------------------------------------------------------------------
-
 
 namespace Webguosai\File;
-
 
 use Webguosai\Helper\Str;
 
@@ -31,6 +22,22 @@ class File
         return file_put_contents($path, $data, LOCK_EX);
     }
 
+    /**
+     * 重写 scandir 方法
+     * @param string $directory 目录
+     * @param int $sortingOrder 0=字母升序 1=字母降序
+     * @return array
+     */
+    public static function scandir(string $directory, $sortingOrder = 0)
+    {
+        $res = scandir($directory, $sortingOrder);
+
+        return array_values(array_filter($res, function($value) {
+            if ($value != '.' && $value != '..'){
+                return $value;
+            }
+        }));
+    }
 
     /**
      * 创建文件

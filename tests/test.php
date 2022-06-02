@@ -36,10 +36,11 @@ require_once '../vendor/autoload.php';
 
 
 
+
 /** 将整数秒转换成xx天xx时xx分xx秒格式 **/
-dump(CountdownFormat::getFormat(60*60*24*30+1));//最简单的调用
-dump(CountdownFormat::getFormat(60*60*24*30+1,'dhm'));//自定义返回格式,默认xx天xx时xx分xx秒
-dd(CountdownFormat::getFormat(60*60*24*30+1,'dhm',['d'=>'day','h'=>'hour','m'=>'min','s'=>'seconds']));//自定义返回格式,时间单位,默认天时分秒
+//dump(CountdownFormat::getFormat(60*60*24*30+1));//最简单的调用
+//dump(CountdownFormat::getFormat(60*60*24*30+1,'dhm'));//自定义返回格式,默认xx天xx时xx分xx秒
+//dd(CountdownFormat::getFormat(60*60*24*30+1,'dhm',['d'=>'day','h'=>'hour','m'=>'min','s'=>'seconds']));//自定义返回格式,时间单位,默认天时分秒
 
 
 
@@ -48,21 +49,21 @@ dd(CountdownFormat::getFormat(60*60*24*30+1,'dhm',['d'=>'day','h'=>'hour','m'=>'
 
 
 /** 数组映射 **/
-$arr = [
-    'name1' => '111',
-    'sex1' => '男',
-    'job1' => null,
-    'age' => null,
-    'other1' => [],
-    'other2' => [1,2,3],
-];
-$table = [
-    'name' => 'name1',
-    'job'  => 'job1',
-    'sex'  => 'sex1',
-];
-
-dd(Arr::map($arr, $table));
+//$arr = [
+//    'name1' => '111',
+//    'sex1' => '男',
+//    'job1' => null,
+//    'age' => null,
+//    'other1' => [],
+//    'other2' => [1,2,3],
+//];
+//$table = [
+//    'name' => 'name1',
+//    'job'  => 'job1',
+//    'sex'  => 'sex1',
+//];
+//
+//dd(Arr::map($arr, $table));
 
 
 
@@ -104,7 +105,9 @@ dd(Arr::map($arr, $table));
 //$a = File::mkFile('./a/b/c/d\\asp.txt');
 //$a = File::mkFile('asp2.txt');
 //$a = File::mkFile('c/');
-//dd($a);
+$a = File::scandir('../src/');
+dd($a);
+
 
 /** 红包 **/
 
