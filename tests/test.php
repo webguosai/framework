@@ -5,6 +5,7 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
 use Webguosai\Request;
@@ -33,6 +34,20 @@ use Webguosai\Util\Zip;
 
 require_once '../vendor/autoload.php';
 
+
+
+/** 将整数秒转换成xx天xx时xx分xx秒格式 **/
+dump(CountdownFormat::getFormat(60*60*24*30+1));//最简单的调用
+dump(CountdownFormat::getFormat(60*60*24*30+1,'dhm'));//自定义返回格式,默认xx天xx时xx分xx秒
+dd(CountdownFormat::getFormat(60*60*24*30+1,'dhm',['d'=>'day','h'=>'hour','m'=>'min','s'=>'seconds']));//自定义返回格式,时间单位,默认天时分秒
+
+
+
+
+
+
+
+/** 数组映射 **/
 $arr = [
     'name1' => '111',
     'sex1' => '男',
