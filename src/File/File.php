@@ -74,4 +74,19 @@ class File
 
         return false;
     }
+
+    /**
+     * 获取一段内容的后缀名
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function getExtension($string)
+    {
+        if (Str::contains($string, '.')) {
+            return substr(strrchr($string, '.'), 1);
+        }
+
+        return '';
+    }
 }

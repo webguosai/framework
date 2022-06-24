@@ -26,7 +26,10 @@ use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
+use Webguosai\Util\Faker;
+use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
+use Webguosai\Util\Csv;
 use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
@@ -36,16 +39,50 @@ require_once '../vendor/autoload.php';
 
 
 
+/** faker生成假数据 **/
+dump(Faker::name()); // 姓名
+dump(Faker::sex()); // 性别
+dump(Faker::is()); // 1 - 0
+dump(Faker::school('中职学校')); //学校
+dump(Faker::company()); //公司
+dump(Faker::bank()); //银行
+dump(Faker::country()); //国家
+dump(Faker::region()); //省市区
+dump(Faker::province()); //省份
+dump(Faker::city()); //城市
+dump(Faker::area()); //地区
+dump(Faker::mobile()); //手机
+dump(Faker::idCard()); //身份证
+dump(Faker::www()); //网址
+dump(Faker::email()); //邮箱
+dump(Faker::account()); //帐号
+dump(Faker::ip()); //ipv4
+
+
+/** csv **/
+//$content = <<<EOF
+//张三\t男\t18岁
+//李四\t女\t19岁
+//王五\t未知\t20岁
+//EOF;
+////$content = file_get_contents('content.txt');
+////dd(Csv::toArray($content, false));
+//
+//$sql = Csv::toInsertSql($content, 'student');
+//dd($sql);
+
+/** JWT **/
+//Jwt::$key = '123456';
+//Jwt::$domain = 'domain.com';
+//$code = Jwt::encode(1111, 5);
+//dump($code);
+//dd(JWT::decode($code));
+
 
 /** 将整数秒转换成xx天xx时xx分xx秒格式 **/
 //dump(CountdownFormat::getFormat(60*60*24*30+1));//最简单的调用
 //dump(CountdownFormat::getFormat(60*60*24*30+1,'dhm'));//自定义返回格式,默认xx天xx时xx分xx秒
 //dd(CountdownFormat::getFormat(60*60*24*30+1,'dhm',['d'=>'day','h'=>'hour','m'=>'min','s'=>'seconds']));//自定义返回格式,时间单位,默认天时分秒
-
-
-
-
-
 
 
 /** 数组映射 **/
@@ -105,8 +142,9 @@ require_once '../vendor/autoload.php';
 //$a = File::mkFile('./a/b/c/d\\asp.txt');
 //$a = File::mkFile('asp2.txt');
 //$a = File::mkFile('c/');
-$a = File::scandir('../src/');
-dd($a);
+//$a = File::scandir('../src/');
+//dd($a);
+//dd(File::getExtension('12.3.jpg'));
 
 
 /** 红包 **/

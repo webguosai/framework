@@ -269,6 +269,19 @@ class Str
         return substr_replace($str, $replace, $start, $length);
     }
 
+    /**
+     * 内容填充(仿str_pad函数)
+     *
+     * @param string $string 内容
+     * @param int $length 填充长度
+     * @param string $padString 填充的内容
+     * @param int $padType 填充类型(默认为往左填充)
+     * @return string
+     */
+    public static function padding($string, $length = 2, $padString = '0', $padType = STR_PAD_LEFT)
+    {
+        return str_pad($string, $length, $padString, $padType);
+    }
 
 
 }
