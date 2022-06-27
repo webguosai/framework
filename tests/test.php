@@ -43,6 +43,7 @@ require_once '../vendor/autoload.php';
 dump(Faker::name()); // 姓名
 dump(Faker::sex()); // 性别
 dump(Faker::is()); // 1 - 0
+dump(Faker::chinese()); // 汉字
 dump(Faker::school('中职学校')); //学校
 dump(Faker::company()); //公司
 dump(Faker::bank()); //银行

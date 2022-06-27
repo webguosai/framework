@@ -116,6 +116,11 @@ class Faker
         return mt_rand(0, 1);
     }
 
+    public static function chinese($length = 6)
+    {
+        return Str::random($length, 4);
+    }
+
     public static function school($suffix = '大学')
     {
         return Arr::random([
@@ -349,9 +354,9 @@ class Faker
         return Str::lower(Str::random(mt_rand($min, $max),5));
     }
 
-    public static function ip($type = 4)
+    public static function ip()
     {
-        // 默认为国内 ipv4
+        // 国内 ipv4
         $ipLong = array(
             array('607649792', '608174079'), //36.56.0.0-36.63.255.255
             array('975044608', '977272831'), //58.30.0.0-58.63.255.255
@@ -370,19 +375,7 @@ class Faker
             array('-569376768', '-564133889'), //222.16.0.0-222.95.255.255
         );
         $randKey   = mt_rand(0, 14);
-        $ipV4 =  long2ip(mt_rand($ipLong[$randKey][0], $ipLong[$randKey][1]));
-
-        if ($type == 6) {
-            if(preg_match('%^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$%', $ipV4, $match)){
-                $IPParts = array();
-                for($i=1; $i<=4; $i++){
-                    $IPPart = (int)$match[$i];
-                    $IPParts[$i] = str_pad(decHex($IPPart), 2, '0', STR_PAD_LEFT);
-                }
-                return '0:0:0:0:0:ffff:' . $IPParts[1] . $IPParts[2] . ':' . $IPParts[3] . $IPParts[4];
-            }
-        }
-
-        return $ipV4;
+        return long2ip(mt_rand($ipLong[$randKey][0], $ipLong[$randKey][1]));
     }
+
 }
