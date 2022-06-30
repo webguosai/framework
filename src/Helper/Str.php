@@ -259,7 +259,8 @@ class Str
      * @param int $length 隐藏长度
      * @return bool|string|string[]
      */
-    public static function hidePhone($str, int $start = 3, int $length = 4) {
+    public static function hidePhone($str, int $start = 3, int $length = 4)
+    {
         //获取最后一位
         $end = $start + $length;
         //判断传参是否正确
@@ -283,5 +284,28 @@ class Str
         return str_pad($string, $length, $padString, $padType);
     }
 
+    /**
+     * 生成固定的短文本
+     *
+     * @param string $text
+     * @return string
+     */
+    public static function shortText($text)
+    {
+        $x = sprintf("%u", crc32($text));
+
+        $show = '';
+        while ($x > 0) {
+            $s = $x % 62;
+            if ($s > 35) {
+                $s = chr($s + 61);
+            } elseif ($s > 9 && $s <= 35) {
+                $s = chr($s + 55);
+            }
+            $show .= $s;
+            $x    = floor($x / 62);
+        }
+        return $show;
+    }
 
 }

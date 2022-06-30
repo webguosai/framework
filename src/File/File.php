@@ -89,4 +89,19 @@ class File
 
         return '';
     }
+
+    /**
+     * 文件大小转移为单位
+     *
+     * @param int $size
+     * @return string
+     */
+    public static function fileSizeToBytes($size)
+    {
+        $units = array(' B', ' KB', ' MB', ' GB', ' TB');
+        for ($i = 0; $size >= 1024 && $i < 4; $i++) {
+            $size /= 1024;
+        }
+        return round($size, 2).$units[$i];
+    }
 }

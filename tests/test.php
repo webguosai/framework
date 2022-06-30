@@ -5,6 +5,7 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\Crypt\Crypt;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
@@ -38,26 +39,37 @@ use Webguosai\Util\Zip;
 require_once '../vendor/autoload.php';
 
 
+/** 对称加密类 **/
+//Crypt::$key = '123456';
+//$data = '中文';
+////$data = ['中文'];
+//$encode = Crypt::encode($data);
+//$decode = Crypt::decode($encode);
+//
+//dump($data);
+//dump($encode);
+//dump($decode);
+
 
 /** faker生成假数据 **/
-dump(Faker::name()); // 姓名
-dump(Faker::sex()); // 性别
-dump(Faker::is()); // 1 - 0
-dump(Faker::chinese()); // 汉字
-dump(Faker::school('中职学校')); //学校
-dump(Faker::company()); //公司
-dump(Faker::bank()); //银行
-dump(Faker::country()); //国家
-dump(Faker::region()); //省市区
-dump(Faker::province()); //省份
-dump(Faker::city()); //城市
-dump(Faker::area()); //地区
-dump(Faker::mobile()); //手机
-dump(Faker::idCard()); //身份证
-dump(Faker::www()); //网址
-dump(Faker::email()); //邮箱
-dump(Faker::account()); //帐号
-dump(Faker::ip()); //ipv4
+//dump(Faker::name()); // 姓名
+//dump(Faker::sex()); // 性别
+//dump(Faker::is()); // 1 - 0
+//dump(Faker::chinese()); // 汉字
+//dump(Faker::school('中职学校')); //学校
+//dump(Faker::company()); //公司
+//dump(Faker::bank()); //银行
+//dump(Faker::country()); //国家
+//dump(Faker::region()); //省市区
+//dump(Faker::province()); //省份
+//dump(Faker::city()); //城市
+//dump(Faker::area()); //地区
+//dump(Faker::mobile()); //手机
+//dump(Faker::idCard()); //身份证
+//dump(Faker::www()); //网址
+//dump(Faker::email()); //邮箱
+//dump(Faker::account()); //帐号
+//dump(Faker::ip()); //ipv4
 
 
 /** csv **/
@@ -146,6 +158,7 @@ dump(Faker::ip()); //ipv4
 //$a = File::scandir('../src/');
 //dd($a);
 //dd(File::getExtension('12.3.jpg'));
+//dump(File::fileSizeToBytes(919436274));
 
 
 /** 红包 **/
@@ -369,7 +382,8 @@ dump(Faker::ip()); //ipv4
 //var_dump(\Webguosai\Helper\Str::random(10, 2));
 //var_dump(\Webguosai\Helper\Str::random(10, 3));
 //var_dump(\Webguosai\Helper\Str::random(10, 4));
-
+//dump(Str::shortText('1111111111'));
+//dump(Str::shortText('22222'));
 
 
 
