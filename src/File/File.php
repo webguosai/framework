@@ -76,6 +76,42 @@ class File
     }
 
     /**
+     * 删除目录下的所有文件
+     * (只删除文件，会保留目录)
+     *
+     * @param $dir
+     * @return bool
+     */
+    public static function rmDir($dir)
+    {
+        //不是目录
+        if (!is_dir($dir)) {
+            return true;
+        }
+
+        //目录不可写
+        if (!is_writable($dir)) {
+            return false;
+        }
+
+        $dir_handle = opendir($dir);
+        while ($file = readdir($dir_handle)) {
+            if ($file != '.' && $file != '..') {
+                $children_path = $dir . '/' . $file;
+                if (!is_dir($children_path)) {
+                    @unlink($children_path);
+                } else {
+                    self::rmDir($children_path);
+                    @rmdir($children_path);
+                }
+            }
+        }
+        //关闭目录句柄
+        closedir($dir_handle);
+        return true;
+    }
+
+    /**
      * 获取一段内容的后缀名
      *
      * @param string $string

@@ -40,6 +40,12 @@ use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+
+
+
+
+
+
 /** python itertools模块 **/
 //// 迭代所有组合
 //$permutations = Itertools::permutations('abc');
@@ -167,6 +173,7 @@ require_once '../vendor/autoload.php';
 //dd($a);
 //dd(File::getExtension('12.3.jpg'));
 //dump(File::fileSizeToBytes(919436274));
+//File::rmDir('F:\www\framework\tests\11');
 
 
 /** 红包 **/
