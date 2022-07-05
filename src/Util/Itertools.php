@@ -2,6 +2,8 @@
 
 /**
  * 仿python itertools模块
+ *
+ * 这个也可以使用：https://github.com/drupol/phpermutations
  * 演示：
     // 迭代所有组合
     $permutations = Itertools::permutations('abc');
@@ -23,6 +25,8 @@
  */
 
 namespace Webguosai\Util;
+
+use Webguosai\Helper\Str;
 
 class Itertools
 {
@@ -365,26 +369,20 @@ class Itertools
         }
     }
 
-    static function stringToArray($data)
-    {
-        if (!is_string($data)) {
-            return $data;
-        }
-
-        $array = [];
-        $length = mb_strlen($data);
-        for ($i = 0; $i < $length; $i++) {
-            $array[] = mb_substr($data, $i, 1);
-        }
-        return $array;
-    }
-
-    static function permutations($iterable, $r = null)
+    /**
+     * 迭代组合
+     *
+     * @param string|array $iterable 迭代的内容
+     * @param null $length 长度(不填写默认为迭代内容的长度)
+     * @return \Generator|void
+     */
+    static function permutations($iterable, $length = null)
     {
 //        $pool = is_array($iterable) ? $iterable : iterator_to_array(self::iter($iterable));
-        $pool = self::stringToArray($iterable);
+        $pool = Str::split($iterable);
         $n = sizeof($pool);
-        $r = $r === null ? $n : $r;
+
+        $r = $length === null ? $n : $length;
 
         if ($r > $n) {
             return;

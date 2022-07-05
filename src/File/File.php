@@ -11,15 +11,16 @@ class File
      *
      * @param string $path
      * @param string|array $data
+     * @param int $flags
      * @return false|int
      */
-    public static function save($path, $data)
+    public static function save($path, $data, $flags = null)
     {
         if (is_array($data)) {
             $data = "<?php\nreturn " . var_export($data, true) . ";\n?>";
         }
 
-        return file_put_contents($path, $data, LOCK_EX);
+        return file_put_contents($path, $data, $flags | LOCK_EX);
     }
 
     /**

@@ -37,22 +37,15 @@ use Webguosai\Api\Push;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
-
 require_once '../vendor/autoload.php';
 
 
-
-
-
-
-
 /** python itertools模块 **/
-//// 迭代所有组合
-//$permutations = Itertools::permutations('abc');
-//foreach ($permutations as $permutation) {
-//    dump(implode($permutation));
-//}
-
+// 迭代所有组合
+$permutations = Itertools::permutations('123');
+foreach ($permutations as $permutation) {
+    dump(implode($permutation));
+}
 
 /** 对称加密类 **/
 //Crypt::setKey('key123456');
@@ -64,7 +57,6 @@ require_once '../vendor/autoload.php';
 //dump($data);
 //dump($encode);
 //dump($decode);
-
 
 /** faker生成假数据 **/
 //dump(Faker::name()); // 姓名
@@ -399,8 +391,9 @@ require_once '../vendor/autoload.php';
 //var_dump(\Webguosai\Helper\Str::random(10, 4));
 //dump(Str::shortText('1111111111'));
 //dump(Str::shortText('22222'));
-
-
+//dump(Str::split('123456'));
+//dump(Str::split('中文123'));
+//dump(Str::split([1,2,3]));
 
 /** 测试阶梯类 **/
 //$points = [

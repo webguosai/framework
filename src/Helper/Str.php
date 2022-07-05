@@ -308,4 +308,22 @@ class Str
         return $show;
     }
 
+    /**
+     * 将内容拆解为数组(支持中文)
+     * 如： 123 => [1,2,3]
+     *
+     * @param string|array $string
+     * @param int $length
+     * @param null $encoding
+     * @return array|string
+     */
+    public static function split($string, $length = 1, $encoding = null)
+    {
+        if (is_array($string)) {
+            return $string;
+        }
+
+        return mb_str_split($string, $length, $encoding);
+    }
+
 }
