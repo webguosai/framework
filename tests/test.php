@@ -40,9 +40,9 @@ require_once '../vendor/autoload.php';
 
 
 /** 对称加密类 **/
-//Crypt::$key = '123456';
-//$data = '中文';
-////$data = ['中文'];
+//Crypt::setKey('key123456');
+////$data = '中文';
+//$data = ['中文'];
 //$encode = Crypt::encode($data);
 //$decode = Crypt::decode($encode);
 //
@@ -85,8 +85,7 @@ require_once '../vendor/autoload.php';
 //dd($sql);
 
 /** JWT **/
-//Jwt::$key = '123456';
-//Jwt::$domain = 'domain.com';
+//Jwt::setConfig('key123456', 'domain.com');
 //$code = Jwt::encode(1111, 5);
 //dump($code);
 //dd(JWT::decode($code));

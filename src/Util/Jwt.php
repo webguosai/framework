@@ -4,11 +4,10 @@
  * jwt类
  * 演示：
  *
-    Jwt::$key = '123456';
-    Jwt::$domain = 'domain.com';
+    Jwt::setConfig('key123456', 'domain.com');
     $code = Jwt::encode(1111, 5);
-    var_dump($code);
-    var_dump(JWT::decode($code));
+    dump($code);
+    dd(JWT::decode($code));
  *
  */
 namespace Webguosai\Util;
@@ -16,8 +15,13 @@ namespace Webguosai\Util;
 class Jwt
 {
     const ALG = 'HS256';
-    public static $key = 'GkhFiMmJQYFeiUJ8NxXjr22tbgFXFg6IHSaQR2HK8qU3tMHFlYWBTs6gn2kN7QEq';
-    public static $domain = '';
+    private static $key = 'GkhFiMmJQYFeiUJ8NxXjr22tbgFXFg6IHSaQR2HK8qU3tMHFlYWBTs6gn2kN7QEq';
+    private static $domain = '';
+    public static function setConfig($key, $domain)
+    {
+        self::$key = $key;
+        self::$domain = $domain;
+    }
     public static function encode($data, int $exp = 3600, string $iss = null, string $aud = null)
     {
         $time = time();
