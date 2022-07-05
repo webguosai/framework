@@ -35,8 +35,17 @@ use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
 use Webguosai\Util\Zip;
+use Webguosai\Util\Itertools;
+
 
 require_once '../vendor/autoload.php';
+
+/** python itertools模块 **/
+//// 迭代所有组合
+//$permutations = Itertools::permutations('abc');
+//foreach ($permutations as $permutation) {
+//    dump(implode($permutation));
+//}
 
 
 /** 对称加密类 **/
