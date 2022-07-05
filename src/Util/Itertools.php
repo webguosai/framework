@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 仿python itertools模块
  * 演示：
@@ -7,6 +8,18 @@
     foreach ($permutations as $permutation) {
         dump(implode($permutation));
     }
+ *
+ * 附上python版本(迭代所有组合)
+    from itertools import permutations
+    from random import shuffle
+
+    def shuffled_permutations(s):
+    perms = list(permutations(s))
+    # 加这个会随机
+    # shuffle(perms)
+    return ["".join(p) for p in perms]
+
+    print(shuffled_permutations("abc"))
  */
 
 namespace Webguosai\Util;
