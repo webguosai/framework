@@ -27,6 +27,7 @@ use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
+use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Faker;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
@@ -40,12 +41,32 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 
+
+/** env操作类 **/
+//// 设置
+//EnvHandle::setConfig(__DIR__ . '/.env');
+//// 获取所有
+//EnvHandle::all();
+//// 设置一个(有则修改，无则增加)
+//EnvHandle::set('key', 'value');
+//// 批量插入
+//EnvHandle::insert([
+//    'key1' => 'value1',
+//    'key2' => 'value2',
+//    'key3' => 'value3'
+//]);
+//// 获取单个
+//EnvHandle::get('key');
+//// 移除
+//EnvHandle::remove('key');
+
+
 /** python itertools模块 **/
 // 迭代所有组合
-$permutations = Itertools::permutations('123');
-foreach ($permutations as $permutation) {
-    dump(implode($permutation));
-}
+//$permutations = Itertools::permutations('123');
+//foreach ($permutations as $permutation) {
+//    dump(implode($permutation));
+//}
 
 /** 对称加密类 **/
 //Crypt::setKey('key123456');
