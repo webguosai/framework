@@ -20,6 +20,8 @@ EnvHandle::insert([
 EnvHandle::get('key');
 // 移除
 EnvHandle::remove('key');
+// 是否存在
+EnvHandle::exists('key');
  *
  */
 
@@ -123,6 +125,20 @@ class EnvHandle
     }
 
     /**
+     * key是否存在
+     *
+     * @param string $key
+     * @return bool
+     */
+    public static function exists($key)
+    {
+        if (preg_match('/\b' . $key . '[ \t]*=[ \t]*[^\s]*/i', self::getData())) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 获取key中的内容
      *
      * @param $key
@@ -167,20 +183,6 @@ class EnvHandle
     protected static function writerData()
     {
         return (bool)file_put_contents(self::$path, self::getData());
-    }
-
-    /**
-     * key是否存在
-     *
-     * @param string $key
-     * @return bool
-     */
-    protected static function exists($key)
-    {
-        if (preg_match('/\b' . $key . '[ \t]*=[ \t]*[^\s]*/i', self::getData())) {
-            return true;
-        }
-        return false;
     }
 
     /**
