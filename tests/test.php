@@ -141,9 +141,11 @@ require_once '../vendor/autoload.php';
 //];
 //
 //dd(Arr::map($arr, $table));
+//dd(Arr::implode([1,2,3,4,5]));
+//dd(Str::explode('1,2,3,4'));
+//dd(substr_replace('中文啊12345678', '****', 3, 4));
 
-
-
+dd(Str::mask('1801234567中'));
 
 
 

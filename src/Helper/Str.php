@@ -41,6 +41,7 @@ class Str
 
     /**
      * 检查字符串中是否包含某些字符串
+     *
      * @param string $haystack 完整的内容,如：abc123abc
      * @param string|array $needles 需要的内容,如：123
      * @return bool
@@ -253,21 +254,29 @@ class Str
     }
 
     /**
-     * 隐藏手机号
-     * @param string|int $str 手机号码
-     * @param int $start 开始位置，从0开始
-     * @param int $length 隐藏长度
-     * @return bool|string|string[]
+     * 字符内容脱敏(默认为手机号码脱敏)
+     *
+     * @param string $string 字符串
+     * @param int $start 从哪个位置开始脱敏
+     * @param int $length 脱敏长度
+     * @param string $padStr *
+     * @return string
      */
-    public static function hidePhone($str, int $start = 3, int $length = 4)
+    public static function mask($string, $start = 4, $length = 4, $padStr = '*')
     {
-        //获取最后一位
-        $end = $start + $length;
-        //判断传参是否正确
-        if ($start < 0 || $end > 11) return false;
-        $replace = ''; //用于判断多少
-        for ($i = 0; $i < $length; $i++) $replace .= '*';
-        return substr_replace($str, $replace, $start, $length);
+        --$start;
+        $count = Str::length($string);
+        $maxPosition = $start + $length;
+        $str = '';
+        for ($i = 0; $i < $count; $i++) {
+            if ($i >= $start && $i < $maxPosition) {
+                $str .= $padStr;
+            } else {
+                $str .= Str::substr($string, $i, 1);
+            }
+        }
+
+        return $str;
     }
 
     /**
@@ -326,4 +335,20 @@ class Str
         return mb_str_split($string, $length, $encoding);
     }
 
+    /**
+     * 字符分隔为数组
+     *
+     * @param string $string 字符
+     * @param string $symbol 分隔符号
+     * @param int $limit
+     * @return array
+     */
+    public static function explode($string, $symbol = ',', $limit = PHP_INT_MAX)
+    {
+        if (empty($string)) {
+            return [];
+        }
+
+        return explode($symbol, $string, $limit);
+    }
 }

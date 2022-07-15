@@ -190,4 +190,27 @@ class Arr
 
         return $new;
     }
+
+    /**
+     * 数组连接为字符
+     *
+     * @param array $array 数组
+     * @param string $symbol 连接符号
+     * @return string
+     */
+    public static function implode($array, $symbol = ',')
+    {
+        return implode($symbol, $array);
+    }
+
+    /**
+     * 数组去空、去重
+     *
+     * @param array $array
+     * @return array
+     */
+    public static function filterUnique($array)
+    {
+        return array_filter(array_unique($array));
+    }
 }
