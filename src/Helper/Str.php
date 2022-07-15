@@ -265,14 +265,14 @@ class Str
     public static function mask($string, $start = 4, $length = 4, $padStr = '*')
     {
         --$start;
-        $count = Str::length($string);
+        $count = self::length($string);
         $maxPosition = $start + $length;
         $str = '';
         for ($i = 0; $i < $count; $i++) {
             if ($i >= $start && $i < $maxPosition) {
                 $str .= $padStr;
             } else {
-                $str .= Str::substr($string, $i, 1);
+                $str .= self::substr($string, $i, 1);
             }
         }
 
