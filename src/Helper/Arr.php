@@ -204,13 +204,20 @@ class Arr
     }
 
     /**
-     * 数组去空、去重
+     * 数组去空、去重、并重新排列key
      *
      * @param array $array
+     * @param bool $allowZero 允许0
      * @return array
      */
-    public static function filterUnique($array)
+    public static function filterUnique($array, $allowZero = false)
     {
-        return array_filter(array_unique($array));
+        if ($allowZero) {
+            return array_values(array_filter(array_unique($array), function ($item) {
+                return $item !== '' && $item !== null && $item !== false;
+            }));
+        }
+
+        return array_values(array_filter(array_unique($array)));
     }
 }

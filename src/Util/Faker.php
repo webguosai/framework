@@ -16,7 +16,7 @@ dump(Faker::city()); //城市
 dump(Faker::area()); //地区
 dump(Faker::mobile()); //手机
 dump(Faker::idCard()); //身份证
-dump(Faker::www()); //网址
+dump(Faker::website()); //网址
 dump(Faker::email()); //邮箱
 dump(Faker::account()); //帐号
 dump(Faker::ip()); //ipv4
@@ -323,7 +323,7 @@ class Faker
             Arr::random([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 'x']);
     }
 
-    public static function www()
+    public static function website()
     {
         $domain = [
             'taobao.com', 'baidu.com', 'douyin.com', '126.com', '163.com', 'qq.com', 'sohu.com', 'sina.com'

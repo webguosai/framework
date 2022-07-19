@@ -94,7 +94,7 @@ require_once '../vendor/autoload.php';
 //dump(Faker::area()); //地区
 //dump(Faker::mobile()); //手机
 //dump(Faker::idCard()); //身份证
-//dump(Faker::www()); //网址
+//dump(Faker::website()); //网址
 //dump(Faker::email()); //邮箱
 //dump(Faker::account()); //帐号
 //dump(Faker::ip()); //ipv4
