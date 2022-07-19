@@ -98,6 +98,19 @@ require_once '../vendor/autoload.php';
 //dump(Faker::email()); //邮箱
 //dump(Faker::account()); //帐号
 //dump(Faker::ip()); //ipv4
+//dump(Faker::color()); //颜色值
+//dump(Faker::news()); //新闻标题
+//dump(Faker::title()); //标题
+//dump(Faker::title(20)); //标题
+//dump(Faker::question()); //问题
+//dump(Faker::number(1, 20)); //数字
+//dump(Faker::datetime()); //日期时间
+//dump(Faker::date()); // 日期
+//dump(Faker::time()); // 时间
+//dump(Faker::ids()); // ids
+//dump(Faker::price()); // 金额
+//dump(Faker::currency()); // 货币
+//dump(Faker::password()); // 密码
 
 
 /** csv **/
@@ -145,7 +158,7 @@ require_once '../vendor/autoload.php';
 //dd(Str::explode('1,2,3,4'));
 //dd(substr_replace('中文啊12345678', '****', 3, 4));
 
-dd(Str::mask('1801234567中'));
+//dd(Str::mask('1801234567中'));
 
 
 
