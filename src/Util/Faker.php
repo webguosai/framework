@@ -571,19 +571,31 @@ class Faker
 
     public static function datetime()
     {
-        $time = time() + self::number(1, 8000);
+        if (self::number(1, 2) === 1) {
+            $time = time() + self::number(1, 693792000);
+        } else {
+            $time = time() - self::number(1, 693792000);
+        }
         return date('Y-m-d H:i:s', $time);
     }
 
     public static function date()
     {
-        $time = time() + self::number(1, 8000);
+        if (self::number(1, 2) === 1) {
+            $time = time() + self::number(1, 693792000);
+        } else {
+            $time = time() - self::number(1, 693792000);
+        }
         return date('Y-m-d', $time);
     }
 
     public static function time()
     {
-        $time = time() + self::number(1, 8000);
+        if (self::number(1, 2) === 1) {
+            $time = time() + self::number(1, 693792000);
+        } else {
+            $time = time() - self::number(1, 693792000);
+        }
         return date('H:i:s', $time);
     }
 
