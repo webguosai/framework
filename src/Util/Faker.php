@@ -798,6 +798,13 @@ class Faker
         ]);
     }
 
+    public static function currencySymbol()
+    {
+        return Arr::random([
+            '$', '￥', '€', '￡', '¤'
+        ]);
+    }
+
     public static function zip()
     {
         return Arr::random([
