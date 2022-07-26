@@ -49,12 +49,11 @@ require_once '../vendor/autoload.php';
 
 //$sqlValue = '2022-06-01';
 //$sqlValue = '20:00:00';
-$sqlValue = '2022-01-01 20:00:00';
-
-$dateFormat = 'm/d/Y';
-$timeFormat = 'H点i分s秒';
-dd(Date::formatShow($sqlValue, $dateFormat, $timeFormat));
-//dd(date($dateTimeFormat, time()));
+//$sqlValue = '2022-01-01 20:00:00';
+//
+//$dateFormat = 'm/d/Y';
+//$timeFormat = 'H点i分s秒';
+//dd(Date::formatShow($sqlValue, $dateFormat, $timeFormat));
 
 
 
