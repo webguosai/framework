@@ -27,6 +27,7 @@ use Webguosai\Message\MyWxPush;
 use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
+use Webguosai\Util\Date;
 use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Faker;
 use Webguosai\Util\Jwt;
@@ -39,6 +40,21 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** Date **/
+//dump(Date::getRangeDateTime([
+//    '2020-01-01',
+//    '2022-01-01'
+//]));
+
+//$sqlValue = '2022-06-01';
+//$sqlValue = '20:00:00';
+$sqlValue = '2022-01-01 20:00:00';
+
+$dateFormat = 'm/d/Y';
+$timeFormat = 'H点i分s秒';
+dd(Date::formatShow($sqlValue, $dateFormat, $timeFormat));
+//dd(date($dateTimeFormat, time()));
 
 
 

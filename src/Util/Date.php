@@ -155,4 +155,50 @@ class Date
             end($dates)
         ];
     }
+
+    /**
+     * 将指定日期时间按格式显示
+     *
+     * @param string $dateValue 日期或时间 (2022-12-01 15:00:00)
+     * @param string $dateFormat 日期部分格式 (Y/m/d)
+     * @param string $timeFormat 时间部分格式 (H:i:s)
+     * @return false|string
+     */
+    public static function formatShow($dateValue, $dateFormat = 'Y-m-d', $timeFormat = 'H:i:s')
+    {
+        if (self::isDateString($dateValue)) {
+            // 转成时间戳
+            $time = strtotime($dateValue);
+            $format = $dateFormat . ' ' . $timeFormat;
+
+            // 根据内容，来判断用哪种方式显示
+            if (Carbon::hasFormat($dateValue, 'Y-m-d H:i:s')) {
+                // 日期和时间
+                return date($format, $time);
+            } elseif (Carbon::hasFormat($dateValue, 'Y-m-d')) {
+                // 日期
+                return date($dateFormat, $time);
+            } elseif (Carbon::hasFormat($dateValue, 'H:i:s')) {
+                // 时间
+                return date($timeFormat, $time);
+            }
+        }
+
+        return $dateValue;
+    }
+
+    /**
+     * 是否为日期字符串
+     *
+     * @param $date
+     * @return bool
+     */
+    public static function isDateString($date)
+    {
+        if (!$date || $date == "NULL" || is_null($date) || $date == "0000-00-00") {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
