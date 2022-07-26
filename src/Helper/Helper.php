@@ -4,7 +4,6 @@ namespace Webguosai\Helper;
 
 class Helper
 {
-
     /**
      * 计算两日期相差天数
      * @param string $endTime 结束时间
@@ -43,8 +42,8 @@ class Helper
      * 格式化金额
      * 6000 = 6,000.00
      *
-     * @param int $money
-     * @param int $decimals
+     * @param int $money 金额
+     * @param int $decimals 小数点位数
      * @return string
      */
     public static function formatMoney($money = 0, $decimals = 2)
@@ -56,13 +55,18 @@ class Helper
      * 金额带货币
      * 6000 = ￥6,000.00
      *
-     * @param $money
-     * @param string $currency
+     * @param int $money
+     * @param int $decimals 小数点位数
+     * @param string $symbol 货币符号
+     * @param string $position 货币符号显示位置(默认为左边)
      * @return string
      */
-    public static function formatMoneyCurrency($money = 0, $currency = '￥')
+    public static function formatMoneyCurrency($money = 0, $decimals = 2, $symbol = '￥', $position = 'left')
     {
-        return $currency . static::formatMoney($money);
+        if ($position === 'right') {
+            return static::formatMoney($money, $decimals) . $symbol;
+        }
+        return $symbol . static::formatMoney($money, $decimals);
     }
 
     /**

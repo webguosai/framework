@@ -6,6 +6,7 @@ use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Crypt;
+use Webguosai\Helper\Helper;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
@@ -40,6 +41,9 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** Helper **/
+//dd(Helper::formatMoneyCurrency('9999999999999', '$', 0, 'right'));
 
 /** Date **/
 //dump(Date::getRangeDateTime([
