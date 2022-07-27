@@ -7,6 +7,9 @@ use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
+use Webguosai\Translate\Baidu;
+use Webguosai\Translate\Translatedlabs;
+use Webguosai\Translate\YouDao;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
@@ -41,6 +44,23 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** 翻译 **/
+// 20220726001283686
+// UzhkImxnMMMw9a4FchQe
+
+//$b = new Baidu('20220726001283686', 'UzhkImxnMMMw9a4FchQe');
+//$b = new YouDao('7fda4dee3e6448ec', 'WgWk79cH1WK0EYKZagvvm1NTjiDnePTS');
+//$b = new Translatedlabs();
+//
+//while (true) {
+//    try {
+////        dump($b->translate('苹果', 'en'));
+//        dump($b->language('中国'));
+//    } catch (\Exception $e) {
+//        dump('错误：'.$e->getMessage());
+//    }
+//}
 
 /** Helper **/
 //dd(Helper::formatMoneyCurrency('9999999999999', '$', 0, 'right'));
