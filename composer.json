@@ -15,6 +15,7 @@
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
+        "ext-openssl": "*",
         "webguosai/http-client": "^2.1",
         "trendsoft/capital": "^0.1.2",
         "phpmailer/phpmailer": "^6.5",

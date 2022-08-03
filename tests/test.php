@@ -5,6 +5,7 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
 use Webguosai\Translate\Baidu;
@@ -44,6 +45,27 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** aes **/
+$word = [
+    'name1' => '123',
+    'name2' => '456'
+];
+$word = 123;
+$key = '2c920f9579cb89K9';
+$iv = 'Qa5da1EbsEAygd18';
+Aes::config($key, $iv, true);
+$encode = Aes::encrypt($word);
+dump($encode);
+dd(Aes::decrypt($encode));
+
+
+//$key = 'key123';
+//$iv = '1234567890123456';
+//Aes::config($key, $iv);
+//$encode = Aes::encrypt($word);
+//dump($encode);
+//dd(Aes::decrypt($encode));
 
 /** 翻译 **/
 // 20220726001283686
