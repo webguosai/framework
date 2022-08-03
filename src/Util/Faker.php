@@ -815,4 +815,25 @@ class Faker
             417000, 416000
         ]);
     }
+
+    public static function job()
+    {
+        return Arr::random([
+            "Java",
+            "C++",
+            "PHP",
+            "C",
+            "C#",
+            ".NET",
+            "Hadoop",
+            "Python",
+            "Delphi",
+            "VB",
+            "Perl",
+            "Ruby",
+            "Node.js",
+            "Golang",
+            "Erlang",
+        ]);
+    }
 }

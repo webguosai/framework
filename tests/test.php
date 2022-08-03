@@ -150,6 +150,7 @@ require_once '../vendor/autoload.php';
 //dump(Faker::price()); // 金额
 //dump(Faker::currency()); // 货币
 //dump(Faker::password()); // 密码
+dump(Faker::job()); // 工作
 
 
 /** csv **/
