@@ -27,6 +27,8 @@ class Translatedlabs
     }
 
     /**
+     * 请求
+     *
      * @param $data
      * @return mixed
      * @throws Exception

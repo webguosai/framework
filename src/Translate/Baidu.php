@@ -83,6 +83,8 @@ class Baidu
     }
 
     /**
+     * 请求
+     *
      * @param $path
      * @param $data
      * @return mixed

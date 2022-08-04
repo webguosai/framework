@@ -9,6 +9,7 @@ use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
 use Webguosai\Translate\Baidu;
+use Webguosai\Translate\Google;
 use Webguosai\Translate\Translatedlabs;
 use Webguosai\Translate\YouDao;
 use Webguosai\Util\CountdownFormat;
@@ -47,17 +48,17 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 /** aes **/
-$word = [
-    'name1' => '123',
-    'name2' => '456'
-];
-$word = 123;
-$key = '2c920f9579cb89K9';
-$iv = 'Qa5da1EbsEAygd18';
-Aes::config($key, $iv, true);
-$encode = Aes::encrypt($word);
-dump($encode);
-dd(Aes::decrypt($encode));
+//$word = [
+//    'name1' => '123',
+//    'name2' => '456'
+//];
+//$word = 123;
+//$key = '2c920f9579cb89K9';
+//$iv = 'Qa5da1EbsEAygd18';
+//Aes::config($key, $iv, true);
+//$encode = Aes::encrypt($word);
+//dump($encode);
+//dd(Aes::decrypt($encode));
 
 
 //$key = 'key123';
@@ -74,15 +75,18 @@ dd(Aes::decrypt($encode));
 //$b = new Baidu('20220726001283686', 'UzhkImxnMMMw9a4FchQe');
 //$b = new YouDao('7fda4dee3e6448ec', 'WgWk79cH1WK0EYKZagvvm1NTjiDnePTS');
 //$b = new Translatedlabs();
-//
+//$b = new Google();
+////
 //while (true) {
 //    try {
-////        dump($b->translate('苹果', 'en'));
-//        dump($b->language('中国'));
+//        dump($b->translate('中国军人', 'en'));
+////        dump($b->translate('china.', 'zh-CN'));
+////        dump($b->language('中国'));
 //    } catch (\Exception $e) {
 //        dump('错误：'.$e->getMessage());
 //    }
 //}
+
 
 /** Helper **/
 //dd(Helper::formatMoneyCurrency('9999999999999', '$', 0, 'right'));

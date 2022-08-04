@@ -58,7 +58,7 @@ class YouDao
     }
 
     /**
-     *
+     * 请求
      *
      * @param $path
      * @param $data
