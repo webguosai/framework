@@ -12,6 +12,7 @@ use Webguosai\Translate\Baidu;
 use Webguosai\Translate\Google;
 use Webguosai\Translate\Translatedlabs;
 use Webguosai\Translate\YouDao;
+use Webguosai\Util\CharCodeAt;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
@@ -46,6 +47,12 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** CharCodeAt **/
+//$string = 'Hi';
+//dump(CharCodeAt::toString($string));
+//dump(CharCodeAt::toArray($string));
+//dump(CharCodeAt::toNumber('H'));
 
 /** aes **/
 //$word = [
