@@ -184,6 +184,10 @@ require_once '../vendor/autoload.php';
 //dump(Faker::currency()); // 货币
 //dump(Faker::password()); // 密码
 //dump(Faker::job()); // 工作
+//dump(Faker::project());// 项目
+//dump(Faker::carProject());// 汽车项目
+//dump(Faker::car());// 汽车
+//dump(Faker::carLabel());// 汽车标签
 
 
 /** csv **/
