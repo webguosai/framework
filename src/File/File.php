@@ -128,15 +128,38 @@ class File
     }
 
     /**
-     * 获取一段url中的文件名
+     * 获取一段url中的文件名(不含后缀)
      *
      * @param string $url
      * @return mixed|string
      */
     public static function getFileName($url)
     {
-        $info = pathinfo($url);
+        $info = self::getPathInfo($url);
         return $info['filename'];
+    }
+
+    /**
+     * 获取一段url中的文件名加后缀
+     *
+     * @param string $url
+     * @return mixed|string
+     */
+    public static function getBaseName($url)
+    {
+        $info = self::getPathInfo($url);
+        return $info['basename'];
+    }
+
+    /**
+     * pathinfo
+     *
+     * @param $url
+     * @return string|string[]
+     */
+    public static function getPathInfo($url)
+    {
+        return pathinfo($url);
     }
 
     /**

@@ -290,6 +290,7 @@ require_once '../vendor/autoload.php';
 //dump(File::fileSizeToBytes(919436274));
 //File::rmDir('F:\www\framework\tests\11');
 //dump(File::getFileName('https://www.kancloud.cn/book/a5436539/laravel_stu/edit.jj'));
+//dump(File::getBaseName('https://www.kancloud.cn/book/a5436539/laravel_stu/edit.jj'));
 
 /** 红包 **/
 
