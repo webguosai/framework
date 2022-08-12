@@ -8,6 +8,7 @@ use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
+use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
 use Webguosai\Translate\Google;
 use Webguosai\Translate\Translatedlabs;
@@ -47,6 +48,15 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** 机器人 **/
+//apikey在这里有很多：https://github.com/arckalsun/soulapp_im_robot/blob/265ae75e8dd30e8daecb7798909c48bd31ca7ed1/src/main/resources/robots.json
+//$tl = new TuLing('f222eaa9ede84cc6bfdd6f6d2ca4a589', '371856');
+//while (true) {
+//    $res = $tl->replyText('吃的');
+//    dump($res);
+//    sleep(1);
+//}
 
 /** CharCodeAt **/
 //$string = 'Hi';
@@ -279,7 +289,7 @@ require_once '../vendor/autoload.php';
 //dd(File::getExtension('12.3.jpg'));
 //dump(File::fileSizeToBytes(919436274));
 //File::rmDir('F:\www\framework\tests\11');
-
+//dump(File::getFileName('https://www.kancloud.cn/book/a5436539/laravel_stu/edit.jj'));
 
 /** 红包 **/
 

@@ -201,4 +201,15 @@ class Date
             return true;
         }
     }
+
+    /**
+     * 获取13位毫秒级时间戳
+     *
+     * @return string
+     */
+    public static function getTime()
+    {
+        list($t1, $t2) = explode(' ', microtime());
+        return $t2 . ceil( ($t1 * 1000) );
+    }
 }

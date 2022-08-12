@@ -128,6 +128,18 @@ class File
     }
 
     /**
+     * 获取一段url中的文件名
+     *
+     * @param string $url
+     * @return mixed|string
+     */
+    public static function getFileName($url)
+    {
+        $info = pathinfo($url);
+        return $info['filename'];
+    }
+
+    /**
      * 文件大小转移为单位
      *
      * @param int $size
