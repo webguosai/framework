@@ -135,8 +135,7 @@ class File
      */
     public static function getFileName($url)
     {
-        $info = self::getPathInfo($url);
-        return $info['filename'];
+        return pathinfo($url, PATHINFO_FILENAME);
     }
 
     /**
@@ -147,19 +146,7 @@ class File
      */
     public static function getBaseName($url)
     {
-        $info = self::getPathInfo($url);
-        return $info['basename'];
-    }
-
-    /**
-     * pathinfo
-     *
-     * @param $url
-     * @return string|string[]
-     */
-    public static function getPathInfo($url)
-    {
-        return pathinfo($url);
+        return pathinfo($url, PATHINFO_BASENAME);
     }
 
     /**
