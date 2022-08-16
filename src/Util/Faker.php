@@ -2,7 +2,6 @@
 
 /**
  * faker假数据
- * 演示：
  */
 namespace Webguosai\Util;
 
@@ -14,10 +13,18 @@ class Faker
 {
     /**
      * 姓名
+     *
+     * @param null $sex
+     * @return string
      */
-    public static function name()
+    public static function name($sex = null)
     {
-        $last = [
+        return self::firstName() . self::lastName($sex);
+    }
+
+    public static function firstName()
+    {
+        return Arr::random([
             '李', '王', '张', '刘', '陈', '杨', '赵', '黄', '周', '吴',
             '徐', '孙', '胡', '朱', '高', '林', '何', '郭', '马', '罗',
             '梁', '宋', '郑', '谢', '韩', '唐', '冯', '于', '董', '萧',
@@ -49,8 +56,11 @@ class Faker
             '应', '台', '巫', '鞠', '僧', '桑', '荆', '谌', '银', '扬',
             '明', '沙', '薄', '伏', '岑', '习', '胥', '保', '和', '蔺',
             '虢'
-        ];
+        ]);
+    }
 
+    public static function lastName($sex = null)
+    {
         $man = [
             '伟', '强', '磊', '洋', '勇', '军', '杰', '涛', '超', '明',
             '刚', '平', '辉', '鹏', '华', '飞', '鑫', '波', '斌', '宇',
@@ -78,11 +88,14 @@ class Faker
             '璐', '凤兰', '腊梅', '瑶', '嘉', '怡', '冰冰', '玉梅', '慧', '婕',
         ];
 
-        $sex = self::sex();
-        if ($sex == '男') {
-            return Arr::random($last) . Arr::random($man);
+        if (is_null($sex)) {
+            $sex = self::sex();
         }
-        return Arr::random($last) . Arr::random($woman);
+
+        if ($sex === '女') {
+            return Arr::random($woman);
+        }
+        return Arr::random($man);
     }
 
     public static function sex()
@@ -228,7 +241,7 @@ class Faker
 
     public static function region($separate = ' ') {
         return implode($separate, [
-            self::province(), self::city(), self::area()
+            '中国', self::city(), self::area()
         ]);
     }
 
@@ -535,34 +548,32 @@ class Faker
         return mt_rand($min, $max);
     }
 
-    public static function datetime()
+    /**
+     * 日期时间
+     *
+     * @param string $startDateTime 最小日期时间
+     * @param string $endDateTime 最大日期时间
+     * @return false|string
+     */
+    public static function datetime($startDateTime = '1992-01-01 00:00:00', $endDateTime = '2092-01-01 00:00:00')
     {
-        if (self::number(1, 2) === 1) {
-            $time = time() + self::number(1, 693792000);
-        } else {
-            $time = time() - self::number(1, 693792000);
-        }
-        return date('Y-m-d H:i:s', $time);
+        [$t1, $t2] = Date::getStartEndUnix($startDateTime, $endDateTime);
+
+        return date('Y-m-d H:i:s', mt_rand($t1, $t2));
     }
 
-    public static function date()
+    public static function date($startDate = '1992-01-01', $endDate = '2092-01-01')
     {
-        if (self::number(1, 2) === 1) {
-            $time = time() + self::number(1, 693792000);
-        } else {
-            $time = time() - self::number(1, 693792000);
-        }
-        return date('Y-m-d', $time);
+        [$t1, $t2] = Date::getStartEndUnix($startDate, $endDate);
+
+        return date('Y-m-d', mt_rand($t1, $t2));
     }
 
-    public static function time()
+    public static function time($start = '00:00:01', $end = '23:59:59')
     {
-        if (self::number(1, 2) === 1) {
-            $time = time() + self::number(1, 693792000);
-        } else {
-            $time = time() - self::number(1, 693792000);
-        }
-        return date('H:i:s', $time);
+        [$t1, $t2] = Date::getStartEndUnix($start, $end);
+
+        return date('H:i:s', mt_rand($t1, $t2));
     }
 
     public static function ids($length = 2, $min = 1, $max = 20)
@@ -584,183 +595,7 @@ class Faker
     public static function currency()
     {
         return Arr::random([
-            "AED",
-            "AFN",
-            "ALL",
-            "AMD",
-            "ANG",
-            "AOA",
-            "ARS",
-            "AUD",
-            "AWG",
-            "AZN",
-            "BAM",
-            "BBD",
-            "BDT",
-            "BGN",
-            "BHD",
-            "BIF",
-            "BMD",
-            "BND",
-            "BOB",
-            "BOV",
-            "BRL",
-            "BSD",
-            "BTN",
-            "BWP",
-            "BYR",
-            "BZD",
-            "CAD",
-            "CDF",
-            "CHE",
-            "CHF",
-            "CHW",
-            "CLF",
-            "CLP",
-            "CNY",
-            "COP",
-            "COU",
-            "CRC",
-            "CUC",
-            "CUP",
-            "CVE",
-            "CZK",
-            "DJF",
-            "DKK",
-            "DOP",
-            "DZD",
-            "EGP",
-            "ERN",
-            "ETB",
-            "EUR",
-            "FJD",
-            "FKP",
-            "GBP",
-            "GEL",
-            "GHS",
-            "GIP",
-            "GMD",
-            "GNF",
-            "GTQ",
-            "GYD",
-            "HKD",
-            "HNL",
-            "HRK",
-            "HTG",
-            "HUF",
-            "IDR",
-            "ILS",
-            "INR",
-            "IQD",
-            "IRR",
-            "ISK",
-            "JMD",
-            "JOD",
-            "JPY",
-            "KES",
-            "KGS",
-            "KHR",
-            "KMF",
-            "KPW",
-            "KRW",
-            "KWD",
-            "KYD",
-            "KZT",
-            "LAK",
-            "LBP",
-            "LKR",
-            "LRD",
-            "LSL",
-            "LYD",
-            "MAD",
-            "MDL",
-            "MGA",
-            "MKD",
-            "MMK",
-            "MNT",
-            "MOP",
-            "MRO",
-            "MUR",
-            "MVR",
-            "MWK",
-            "MXN",
-            "MXV",
-            "MYR",
-            "MZN",
-            "NAD",
-            "NGN",
-            "NIO",
-            "NOK",
-            "NPR",
-            "NZD",
-            "OMR",
-            "PAB",
-            "PEN",
-            "PGK",
-            "PHP",
-            "PKR",
-            "PLN",
-            "PYG",
-            "QAR",
-            "RON",
-            "RSD",
-            "RUB",
-            "RWF",
-            "SAR",
-            "SBD",
-            "SCR",
-            "SDG",
-            "SEK",
-            "SGD",
-            "SHP",
-            "SLL",
-            "SOS",
-            "SRD",
-            "SSP",
-            "STD",
-            "SYP",
-            "SZL",
-            "THB",
-            "TJS",
-            "TMT",
-            "TND",
-            "TOP",
-            "TRY",
-            "TTD",
-            "TWD",
-            "TZS",
-            "UAH",
-            "UGX",
-            "USD",
-            "USN",
-            "USS",
-            "UYI",
-            "UYU",
-            "UZS",
-            "VEF",
-            "VND",
-            "VUV",
-            "WST",
-            "XAF",
-            "XAG",
-            "XAU",
-            "XBA",
-            "XBB",
-            "XBC",
-            "XBD",
-            "XCD",
-            "XDR",
-            "XFU",
-            "XOF",
-            "XPD",
-            "XPF",
-            "XPT",
-            "XSU",
-            "XTS",
-            "XUA",
-            "YER",
-            "ZAR",
-            "ZMW"
+            'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BOV', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHE', 'CHF', 'CHW', 'CLF', 'CLP', 'CNY', 'COP', 'COU', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN', 'MXV', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 'STD', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'USN', 'USS', 'UYI', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XAG', 'XAU', 'XBA', 'XBB', 'XBC', 'XBD', 'XCD', 'XDR', 'XFU', 'XOF', 'XPD', 'XPF', 'XPT', 'XSU', 'XTS', 'XUA', 'YER', 'ZAR', 'ZMW'
         ]);
     }
 
@@ -785,21 +620,7 @@ class Faker
     public static function job()
     {
         return Arr::random([
-            "Java",
-            "C++",
-            "PHP",
-            "C",
-            "C#",
-            ".NET",
-            "Hadoop",
-            "Python",
-            "Delphi",
-            "VB",
-            "Perl",
-            "Ruby",
-            "Node.js",
-            "Golang",
-            "Erlang",
+            'Java', 'C++', 'PHP', 'C', 'C#', '.NET', 'Hadoop', 'Python', 'Delphi', 'VB', 'Perl', 'Ruby', 'Node.js', 'Golang', 'Erlang',
         ]);
     }
 

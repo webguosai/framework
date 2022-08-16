@@ -62,6 +62,7 @@ class Date
         }
         return $ret;
     }
+
     /**
      * 获取时间分段
      *
@@ -211,5 +212,40 @@ class Date
     {
         list($t1, $t2) = explode(' ', microtime());
         return $t2 . ceil( ($t1 * 1000) );
+    }
+
+    /**
+     * 计算两个日期时间相差的天数
+     *
+     * @param string $startDateTime 2022-01-01 00:00:00
+     * @param string $endDateTime 2022-02-01 00:00:00
+     * @return int
+     */
+    public static function diffDay($startDateTime, $endDateTime)
+    {
+        $t1 = strtotime($startDateTime);
+        $t2 = strtotime($endDateTime);
+
+        return intval(($t2 - $t1) / 86400);
+    }
+
+    /**
+     * 获取两个时间的Unix时间戳
+     *
+     * @param string|null $start 1992-01-01 00:00:00
+     * @param string|null $end 1992-01-02 00:00:00
+     * @return array
+     */
+    public static function getStartEndUnix($start, $end)
+    {
+        if (is_null($start) || is_null($end)) {
+            $t1 = 1;
+            $t2 = time();
+        } else {
+            $t1 = strtotime($start);
+            $t2 = strtotime($end);
+        }
+
+        return [$t1, $t2];
     }
 }

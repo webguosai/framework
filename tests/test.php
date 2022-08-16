@@ -52,7 +52,7 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 /** Ip **/
-dump(Ip::getReadIp());
+//dump(Ip::getReadIp());
 
 
 /** Request **/
@@ -135,8 +135,9 @@ dump(Ip::getReadIp());
 //
 //$dateFormat = 'm/d/Y';
 //$timeFormat = 'H点i分s秒';
-//dd(Date::formatShow($sqlValue, $dateFormat, $timeFormat));
-
+//dump(Date::formatShow($sqlValue, $dateFormat, $timeFormat));
+//dump(Date::diffDay('2000-01-01 09:00:00', '2000-02-01 09:00:00'));
+//dump(Date::diffDay('2001/01/01', '2002/01/01'));
 
 
 /** env操作类 **/
@@ -177,7 +178,9 @@ dump(Ip::getReadIp());
 //dump($decode);
 
 /** faker生成假数据 **/
-//dump(Faker::name()); // 姓名
+//dump(Faker::name('女')); // 姓名
+//dump(Faker::firstName()); // 姓
+//dump(Faker::lastName()); // 名
 //dump(Faker::sex()); // 性别
 //dump(Faker::is()); // 1 - 0
 //dump(Faker::chinese()); // 汉字
@@ -201,9 +204,15 @@ dump(Ip::getReadIp());
 //dump(Faker::title(20)); //标题
 //dump(Faker::question()); //问题
 //dump(Faker::number(1, 20)); //数字
+//dump(Faker::datetime(null)); //日期时间
 //dump(Faker::datetime()); //日期时间
+//dump(Faker::datetime('2022-08-15 00:00:00', '2022-08-16 00:00:00')); //日期时间
+//dump(Faker::date(null)); // 日期
 //dump(Faker::date()); // 日期
+//dump(Faker::date('2022-08-15', '2022-08-16')); // 日期
+//dump(Faker::time(null)); // 时间
 //dump(Faker::time()); // 时间
+//dump(Faker::time('09:00:00', '09:00:10')); // 时间
 //dump(Faker::ids()); // ids
 //dump(Faker::price()); // 金额
 //dump(Faker::currency()); // 货币
