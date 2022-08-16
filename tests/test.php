@@ -37,6 +37,7 @@ use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
 use Webguosai\Util\Date;
 use Webguosai\Util\EnvHandle;
+use Webguosai\Util\Environment;
 use Webguosai\Util\Faker;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
@@ -48,6 +49,14 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** Request **/
+//dump(Request::getFullUrl());
+
+/** Environment **/
+//dump(Environment::get());
+//dump(Environment::isCli());
+
 
 /** 机器人 **/
 //apikey在这里有很多：https://github.com/arckalsun/soulapp_im_robot/blob/265ae75e8dd30e8daecb7798909c48bd31ca7ed1/src/main/resources/robots.json
