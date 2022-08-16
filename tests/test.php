@@ -8,6 +8,7 @@ use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
+use Webguosai\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
 use Webguosai\Translate\Google;
@@ -50,8 +51,13 @@ use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+/** Ip **/
+dump(Ip::getReadIp());
+
+
 /** Request **/
 //dump(Request::getFullUrl());
+//dump(Request::getReferer());
 
 /** Environment **/
 //dump(Environment::get());

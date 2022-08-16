@@ -4,10 +4,12 @@
 namespace Webguosai;
 
 
+use Webguosai\Util\Environment;
+
 class Ip
 {
     /**
-     * 获取客户端ip
+     * 获取客户端ip, 优先获取代理
      *
      * @return mixed|string|null
      */
@@ -19,9 +21,9 @@ class Ip
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $pos =  array_search('unknown',$arr);
-            if(false !== $pos) unset($arr[$pos]);
-            $ip   =  trim($arr[0]);
+            $pos = array_search('unknown', $arr);
+            if (false !== $pos) unset($arr[$pos]);
+            $ip = trim($arr[0]);
         } elseif (isset($_SERVER['REMOTE_ADDR'])) {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
@@ -30,10 +32,26 @@ class Ip
         return $ip;
     }
 
-    // 获取国内随机ip
+    /**
+     * 获取真实ip (与服务器交互的ip)
+     */
+    public static function getReadIp()
+    {
+        if (Environment::isCli()) {
+            return '127.0.0.1';
+        }
+
+        return $_SERVER['REMOTE_ADDR'];
+    }
+
+    /**
+     * 获取国内随机ip
+     *
+     * @return string
+     */
     public static function getChinaRandom()
     {
-        $ip_long    = array(
+        $ip_long  = array(
             array('607649792', '608174079'), //36.56.0.0-36.63.255.255
             array('975044608', '977272831'), //58.30.0.0-58.63.255.255
             array('999751680', '999784447'), //59.151.0.0-59.151.127.255
@@ -50,7 +68,7 @@ class Ip
             array('-770113536', '-768606209'), //210.25.0.0-210.47.255.255
             array('-569376768', '-564133889'), //222.16.0.0-222.95.255.255
         );
-        $rand_key   = mt_rand(0, 14);
+        $rand_key = mt_rand(0, 14);
         return long2ip(mt_rand($ip_long[$rand_key][0], $ip_long[$rand_key][1]));
     }
 }
