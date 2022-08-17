@@ -51,6 +51,7 @@ use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+
 /** Ip **/
 //dump(Ip::getReadIp());
 
@@ -294,8 +295,8 @@ require_once '../vendor/autoload.php';
 //    'pass'     => 'a5436511',
 //    'softid'   => '928030',
 //]);
-//$a = $c->get('./captcha/3.jpg');
-//dd($a);
+//$a = $c->get('F:\www\captcha\assets\captcha/google.jpg');
+//dd($a['pic_str']);
 //$c->getStr(base64_encode(file_get_contents('./captcha/1.jpg')));
 
 /** 压缩 **/
