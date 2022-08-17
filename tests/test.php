@@ -46,10 +46,23 @@ use Webguosai\Util\Csv;
 use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
+use Webguosai\Util\TextIdentify;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** 文本识别 **/
+$text = '
+我叫张三,今年18岁,男孩子,电话18112345678
+wx6666
+';
+$id = new TextIdentify($text);
+dump($id->getName());
+dump($id->getSex());
+dump($id->getMobile());
+dump($id->getWeChat());
+
 
 
 /** Ip **/
