@@ -40,6 +40,7 @@ use Webguosai\Util\Date;
 use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Environment;
 use Webguosai\Util\Faker;
+use Webguosai\Util\Qr;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
 use Webguosai\Util\Csv;
@@ -52,16 +53,37 @@ use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+/** 二维码 **/
+//$logo = [
+//    'file' => '../assets/images/logo.jpg',
+//];
+//$label = [
+//    'text' => '汉字label',
+//];
+//$qr = Qr::code('good luck', 300, $logo, $label);
+////$qr->writeString();
+////$qr->writeDataUri(); // base64
+//$qr->writeFile('1.png'); // 写入文件 //
+
+
+//dd(Qr::read('1.png'));
+
+
+
+
 /** 文本识别 **/
-$text = '
-我叫张三,今年18岁,男孩子,电话18112345678
-wx6666
-';
-$id = new TextExtract($text);
-dump($id->getName());
-dump($id->getSex());
-dump($id->getMobile());
-dump($id->getWeChat());
+//$text = [
+//    '身份证号：51250119910927226x 收货地址张三收货地址：成都市武侯区美领馆路11号附2号 617000  136-3333-6666',
+//    '我叫张三,今年18岁,男孩子,电话17111111111, 身份证：512501199109272278 电话2：  １８１６３７１１２３４  wx6666 hxy051019',
+//];
+//
+//$id = new TextExtract($text);
+//dump($id->getName());
+//dump($id->getSex());
+//dump($id->getAge());
+//dump($id->getMobile());
+//dump($id->getWeChat());
+//dump($id->getIdCard());
 
 
 
@@ -465,7 +487,7 @@ dump($id->getWeChat());
 //dump($suggestion);
 
 // 天气查询
-//$weather = $map->weather(430101);
+//$weather = $map->weather(430100);
 //dump($weather);
 
 //地址转坐标
@@ -513,7 +535,7 @@ dump($id->getWeChat());
 //dump($suggestion);
 
 // 天气查询
-//$weather = $map->weather(430101);
+//$weather = $map->weather(430100);
 //dump($weather);
 
 //地址转坐标
@@ -521,7 +543,7 @@ dump($id->getWeChat());
 //dump($address);
 
 //坐标转地址
-//$lnglat = explode(',', $address['geocodes'][0]['location']);
+//$lnglat = explode(',', $address['location']);
 //$lng = $lnglat[0];
 //$lat = $lnglat[1];
 //$location = $map->geoLocation($lat, $lng);
@@ -536,8 +558,8 @@ dump($id->getWeChat());
 //dump($staticMap);
 
 //ip定位
-//$ip = $map->ip('113.246.95.120');
-//$ip = $map->ip('fe80::250:56ff:fec0:8%7');
+//$ip = $map->ip('113.246.166.139');
+//$ip = $map->ip('240e:387:405:200:6664:4aff:fe5c:94ae');
 //dump($ip);
 
 /** 响应类测试 **/

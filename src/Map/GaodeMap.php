@@ -11,6 +11,7 @@ namespace Webguosai\Map;
 
 
 use Webguosai\HttpClient;
+use Exception;
 
 class GaodeMap
 {
@@ -28,12 +29,12 @@ class GaodeMap
      * @param string $address 地址：湖南省长沙市
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoAddress(string $address, $extraParams = [])
     {
         $extraParams['address'] = $address;
-        return $this->request('/v3/geocode/geo', $extraParams);
+        return $this->request('/v3/geocode/geo', $extraParams)['geocodes'][0];
     }
 
     /**
@@ -44,12 +45,12 @@ class GaodeMap
      * @param string|double $lng 经度：116.307490
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoLocation($lat, $lng, $extraParams = [])
     {
         $extraParams['location'] = "{$lng},{$lat}";
-        return $this->request('/v3/geocode/regeo', $extraParams);
+        return $this->request('/v3/geocode/regeo', $extraParams)['regeocode'];
     }
 
     /**
@@ -62,7 +63,7 @@ class GaodeMap
      * @param int $height 高度(单位：像素)
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function staticMap($lng, $lat, $width = 400, $height = 400, $extraParams = [])
     {
@@ -80,7 +81,7 @@ class GaodeMap
      * @param string $ip
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function ip($ip, $extraParams = [])
     {
@@ -101,13 +102,18 @@ class GaodeMap
      * @param string $cityCode 行政区划编码 编码列表下载：https://a.amap.com/lbs/static/amap_3dmap_lite/AMap_adcode_citycode.zip
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
-    public function weather($cityCode = '430101', $extraParams = [])
+    public function weather($cityCode = '430100', $extraParams = [])
     {
         $extraParams['city']       = $cityCode;
         $extraParams['extensions'] = 'all';
-        return $this->request('/v3/weather/weatherInfo', $extraParams);
+
+        $result = $this->request('/v3/weather/weatherInfo', $extraParams);
+        if ($extraParams['extensions'] == 'all') {
+            return $result['forecasts'];
+        }
+        return $result['lives'];
     }
 
     /**
@@ -115,15 +121,15 @@ class GaodeMap
      * https://lbs.amap.com/api/webservice/guide/api/inputtips
      *
      * @param string $keyword 关键字
-     * @param sting $region 缺省时侧进行全国范围搜索
+     * @param string $region 缺省时侧进行全国范围搜索
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function suggestion($keyword, $region)
     {
         $extraParams['keywords'] = $keyword;
         $extraParams['city']     = $region;
-        return $this->request('/v3/assistant/inputtips', $extraParams);
+        return $this->request('/v3/assistant/inputtips', $extraParams)['tips'];
     }
 
     /**
@@ -132,7 +138,7 @@ class GaodeMap
      * @param string $url
      * @param array $params
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function request(string $url, $params = [])
     {
@@ -157,9 +163,9 @@ class GaodeMap
                 return $data;
             }
 
-            throw new \Exception($data['info']);
+            throw new Exception($data['info']);
         }
 
-        throw new \Exception($response->getErrorMsg());
+        throw new Exception($response->getErrorMsg());
     }
 }

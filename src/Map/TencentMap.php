@@ -8,6 +8,7 @@
 namespace Webguosai\Map;
 
 use Webguosai\HttpClient;
+use Exception;
 
 class TencentMap
 {
@@ -26,7 +27,7 @@ class TencentMap
      * @param string $address 地址：湖南省长沙市
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoAddress(string $address, $extraParams = [])
     {
@@ -42,7 +43,7 @@ class TencentMap
      * @param string|double $lng 经度：116.307490
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoLocation($lat, $lng, $extraParams = [])
     {
@@ -57,7 +58,7 @@ class TencentMap
      * @param string $smartAddress 详细地址：北京市海淀区彩和坊路海淀西大街74号
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoSmartAddress(string $smartAddress, $extraParams = [])
     {
@@ -75,7 +76,7 @@ class TencentMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirDriving($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -93,7 +94,7 @@ class TencentMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirTransit($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -110,7 +111,7 @@ class TencentMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirWalking($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -127,7 +128,7 @@ class TencentMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirBicycling($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -144,7 +145,7 @@ class TencentMap
      * @param int $height 高度(单位：像素)
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function staticMap($lng, $lat, $width = 400, $height = 400, $extraParams = [])
     {
@@ -160,7 +161,7 @@ class TencentMap
      * @param string $ip
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function ip($ip, $extraParams = [])
     {
@@ -174,7 +175,7 @@ class TencentMap
      *
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function regions($extraParams = [])
     {
@@ -189,7 +190,7 @@ class TencentMap
      * @param int $type 类型：3=baidu经纬度，其它类型参考文档
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function translate($latLngs, $type, $extraParams = [])
     {
@@ -203,9 +204,9 @@ class TencentMap
      * https://lbs.qq.com/service/webService/webServiceGuide/webServiceSuggestion
      *
      * @param string $keyword 关键字
-     * @param sting $region 缺省时侧进行全国范围搜索
+     * @param string $region 缺省时侧进行全国范围搜索
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function suggestion($keyword, $region)
     {
@@ -225,7 +226,7 @@ class TencentMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function direction($direction, $fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -240,7 +241,7 @@ class TencentMap
      * @param string $path
      * @param array $params
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function request(string $path, $params = [])
     {
@@ -272,9 +273,9 @@ class TencentMap
                 return $data;
             }
 
-            throw new \Exception($data['message']);
+            throw new Exception($data['message']);
         }
 
-        throw new \Exception($response->getErrorMsg());
+        throw new Exception($response->getErrorMsg());
     }
 }

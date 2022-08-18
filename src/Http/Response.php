@@ -14,16 +14,10 @@ class Response
         static::response(0, $message, $data, $var);
     }
 
-    //用于layer表格列表
-    public static function successList($data = [], $total = 10, $message = '')
-    {
-        static::response(0, $message, $data, ['count' => $total]);
-    }
-
     public static function error($message = '', $code = 1, $httpCode = 200)
     {
         //http状态根据需要来指定 401(未授权) 406(不接受)
-        static::response($code, $message, false, [], $httpCode);
+        static::response($code, $message, [], [], $httpCode);
     }
 
     // 用于cli下输出
@@ -54,9 +48,7 @@ class Response
             'message' => $message,
         ];
 
-        if ($data !== false) {
-            $json['data'] = $data;
-        }
+        $json['data'] = $data;
 
         if ($var !== []) {
             $json = $json + $var;

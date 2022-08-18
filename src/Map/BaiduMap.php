@@ -8,6 +8,7 @@
 namespace Webguosai\Map;
 
 use Webguosai\HttpClient;
+use Exception;
 
 class BaiduMap
 {
@@ -26,7 +27,7 @@ class BaiduMap
      * @param string $address 地址：湖南省长沙市
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoAddress(string $address, $extraParams = [])
     {
@@ -42,7 +43,7 @@ class BaiduMap
      * @param string|double $lng 经度：116.307490
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoLocation($lat, $lng, $extraParams = [])
     {
@@ -58,7 +59,7 @@ class BaiduMap
      * @param string $address 详细地址：北京市海淀区彩和坊路海淀西大街74号
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function geoSmartAddress(string $address, $extraParams = [])
     {
@@ -76,7 +77,7 @@ class BaiduMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirDriving($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -93,7 +94,7 @@ class BaiduMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirTransit($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -110,7 +111,7 @@ class BaiduMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirWalking($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -127,7 +128,7 @@ class BaiduMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function dirBicycling($fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -144,7 +145,7 @@ class BaiduMap
      * @param int $height 高度(单位：像素)
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function staticMap($lng, $lat, $width = 400, $height = 400, $extraParams = [])
     {
@@ -161,7 +162,7 @@ class BaiduMap
      * @param string $ip
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function ip($ip, $extraParams = [])
     {
@@ -177,7 +178,7 @@ class BaiduMap
      * @param int $type 类型：3=火星坐标（gcj02），即高德地图、腾讯地图和MapABC等地图使用的坐标，其它类型参考文档
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function translate($lngLats, $type, $extraParams = [])
     {
@@ -193,9 +194,9 @@ class BaiduMap
      * @param string $cityCode 行政区划编码 编码列表下载(districtcode)：https://mapopen-website-wiki.cdn.bcebos.com/cityList/weather_district_id.csv
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
-    public function weather($cityCode = '430101', $extraParams = [])
+    public function weather($cityCode = '430100', $extraParams = [])
     {
         $extraParams['district_id'] = $cityCode;
         $extraParams['data_type']   = 'all';
@@ -207,9 +208,9 @@ class BaiduMap
      * https://lbsyun.baidu.com/index.php?title=webapi/place-suggestion-api
      *
      * @param string $query 关键字
-     * @param sting $region 支持城市及对应百度编码(citycode)https://mapopen-website-wiki.bj.bcebos.com/static_zip/BaiduMap_cityCode_1102.zip
+     * @param string $region 支持城市及对应百度编码(citycode)https://mapopen-website-wiki.bj.bcebos.com/static_zip/BaiduMap_cityCode_1102.zip
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function suggestion($query, $region)
     {
@@ -229,7 +230,7 @@ class BaiduMap
      * @param string|double $toLng 终点经度
      * @param array $extraParams 额外参数请参照文档
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function direction($direction, $fromLat, $fromLng, $toLat, $toLng, $extraParams = [])
     {
@@ -244,7 +245,7 @@ class BaiduMap
      * @param string $path
      * @param array $params
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function request($path, $params = [])
     {
@@ -273,8 +274,8 @@ class BaiduMap
                 }
             }
 
-            throw new \Exception($data['message']);
+            throw new Exception($data['message']);
         }
-        throw new \Exception($response->getErrorMsg());
+        throw new Exception($response->getErrorMsg());
     }
 }
