@@ -33,8 +33,8 @@ class File
     {
         $res = scandir($directory, $sortingOrder);
 
-        return array_values(array_filter($res, function($value) {
-            if ($value != '.' && $value != '..'){
+        return array_values(array_filter($res, function ($value) {
+            if ($value != '.' && $value != '..') {
                 return $value;
             }
         }));
@@ -50,13 +50,13 @@ class File
     {
         $path = str_replace('\\', '/', $path);
 
-        $dir = '';
+        $dir  = '';
         $file = $path;
         if (Str::contains($path, '/')) {
             $fg = strrpos($path, '/');
 
             $dir  = substr($path, 0, $fg);
-            $file = substr($path, $fg+1);
+            $file = substr($path, $fg + 1);
         }
 
         try {
@@ -113,43 +113,6 @@ class File
     }
 
     /**
-     * 获取一段内容的后缀名
-     *
-     * @param string $string
-     * @return string
-     */
-    public static function getExtension($string)
-    {
-        if (Str::contains($string, '.')) {
-            return substr(strrchr($string, '.'), 1);
-        }
-
-        return '';
-    }
-
-    /**
-     * 获取一段url中的文件名(不含后缀)
-     *
-     * @param string $url
-     * @return mixed|string
-     */
-    public static function getFileName($url)
-    {
-        return pathinfo($url, PATHINFO_FILENAME);
-    }
-
-    /**
-     * 获取一段url中的文件名加后缀
-     *
-     * @param string $url
-     * @return mixed|string
-     */
-    public static function getBaseName($url)
-    {
-        return pathinfo($url, PATHINFO_BASENAME);
-    }
-
-    /**
      * 文件大小转移为单位
      *
      * @param int $size
@@ -161,6 +124,6 @@ class File
         for ($i = 0; $size >= 1024 && $i < 4; $i++) {
             $size /= 1024;
         }
-        return round($size, 2).$units[$i];
+        return round($size, 2) . $units[$i];
     }
 }

@@ -40,7 +40,7 @@ use Webguosai\Util\Date;
 use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Environment;
 use Webguosai\Util\Faker;
-use Webguosai\Util\Qr;
+use Webguosai\Util\Qrcode;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
 use Webguosai\Util\Csv;
@@ -48,30 +48,37 @@ use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
 use Webguosai\Util\TextExtract;
+use Webguosai\Util\Url;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+/** url **/
+//dd(Url::isUrl('https://www.php.cn/php-weizijiaocheng-329439.html'));
+//dump(Url::getExtension('12.3.jpg'));
+//dump(Url::getFileName('https://github.com/top-think/think-validate/blob/master/src/Validate.php'));
+//dump(Url::getBaseName('https://github.com/top-think/think-validate/blob/master/src/Validate.php'));
+
 /** 二维码 **/
+// 生成二维码
 //$logo = [
 //    'file' => '../assets/images/logo.jpg',
 //];
 //$label = [
 //    'text' => '汉字label',
 //];
-//$qr = Qr::code('good luck', 300, $logo, $label);
+//$qr = Qrcode::create('good luck', 300, $logo, $label);
 ////$qr->writeString();
 ////$qr->writeDataUri(); // base64
 //$qr->writeFile('1.png'); // 写入文件 //
+//
+//// 解码二维码
+////dd(Qrcode::decode('1.png'));
+//dd(Qrcode::decode($qr->writeString(), Qrcode::SOURCE_TYPE_BLOB));
 
 
-//dd(Qr::read('1.png'));
-
-
-
-
-/** 文本识别 **/
+/** 文本提取 **/
 //$text = [
 //    '身份证号：51250119910927226x 收货地址张三收货地址：成都市武侯区美领馆路11号附2号 617000  136-3333-6666',
 //    '我叫张三,今年18岁,男孩子,电话17111111111, 身份证：512501199109272278 电话2：  １８１６３７１１２３４  wx6666 hxy051019',
@@ -346,11 +353,8 @@ require_once '../vendor/autoload.php';
 //$a = File::mkFile('c/');
 //$a = File::scandir('../src/');
 //dd($a);
-//dd(File::getExtension('12.3.jpg'));
 //dump(File::fileSizeToBytes(919436274));
 //File::rmDir('F:\www\framework\tests\11');
-//dump(File::getFileName('https://www.kancloud.cn/book/a5436539/laravel_stu/edit.jj'));
-//dump(File::getBaseName('https://www.kancloud.cn/book/a5436539/laravel_stu/edit.jj'));
 
 /** 红包 **/
 
