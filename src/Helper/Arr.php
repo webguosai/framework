@@ -220,4 +220,56 @@ class Arr
 
         return array_values(array_filter(array_unique($array)));
     }
+
+    /**
+     * 合并两个数组的关联内容，减少N+1和sql查询
+     *
+     * @param array $mainList 主要的数组
+     * @param array $fromList 从数组
+     * @param string $addKey 添加的key名
+     * @param string $findKey 查找关联的key名
+     * @param string $idKey 主键id名
+     * @return array
+     */
+    public static function mergeRelation($mainList, $fromList, $addKey, $findKey, $idKey = 'id')
+    {
+        foreach ($mainList as $key => $value) {
+            $data = [];
+            if (!empty($fromList)) {
+                $find = Arr::containsKey($value[$idKey], $findKey, $fromList);
+                if (!is_null($find)) {
+                    $data = $find;
+                }
+            }
+
+            $mainList[$key][$addKey] = $data;
+        }
+
+        return $mainList;
+    }
+
+    /**
+     * 判断从数组中的关联数据是否在主数组中，减少N+1和sql查询
+     *
+     * @param array $mainList 主要的数组
+     * @param array $fromList 从数组
+     * @param string $addKey 添加的key名
+     * @param string $findKey 查找关联的key名
+     * @param string $idKey 主键id名
+     * @return array
+     */
+    public static function mergeRelationIs($mainList, $fromList, $addKey, $findKey, $idKey = 'id')
+    {
+        foreach ($mainList as $key => $value) {
+            $data = false;
+            if (!empty($fromList)) {
+                $data = null !== Arr::containsKey($value[$idKey], $findKey, $fromList);
+            }
+
+            $mainList[$key][$addKey] = $data;
+        }
+
+        return $mainList;
+    }
+
 }
