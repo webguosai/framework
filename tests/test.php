@@ -37,6 +37,7 @@ use Webguosai\Message\Qmsg;
 use Webguosai\Message\ServerJ;
 use Webguosai\Message\WxPusher;
 use Webguosai\Util\Date;
+use Webguosai\Util\Enum;
 use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Environment;
 use Webguosai\Util\Faker;
@@ -53,6 +54,12 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** Enum **/
+//dump(UserTypeEnum::all());
+//dump(UserTypeEnum::in(['client', 'client2']));
+//dump(UserTypeEnum::getDefault());
+
 
 /** url **/
 //dd(Url::isUrl('https://www.php.cn/php-weizijiaocheng-329439.html'));

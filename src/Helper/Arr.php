@@ -139,12 +139,24 @@ class Arr
 
     /**
      * 在数组中查询是否存在
-     * @param $text
+     *
+     * @param string|array $text 要查找的(支持数组和字符串)
      * @param array $array
      * @return bool
      */
     public static function in($text, array $array)
     {
+        if (is_array($text)) {
+
+            foreach ($text as $value) {
+                if (in_array($value, $array)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         return in_array($text, $array);
     }
 
