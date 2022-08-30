@@ -12,7 +12,7 @@ class Enum
     /**
      * @var null
      */
-    protected static $default = null;
+    public static $default = null;
 
     /**
      * 获取所有枚举常量
