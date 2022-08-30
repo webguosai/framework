@@ -56,9 +56,9 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 /** Enum **/
-//dump(UserTypeEnum::all());
-//dump(UserTypeEnum::in(['client', 'client2']));
-//dump(UserTypeEnum::getDefault());
+//dump(\Webguosai\Util\UserTypeEnum::all());
+//dump(\Webguosai\Util\UserTypeEnum::in(['client', 'client2']));
+//dump(\Webguosai\Util\UserTypeEnum::getDefault());
 
 
 /** url **/
