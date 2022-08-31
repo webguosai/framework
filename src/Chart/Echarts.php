@@ -2,19 +2,19 @@
 
 //演示网站：https://echarts.apache.org/examples/zh/index.html#chart-type-pie
 
-namespace Webguosai;
+namespace Webguosai\Chart;
 
-use Hisune\EchartsPHP\ECharts;
+use Hisune\EchartsPHP\ECharts as EchartsPHP;
 use Webguosai\Helper\Arr;
 
-class Chart
+class Echarts
 {
     protected $chart;
 
     public function __construct($dist = '//cdn.jsdelivr.net/npm/echarts/dist')
-    //public function __construct($dist = '//lib.baomitu.com/echarts/4.2.1')
+        //public function __construct($dist = '//lib.baomitu.com/echarts/4.2.1')
     {
-        $this->chart = new ECharts($dist);
+        $this->chart = new EchartsPHP($dist);
     }
 
     /**

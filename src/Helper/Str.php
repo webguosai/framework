@@ -406,4 +406,16 @@ class Str
 
         return str_ireplace($sbc, $dbc, $string);
     }
+
+    /**
+     * 如果第一个参数不为空，则获取，否则获取第二个参数
+     *
+     * @param $value
+     * @param null $default
+     * @return null
+     */
+    public static function getDefault($value, $default = null)
+    {
+        return empty($value) ? $default : $value;
+    }
 }

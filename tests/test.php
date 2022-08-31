@@ -8,7 +8,7 @@ use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
-use Webguosai\Ip;
+use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
 use Webguosai\Translate\Google;

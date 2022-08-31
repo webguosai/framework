@@ -1,8 +1,6 @@
 <?php
 
-namespace Webguosai;
-
-use Webguosai\Util\Environment;
+namespace Webguosai\Util;
 
 class Request
 {

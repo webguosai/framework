@@ -1,22 +1,12 @@
 <?php
-
-use Webguosai\Chart;
-use Webguosai\Helper\Str;
-
 require_once '../vendor/autoload.php';
 
+use Webguosai\Chart\Echarts;
+
 /** 图表测试 **/
-$chart = new Chart();
+$chart = new Echarts();
 
-echo '<style>fieldset{margin-bottom:20px;text-align:center;font-weight: bold}</style>'; //演示的样式
-
-//$methods = allMethods($chart);
-//$methods = array_reverse($methods);
-//foreach ($methods as $method) {
-//    echo '<fieldset><legend>'.$method.'</legend>';
-//    echo $chart->$method($data);
-//    echo '</fieldset>';
-//}
+echo "<style>fieldset{margin-bottom:20px;text-align:center;font-weight: bold}</style>\n\n\n"; //演示的样式
 
 //地图
 showDemo('地图 map', [
@@ -100,24 +90,6 @@ function showDemo($title, $data, $method, $option, $chart)
 {
     echo '<fieldset><legend>'.$title.'</legend>';
     echo $chart->$method($data, $option);
-    echo '</fieldset>';
+    echo "</fieldset>\n\n";
 }
 
-function allMethods($class)
-{
-    $methods = get_class_methods($class);
-    $data = [];
-    foreach ($methods as $method) {
-        if ($method != '__construct') {
-            $data[] = $method;
-        }
-    }
-    return $data;
-}
-function faker($length, callable $callable) {
-    $arr = [];
-    for ($i = 1; $i <= $length; $i++) {
-        $arr[] = $callable($i);
-    }
-    return $arr;
-}

@@ -7,7 +7,6 @@ namespace Webguosai\Util;
 
 use Webguosai\Helper\Arr;
 use Webguosai\Helper\Str;
-use Webguosai\Ip;
 
 class Faker
 {
