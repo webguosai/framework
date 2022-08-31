@@ -41,6 +41,7 @@ use Webguosai\Util\Enum;
 use Webguosai\Util\EnvHandle;
 use Webguosai\Util\Environment;
 use Webguosai\Util\Faker;
+use Webguosai\Util\Lottery;
 use Webguosai\Util\Qrcode;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
@@ -49,11 +50,39 @@ use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
 use Webguosai\Util\TextExtract;
+use Webguosai\Util\Tools;
 use Webguosai\Util\Url;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** 概率抽奖类 **/
+$awards = array(
+    '0' => array('id' => 1, 'title' => '平板电脑', 'probability' => 0.5),
+    '1' => array('id' => 2, 'title' => '数码相机', 'probability' => 0.15),
+    '2' => array('id' => 3, 'title' => '音箱设备', 'probability' => 0.25),
+    '3' => array('id' => 4, 'title' => '4G优盘', 'probability' => 24.5),
+    '4' => array('id' => 5, 'title' => '10Q币', 'probability' => 3.5),
+);
+$lottery = (new Lottery())->init($awards);
+
+// 初始化抽奖配置，抽奖
+for ($i = 0; $i < 10; $i++) {
+    dump($lottery->getDraw());
+}
+
+/** 工具集 **/
+//dump(Tools::isWxBrowser());
+//dump(Tools::uuid());
+
+
+// 计算两个坐标之前的距离(单位：米)
+//提供一个四方坪B2栋由西到东的两个坐标
+//dump(Tools::getDistance('113.014186', '28.241977', '113.014662', '28.242029'));
+
+//dump(Tools::getSquarePoint('113.014186', '28.241977'));
+
 
 /** Enum **/
 //dump(\Webguosai\Util\UserTypeEnum::all());
