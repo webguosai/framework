@@ -414,7 +414,7 @@ class Str
      * @param null $default
      * @return null
      */
-    public static function getDefault($value, $default = null)
+    public static function default($value, $default = null)
     {
         return empty($value) ? $default : $value;
     }

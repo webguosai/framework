@@ -18,7 +18,7 @@ use Webguosai\Util\CharCodeAt;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
-use Webguosai\Request;
+use Webguosai\Util\Request;
 use Webguosai\Util\Arithmetic;
 use Webguosai\Util\Category;
 use Webguosai\Chart;
