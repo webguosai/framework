@@ -77,13 +77,13 @@ class File
     }
 
     /**
-     * 删除目录下的所有文件
-     * (只删除文件，会保留目录)
+     * 删除目录下的所有文件 (只删除文件，会保留顶级目录)
      *
-     * @param $dir
+     * @param string $dir 目录
+     * @param bool $isDelDir 是否删除目录
      * @return bool
      */
-    public static function rmDir($dir)
+    public static function rmDir($dir, $isDelDir = true)
     {
         //不是目录
         if (!is_dir($dir)) {
@@ -95,20 +95,22 @@ class File
             return false;
         }
 
-        $dir_handle = opendir($dir);
-        while ($file = readdir($dir_handle)) {
+        $dirHandle = opendir($dir);
+        while ($file = readdir($dirHandle)) {
             if ($file != '.' && $file != '..') {
-                $children_path = $dir . '/' . $file;
-                if (!is_dir($children_path)) {
-                    @unlink($children_path);
+                $childrenPath = $dir . '/' . $file;
+                if (!is_dir($childrenPath)) {
+                    @unlink($childrenPath);
                 } else {
-                    self::rmDir($children_path);
-                    @rmdir($children_path);
+                    self::rmDir($childrenPath);
+                    if (true === $isDelDir) {
+                        @rmdir($childrenPath);
+                    }
                 }
             }
         }
         //关闭目录句柄
-        closedir($dir_handle);
+        closedir($dirHandle);
         return true;
     }
 

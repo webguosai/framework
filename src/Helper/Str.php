@@ -418,4 +418,35 @@ class Str
     {
         return empty($value) ? $default : $value;
     }
+
+    /**
+     * 文本合并为数组
+     * Str::concatArray('3--::--标签_3--::--#00aaaa,4--::--标签_4--::--#00ddbb', ['id', 'name', 'color'])
+     *
+     * @param mixed $string
+     * @param array $members 成员
+     * @param string $textSymbol 文本间的分隔符号
+     * @param string $lineSymbol 行之前的分隔符号
+     * @return array
+     */
+    public static function concatArray($string, $members = [], $textSymbol = '--::--', $lineSymbol = ',')
+    {
+        $ret = [];
+        if (!empty($string)) {
+
+            $line = explode($lineSymbol, $string);
+
+            for ($i = 0; $i < count($line); $i++) {
+                $lineArr = explode($textSymbol, $line[$i]);
+                $data = [];
+                for ($j = 0; $j < count($members); $j++) {
+                    $data[$members[$j]] = $lineArr[$j];
+                }
+
+                $ret[$i] = $data;
+            }
+        }
+
+        return $ret;
+    }
 }

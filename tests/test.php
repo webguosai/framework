@@ -7,6 +7,7 @@ use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
+use Webguosai\Gap\GapHtml;
 use Webguosai\Helper\Helper;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
@@ -51,26 +52,54 @@ use Webguosai\Http\Response;
 use Webguosai\Api\Push;
 use Webguosai\Util\TextExtract;
 use Webguosai\Util\Tools;
+use Webguosai\Util\Transform;
 use Webguosai\Util\Url;
+use Webguosai\Util\UserResource;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
-/** 概率抽奖类 **/
-$awards = array(
-    '0' => array('id' => 1, 'title' => '平板电脑', 'probability' => 0.5),
-    '1' => array('id' => 2, 'title' => '数码相机', 'probability' => 0.15),
-    '2' => array('id' => 3, 'title' => '音箱设备', 'probability' => 0.25),
-    '3' => array('id' => 4, 'title' => '4G优盘', 'probability' => 24.5),
-    '4' => array('id' => 5, 'title' => '10Q币', 'probability' => 3.5),
-);
-$lottery = (new Lottery())->init($awards);
 
-// 初始化抽奖配置，抽奖
-for ($i = 0; $i < 10; $i++) {
-    dump($lottery->getDraw());
-}
+/** Transform(未完成) **/
+//$data = [
+//    'id' => 1,
+//    'name' => 'gs',
+//    'age' => 18
+//];
+//dd(UserResource::make($data));
+
+//$data = [
+//    [
+//        'id' => 1,
+//        'name' => 'gs',
+//        'age' => 18,
+//        //'info' => [1,2,3,4]
+//    ], [
+//        'id' => 1,
+//        'name' => 'gs',
+//        'age' => 18,
+//        //'info' => [1,2,3,4]
+//    ],
+//];
+//dd(UserResource::toAll($data));
+
+
+
+/** 概率抽奖类 **/
+//$awards = array(
+//    '0' => array('id' => 1, 'title' => '平板电脑', 'probability' => 0.5),
+//    '1' => array('id' => 2, 'title' => '数码相机', 'probability' => 0.15),
+//    '2' => array('id' => 3, 'title' => '音箱设备', 'probability' => 0.25),
+//    '3' => array('id' => 4, 'title' => '4G优盘', 'probability' => 24.5),
+//    '4' => array('id' => 5, 'title' => '10Q币', 'probability' => 3.5),
+//);
+//$lottery = (new Lottery())->init($awards);
+//
+//// 初始化抽奖配置，抽奖
+//for ($i = 0; $i < 10; $i++) {
+//    dump($lottery->getDraw());
+//}
 
 /** 工具集 **/
 //dump(Tools::isWxBrowser());
@@ -388,6 +417,7 @@ for ($i = 0; $i < 10; $i++) {
 //$a = File::mkFile('asp2.txt');
 //$a = File::mkFile('c/');
 //$a = File::scandir('../src/');
+//File::rmDir('./dir');
 //dd($a);
 //dump(File::fileSizeToBytes(919436274));
 //File::rmDir('F:\www\framework\tests\11');
@@ -618,6 +648,7 @@ for ($i = 0; $i < 10; $i++) {
 //dump(Str::split('123456'));
 //dump(Str::split('中文123'));
 //dump(Str::split([1,2,3]));
+//dump(Str::concatArray('3--::--标签_3--::--#00aaaa,4--::--标签_4--::--#00ddbb', ['id', 'name', 'color']));
 
 /** 测试阶梯类 **/
 //$points = [
