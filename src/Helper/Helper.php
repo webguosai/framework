@@ -26,19 +26,6 @@ class Helper
     }
 
     /**
-     * 返回可读性更好的文件尺寸
-     * @param string $bytes 原字符串
-     * @param int $decimals 保留长度
-     * @return string
-     */
-    public static function formatFileSize(string $bytes, $decimals = 2)
-    {
-        $size   = ['B', 'kB', 'MB', 'GB', 'TB', 'PB'];
-        $factor = floor((strlen($bytes) - 1) / 3);
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
-    }
-
-    /**
      * 格式化金额
      * 6000 = 6,000.00
      *
@@ -80,4 +67,5 @@ class Helper
     {
         return (new \Capital\Money($money))->toCapital();
     }
+
 }

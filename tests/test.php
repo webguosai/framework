@@ -7,7 +7,6 @@ use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
-use Webguosai\Gap\GapHtml;
 use Webguosai\Helper\Helper;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
