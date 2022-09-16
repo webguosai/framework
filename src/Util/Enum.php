@@ -41,6 +41,11 @@ class Enum
         return Arr::in($text, self::all());
     }
 
+    // 下一个
+//    public static function next() {
+//
+//    }
+
     /**
      * 设置默认值
      *
