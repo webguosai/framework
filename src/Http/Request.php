@@ -1,6 +1,6 @@
 <?php
 
-namespace Webguosai\Util;
+namespace Webguosai\Http;
 
 class Request
 {
