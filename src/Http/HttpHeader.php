@@ -99,7 +99,7 @@ class HttpHeader
             header("{$key}: {$header}");
         }
     }
-    
+
     /**
      * 跳转url
      * @param string $url
@@ -107,5 +107,30 @@ class HttpHeader
     public static function redirect($url)
     {
         header("Location: {$url}");
+    }
+
+    /**
+     * 浏览器缓存
+     * 代码来自：http://blog.csdn.net/nuli888/article/details/51860097
+     *
+     * @access     public
+     * @param      int        $cache_time        缓存时间(单位：秒)
+     * @return     void
+     */
+    public static function browserCache($cache_time = 60)
+    {
+        $modified_time = @$_SERVER['HTTP_IF_MODIFIED_SINCE'];
+        if (strtotime($modified_time) + $cache_time > time()) {
+            header("HTTP/1.1 304");
+            exit;
+        }
+        //发送Last-Modified头标，设置文档的最后的更新日期。
+        header("Last-Modified: " . gmdate("D, d M Y H:i:s", time()) . " GMT");
+
+        //发送Expires头标，设置当前缓存的文档过期时间，GMT格式
+        header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cache_time) . " GMT");
+
+        //发送Cache_Control头标，设置xx秒以后文档过时,可以代替Expires，如果同时出现，max-age优先。
+        header("Cache-Control: max-age=$cache_time");
     }
 }

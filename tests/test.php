@@ -8,6 +8,7 @@ use Webguosai\Ai\BaiduAi;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
+use Webguosai\Util\Cors;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
@@ -59,6 +60,8 @@ use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
 
+/** 跨域 **/
+Cors::setting();
 
 /** Transform(未完成) **/
 //$data = [
