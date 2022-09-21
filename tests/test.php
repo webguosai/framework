@@ -19,7 +19,7 @@ use Webguosai\Util\CharCodeAt;
 use Webguosai\Util\CountdownFormat;
 use Webguosai\CrackCaptcha\Chaojiying;
 use Webguosai\HttpAgentIp\Xq;
-use Webguosai\Util\Request;
+use Webguosai\Http\Request;
 use Webguosai\Util\Arithmetic;
 use Webguosai\Util\Category;
 use Webguosai\Chart;
@@ -52,9 +52,7 @@ use Webguosai\Http\Response;
 use Webguosai\Api\Push;
 use Webguosai\Util\TextExtract;
 use Webguosai\Util\Tools;
-use Webguosai\Util\Transform;
 use Webguosai\Util\Url;
-use Webguosai\Util\UserResource;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
@@ -62,30 +60,6 @@ require_once '../vendor/autoload.php';
 
 /** 跨域 **/
 Cors::setting();
-
-/** Transform(未完成) **/
-//$data = [
-//    'id' => 1,
-//    'name' => 'gs',
-//    'age' => 18
-//];
-//dd(UserResource::make($data));
-
-//$data = [
-//    [
-//        'id' => 1,
-//        'name' => 'gs',
-//        'age' => 18,
-//        //'info' => [1,2,3,4]
-//    ], [
-//        'id' => 1,
-//        'name' => 'gs',
-//        'age' => 18,
-//        //'info' => [1,2,3,4]
-//    ],
-//];
-//dd(UserResource::toAll($data));
-
 
 
 /** 概率抽奖类 **/
