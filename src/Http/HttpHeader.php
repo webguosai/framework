@@ -111,7 +111,7 @@ class HttpHeader
 
     /**
      * 浏览器缓存
-     * 代码来自：http://blog.csdn.net/nuli888/article/details/51860097
+     * @see:http://blog.csdn.net/nuli888/article/details/51860097
      *
      * @access     public
      * @param      int        $cache_time        缓存时间(单位：秒)
