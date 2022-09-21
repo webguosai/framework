@@ -54,8 +54,8 @@ class Response
             $json = $json + $var;
         }
 
-        HttpHeader::setHttpCode($httpCode);
-        HttpHeader::setJson();
+        Header::setHttpCode($httpCode);
+        Header::setJson();
 
         echo json_encode($json, JSON_UNESCAPED_UNICODE);
         exit;

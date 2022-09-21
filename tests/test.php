@@ -27,7 +27,7 @@ use Webguosai\Factory;
 use Webguosai\File\File;
 use Webguosai\Helper\Arr;
 use Webguosai\Helper\Str;
-use Webguosai\Http\HttpHeader;
+use Webguosai\Http\Header;
 use Webguosai\HttpClient;
 use Webguosai\Map\BaiduMap;
 use Webguosai\Map\GaodeMap;

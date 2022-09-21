@@ -2,8 +2,7 @@
 
 namespace Webguosai\Http;
 
-
-class HttpHeader
+class Header
 {
     const CODES = [
         // Informational 1xx
@@ -66,15 +65,23 @@ class HttpHeader
      */
     public static function setHttpCode($code = 200)
     {
-        header("HTTP/1.0 {$code} " . self::CODES[$code]);
+        static::setHeader("HTTP/1.0 {$code} " . static::CODES[$code]);
     }
 
     /**
-     * 设置json
+     * 设置json header头
      */
     public static function setJson()
     {
-        header('Content-type: application/json');
+        static::setHeader('Content-type: application/json');
+    }
+
+    /**
+     * 设置js header头
+     */
+    public static function setJs()
+    {
+        static::setHeader('Content-type: text/javascript');
     }
 
     /**
@@ -84,20 +91,7 @@ class HttpHeader
      */
     public static function setCharset($charset = 'utf-8')
     {
-        header('Content-Type:text/html; charset=' . $charset);
-    }
-
-    /**
-     * 设置自定义的header头
-     * [ 'X-Powered-By' => 'PHP/7.2.34']
-     *
-     * @param array $headers
-     */
-    public static function setHeaders($headers = [])
-    {
-        foreach ($headers as $key => $header) {
-            header("{$key}: {$header}");
-        }
+        static::setHeader('Content-Type:text/html; charset=' . $charset);
     }
 
     /**
@@ -106,31 +100,41 @@ class HttpHeader
      */
     public static function redirect($url)
     {
-        header("Location: {$url}");
+        static::setHeader("Location: {$url}");
     }
 
     /**
      * 浏览器缓存
      * @see:http://blog.csdn.net/nuli888/article/details/51860097
      *
-     * @access     public
-     * @param      int        $cache_time        缓存时间(单位：秒)
-     * @return     void
+     * @param int $cacheTime 缓存时间(单位：秒)
      */
-    public static function browserCache($cache_time = 60)
+    public static function browserCache($cacheTime = 60)
     {
         $modified_time = @$_SERVER['HTTP_IF_MODIFIED_SINCE'];
-        if (strtotime($modified_time) + $cache_time > time()) {
-            header("HTTP/1.1 304");
+        if (strtotime($modified_time) + $cacheTime > time()) {
+            static::setHeader("HTTP/1.1 304");
             exit;
         }
         //发送Last-Modified头标，设置文档的最后的更新日期。
-        header("Last-Modified: " . gmdate("D, d M Y H:i:s", time()) . " GMT");
+        static::setHeader("Last-Modified: " . gmdate("D, d M Y H:i:s", time()) . " GMT");
 
         //发送Expires头标，设置当前缓存的文档过期时间，GMT格式
-        header("Expires: " . gmdate("D, d M Y H:i:s", time() + $cache_time) . " GMT");
+        static::setHeader("Expires: " . gmdate("D, d M Y H:i:s", time() + $cacheTime) . " GMT");
 
         //发送Cache_Control头标，设置xx秒以后文档过时,可以代替Expires，如果同时出现，max-age优先。
-        header("Cache-Control: max-age=$cache_time");
+        static::setHeader("Cache-Control: max-age=$cacheTime");
+    }
+
+    /**
+     * 设置 header头
+     *
+     * @param string $string 设置的Header头内容
+     * @param bool $replace
+     * @param null $http_response_code
+     */
+    public static function setHeader($string, $replace = true, $http_response_code = null)
+    {
+        return header($string, $replace, $http_response_code);
     }
 }
