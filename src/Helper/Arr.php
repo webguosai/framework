@@ -146,18 +146,26 @@ class Arr
      */
     public static function in($text, array $array)
     {
-        if (is_array($text)) {
-
-            foreach ($text as $value) {
-                if (in_array($value, $array)) {
-                    return true;
-                }
-            }
-
+        if (empty($text)) {
             return false;
         }
 
-        return in_array($text, $array);
+        $textArr = is_array($text) ? $text : [$text];
+
+        foreach ($textArr as $value) {
+            foreach ($array as $value2) {
+                if ($value == $value2) {
+                    return true;
+                }
+
+                // 支持 * 通配符
+                if (Str::is($value2, $value)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**

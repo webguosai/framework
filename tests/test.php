@@ -59,7 +59,7 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 /** 跨域 **/
-Cors::setting();
+//Cors::setting();
 
 
 /** 概率抽奖类 **/
@@ -354,6 +354,9 @@ Cors::setting();
 //dd(substr_replace('中文啊12345678', '****', 3, 4));
 
 //dd(Str::mask('1801234567中'));
+//dump(Arr::in('user.info', ['user.del', 'user.info', 'user.show']));
+//dump(Arr::in(['user.get', 'user.index'], ['user.del', 'user.*', 'user.show', 'user.create']));
+
 
 
 
@@ -625,6 +628,7 @@ Cors::setting();
 //dump(Str::split('中文123'));
 //dump(Str::split([1,2,3]));
 //dump(Str::concatArray('3--::--标签_3--::--#00aaaa,4--::--标签_4--::--#00ddbb', ['id', 'name', 'color']));
+//dump(Str::is('user.*', 'user.index'));
 
 /** 测试阶梯类 **/
 //$points = [

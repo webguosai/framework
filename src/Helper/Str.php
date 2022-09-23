@@ -408,6 +408,29 @@ class Str
     }
 
     /**
+     * 判断两个参数是否相同，支持 * 通配符
+     *
+     * @param string $pattern user.*
+     * @param string $value user.index
+     * @return bool
+     */
+    public static function is($pattern, $value)
+    {
+        if ($pattern == $value) {
+            return true;
+        }
+
+        $pattern = preg_quote($pattern, '#');
+        $pattern = str_replace('\*', '.*', $pattern);
+
+        if (preg_match('#^'.$pattern.'\z#u', $value) === 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * 如果第一个参数不为空，则获取，否则获取第二个参数
      *
      * @param $value
