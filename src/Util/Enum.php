@@ -5,30 +5,82 @@ namespace Webguosai\Util;
 use ReflectionClass;
 use ReflectionException;
 use Webguosai\Helper\Arr;
-use Exception;
 
 class Enum
 {
     /**
+     * 默认值
      * @var null
      */
     public static $default = null;
 
     /**
-     * 获取所有枚举常量
+     * map
+     * @var array|null
+     */
+    public static $maps = null;
+
+    /**
+     * 实例
+     * @var array
+     */
+    public static $instances = [];
+
+    /**
+     * 返回所有枚举的值
+     *
      * @return mixed
      */
-    public static function all()
+    public static function values()
     {
-        $constants = [];
-        try {
-            $class = new ReflectionClass(get_called_class());
-            $constants = $class->getConstants();
-        } catch (ReflectionException $e) {
+        $maps = static::maps();
+        return array_keys($maps);
+    }
 
+    /**
+     * 映射的对应值
+     *
+     * @return array
+     */
+    public static function maps()
+    {
+        if (is_null(static::$maps)) {
+            return self::fromConstants();
         }
 
-        return array_values($constants);
+        return static::$maps;
+    }
+
+    /**
+     * 获取注释
+     *
+     * @return string
+     */
+    public static function comment()
+    {
+        $maps = self::maps();
+
+        $temp = [];
+        foreach ($maps as $key => $map) {
+            if ($key == $map) {
+                $temp[] = $map;
+            } else {
+                $temp[] = $key.'='.$map;
+            }
+        }
+
+        return '(' . implode(', ', $temp) . ')';
+    }
+
+    /**
+     * 获取映射后的内容值
+     *
+     * @param string|mixed $key
+     * @return mixed
+     */
+    public static function getMap($key)
+    {
+        return self::maps()[$key];
     }
 
     /**
@@ -37,36 +89,44 @@ class Enum
      * @param string|array $text
      * @return bool
      */
-    public static function in($text) {
-        return Arr::in($text, self::all());
+    public static function in($text)
+    {
+        return Arr::in($text, static::values());
     }
-
-    // 下一个
-//    public static function next() {
-//
-//    }
-
-    /**
-     * 设置默认值
-     *
-     * @param $default
-     * @throws Exception
-     */
-//    public static function setDefault($default) {
-//
-//        if (!Arr::in($default, self::all())) {
-//            throw new Exception('不在指定范围内');
-//        }
-//
-//        static::$default = $default;
-//    }
 
     /**
      * 获取默认枚举
      *
-     * @return null
+     * @return null|string
      */
-    public static function getDefault() {
+    public static function getDefault()
+    {
         return static::$default;
+    }
+
+    /**
+     * 从常量中获取
+     *
+     * @return mixed
+     */
+    protected static function fromConstants()
+    {
+        $class = get_called_class();
+        $instance = self::$instances[$class];
+
+        // 从已缓存的实例中获取
+        if (isset($instance)) {
+            return $instance;
+        }
+
+        try {
+            $constants = (new ReflectionClass(get_called_class()))->getConstants();
+        } catch (ReflectionException $e) {
+            $constants = [];
+        }
+
+        self::$instances[$class] = array_combine(array_values($constants), $constants);
+
+        return self::$instances[$class];
     }
 }

@@ -103,7 +103,7 @@ class Arr
     /**
      * 是否为最后一个
      *
-     * @param array $array
+     * @param array $array 数组
      * @param mixed $value
      * @return bool
      */

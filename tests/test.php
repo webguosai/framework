@@ -90,9 +90,14 @@ require_once '../vendor/autoload.php';
 
 
 /** Enum **/
-//dump(\Webguosai\Util\UserTypeEnum::all());
-//dump(\Webguosai\Util\UserTypeEnum::in(['client', 'client2']));
-//dump(\Webguosai\Util\UserTypeEnum::getDefault());
+//dump(\Webguosai\Tests\UserTypeEnum::values());
+//dump(\Webguosai\Tests\UserTypeEnum::maps());
+//dump(\Webguosai\Tests\UserTypeEnum::in(['client2', 'client']));
+//dump(\Webguosai\Tests\UserTypeEnum::in('client'));
+//dump(\Webguosai\Tests\UserTypeEnum::getDefault());
+//dump(\Webguosai\Tests\UserTypeEnum::getMap('client'));
+//dump(\Webguosai\Tests\UserType2Enum::comment());
+
 
 
 /** url **/
