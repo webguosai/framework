@@ -340,20 +340,19 @@ require_once '../vendor/autoload.php';
 
 /** 数组映射 **/
 //$arr = [
-//    'name1' => '111',
-//    'sex1' => '男',
-//    'job1' => null,
-//    'age' => null,
-//    'other1' => [],
-//    'other2' => [1,2,3],
+//    'sai',
+//    'dan',
 //];
-//$table = [
-//    'name' => 'name1',
-//    'job'  => 'job1',
-//    'sex'  => 'sex1',
-//];
-//
-//dd(Arr::map($arr, $table));
+//$data = Arr::map(function ($key, $value) {
+//    // 返回字符串，不会修改key
+////    return $value;
+//    // 返回数组，会修改key
+////    return [
+////        $value => strtoupper($value),
+////    ];
+//}, $arr);
+//dump($data);
+
 //dd(Arr::implode([1,2,3,4,5]));
 //dd(Str::explode('1,2,3,4'));
 //dd(substr_replace('中文啊12345678', '****', 3, 4));

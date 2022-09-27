@@ -180,35 +180,29 @@ class Arr
     }
 
     /**
-     * 数组映射 (目前只支持一维)
-     * $array = ['name1' => '111']
-     * $table = ['name1' => 'name']
-     * 映射后 ['name' => '111']
+     * 增强原生 array_map 支持key
      *
-     * @param array $array 要映射的数组
-     * @param array $table 要映射的对应表
-     * @param bool $convertEmpty 将null等空内容，转换为''
+     * @param callable $callable 回调函数
+     * @param array $array 数组
      * @return array
      */
-    public static function map(array $array, array $table, $convertEmpty = true)
+    public static function map(callable $callable, array $array)
     {
-        $keys = array_keys($table);
+        $map = [];
 
-        $new = [];
         foreach ($array as $key => $value) {
+            $result = $callable($key, $value);
 
-            if ($convertEmpty && empty($value) && is_string($value)) {
-                $value = '';
-            }
-
-            if (in_array($key, $keys)) {
-                $new[$table[$key]] = $value;
+            if (is_array($result)) {
+                $map[key($result)] = $result[key($result)];
+            } elseif (is_string($result)) {
+                $map[$key] = $result;
             } else {
-                $new[$key] = $value;
+                $map[$key] = $value;
             }
         }
 
-        return $new;
+        return $map;
     }
 
     /**
