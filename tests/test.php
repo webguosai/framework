@@ -90,13 +90,13 @@ require_once '../vendor/autoload.php';
 
 
 /** Enum **/
-//dump(\Webguosai\Tests\UserTypeEnum::values());
-//dump(\Webguosai\Tests\UserTypeEnum::maps());
-//dump(\Webguosai\Tests\UserTypeEnum::in(['client2', 'client']));
-//dump(\Webguosai\Tests\UserTypeEnum::in('client'));
-//dump(\Webguosai\Tests\UserTypeEnum::getDefault());
-//dump(\Webguosai\Tests\UserTypeEnum::getMap('client'));
-//dump(\Webguosai\Tests\UserType2Enum::comment());
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::values());
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::maps());
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::in(['client2', 'client']));
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::in('client'));
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::getDefault());
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::getMap('client'));
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::comment());
 
 
 

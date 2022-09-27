@@ -112,11 +112,10 @@ class Enum
     protected static function fromConstants()
     {
         $class = get_called_class();
-        $instance = self::$instances[$class];
 
         // 从已缓存的实例中获取
-        if (isset($instance)) {
-            return $instance;
+        if (isset(self::$instances[$class])) {
+            return self::$instances[$class];
         }
 
         try {
