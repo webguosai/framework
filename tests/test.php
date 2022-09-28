@@ -635,7 +635,7 @@ require_once '../vendor/autoload.php';
 //dump(Str::split('中文123'));
 //dump(Str::split([1,2,3]));
 //dump(Str::concatArray('3--::--标签_3--::--#00aaaa,4--::--标签_4--::--#00ddbb', ['id', 'name', 'color']));
-//dump(Str::is('user.*', 'user.index'));
+dump(Str::is('user.*', 'user.index'));
 
 /** 测试阶梯类 **/
 //$points = [

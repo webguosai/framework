@@ -141,7 +141,7 @@ class Arr
      * 在数组中查询是否存在
      *
      * @param string|array $text 要查找的(支持数组和字符串)
-     * @param array $array
+     * @param array $array 支持 * 通配
      * @return bool
      */
     public static function in($text, array $array)
