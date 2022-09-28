@@ -2,6 +2,8 @@
 
 namespace Webguosai\Http;
 
+use Webguosai\Util\Environment;
+
 class Request
 {
     /**
@@ -37,6 +39,53 @@ class Request
         }
 
         return $data;
+    }
+
+    /**
+     * 取得$_SERVER全局变量的值
+     *
+     * @param null $key
+     * @param null $default
+     * @return null
+     */
+    public static function server($key = null, $default = null)
+    {
+        if (!$key) {
+            return $_SERVER;
+        }
+        return isset($_SERVER[$key]) ? $_SERVER[$key] : $default;
+    }
+
+    /**
+     * 获取请求头信息
+     *
+     * @param string $name Content-Type
+     * @param null $default 默认值
+     * @return array|false|null
+     */
+    public static function getHeaders($name = '', $default = null)
+    {
+        $headers = [];
+        if (!empty($name)) {
+            $name = "HTTP_" . str_replace('-', '_', strtoupper($name));
+            if (isset($_SERVER[$name])) {
+                return $_SERVER[$name];
+            } else {
+                return $default;
+            }
+        }
+        if (!function_exists('getallheaders')) {
+            foreach ($_SERVER as $key => $value)
+            {
+                if (substr($key, 0, 5) == 'HTTP_')
+                {
+                    $headers[ucwords(strtolower(str_replace('_', '-', substr($key, 5))), '-')] = $value;
+                }
+            }
+        } else {
+            $headers = getallheaders();
+        }
+        return $headers;
     }
 
     /**

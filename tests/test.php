@@ -147,6 +147,8 @@ require_once '../vendor/autoload.php';
 /** Request **/
 //dump(Request::getFullUrl());
 //dump(Request::getReferer());
+//dump(Request::server('argv'));
+//dump(Request::getHeaders());
 
 /** Environment **/
 //dump(Environment::get());
