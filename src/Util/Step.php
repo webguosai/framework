@@ -1,7 +1,4 @@
 <?php
-/**
- * 阶梯
- */
 
 namespace Webguosai\Util;
 
@@ -85,29 +82,12 @@ class Step
      */
     protected function handleSteps($steps = [])
     {
-        $steps = $this->checkEmpty($steps);
-
         // 排序
         $steps = $this->sort($steps);
 
         // 附加描述字段
         $steps = $this->appendDesc($steps);
 
-        return $steps;
-    }
-
-    protected function checkEmpty($steps)
-    {
-        if (empty($steps)) {
-            //throw new \Exception('请指定一组数据');
-//            $steps = [
-//                [
-//                    'name' => '没有数据',
-//                    $this->rangeField => '-',
-//                ]
-//            ];
-            //var_dump($steps);
-        }
         return $steps;
     }
 
