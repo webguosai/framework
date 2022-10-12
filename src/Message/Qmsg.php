@@ -1,14 +1,15 @@
 <?php
-/**
- * QQ消息推送平台 (未测试)
- *
- * 文档地址：https://qmsg.zendee.cn/api.html
- */
+
 namespace Webguosai\Message;
 
 use Webguosai\HttpClient;
 use Webguosai\Support\MessageAbstract;
 
+/**
+ * QQ消息推送平台 (未测试)
+ *
+ * 文档地址：https://qmsg.zendee.cn/api.html
+ */
 class Qmsg extends MessageAbstract
 {
     public $config = [

@@ -1,15 +1,14 @@
 <?php
-/**
- * 百度地图
- * 文档：https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding
- * key申请：https://lbsyun.baidu.com/apiconsole/key?application=key#/home
- */
-
 namespace Webguosai\Map;
 
 use Webguosai\HttpClient;
 use Exception;
 
+/**
+ * 百度地图
+ * 文档：https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding
+ * key申请：https://lbsyun.baidu.com/apiconsole/key?application=key#/home
+ */
 class BaiduMap
 {
     protected $ak = '';

@@ -1,5 +1,10 @@
 <?php
 
+namespace Webguosai\HttpAgentIp;
+
+use Webguosai\Helper\Arr;
+use Webguosai\HttpClient;
+
 /**
  * 携趣网络
  *
@@ -9,12 +14,6 @@
  * 帐号：a18230558327
  * 密码：a277428363
  */
-
-namespace Webguosai\HttpAgentIp;
-
-use Webguosai\Helper\Arr;
-use Webguosai\HttpClient;
-
 class Xq
 {
     protected $config = [

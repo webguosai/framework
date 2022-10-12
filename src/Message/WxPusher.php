@@ -1,15 +1,15 @@
 <?php
+namespace Webguosai\Message;
+
+use Webguosai\HttpClient;
+use Webguosai\Support\MessageAbstract;
+
 /**
  * WxPusher
  *
  * 官网：http://wxpusher.zjiecode.com/demo
  * 文档：https://wxpusher.zjiecode.com/docs/#/?id=%e5%8f%91%e9%80%81%e6%b6%88%e6%81%af
  */
-namespace Webguosai\Message;
-
-use Webguosai\HttpClient;
-use Webguosai\Support\MessageAbstract;
-
 class WxPusher extends MessageAbstract
 {
     protected $config = [

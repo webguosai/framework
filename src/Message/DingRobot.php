@@ -1,15 +1,15 @@
 <?php
-/**
- * 钉钉自定义机器人
- *
- * 文档：https://open.dingtalk.com/document/robots/custom-robot-access
- */
 
 namespace Webguosai\Message;
 
 use Webguosai\HttpClient;
 use Webguosai\Support\MessageAbstract;
 
+/**
+ * 钉钉自定义机器人
+ *
+ * 文档：https://open.dingtalk.com/document/robots/custom-robot-access
+ */
 class DingRobot extends MessageAbstract
 {
     protected $config = [

@@ -1,20 +1,20 @@
 <?php
 
+namespace Webguosai\Util;
+
 /**
  * csv操作
  * 演示：
 
-    $content = <<<EOF
+$content = <<<EOF
 张三\t男\t18岁
 李四\t女\t19岁
 王五\t未知\t20岁
-    EOF;
+EOF;
 
-    $sql = Csv::toInsertSql($content, 'student');
-    var_dump($sql);
+$sql = Csv::toInsertSql($content, 'student');
+var_dump($sql);
  */
-namespace Webguosai\Util;
-
 class Csv
 {
     /**

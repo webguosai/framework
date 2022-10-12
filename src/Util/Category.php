@@ -2,7 +2,6 @@
 
 namespace Webguosai\Util;
 
-
 class Category
 {
 

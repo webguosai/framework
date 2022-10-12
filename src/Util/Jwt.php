@@ -1,17 +1,17 @@
 <?php
 
+namespace Webguosai\Util;
+
 /**
  * jwt类
  * 演示：
  *
-    Jwt::setConfig('key123456', 'domain.com');
-    $code = Jwt::encode(1111, 5);
-    dump($code);
-    dd(JWT::decode($code));
+Jwt::setConfig('key123456', 'domain.com');
+$code = Jwt::encode(1111, 5);
+dump($code);
+dd(JWT::decode($code));
  *
  */
-namespace Webguosai\Util;
-
 class Jwt
 {
     const ALG = 'HS256';

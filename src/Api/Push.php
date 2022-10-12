@@ -1,19 +1,19 @@
 <?php
 
+namespace Webguosai\Api;
+
 /**
  * api推送
  *
 $ret = Push::start(function() use ($client, $url) {
-    $response = $client->get($url);
+$response = $client->get($url);
 
-    if ($response->httpStatus === 200) {
-        return true;
-    }
+if ($response->httpStatus === 200) {
+return true;
+}
 }, 3);
 
  */
-namespace Webguosai\Api;
-
 class Push
 {
     static $error  = 0;

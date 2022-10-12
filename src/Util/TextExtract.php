@@ -1,13 +1,12 @@
 <?php
 
-/**
- * 文本提取内容
- */
-
 namespace Webguosai\Util;
 
 use Webguosai\Helper\Str;
 
+/**
+ * 文本提取内容
+ */
 class TextExtract
 {
     protected $text;

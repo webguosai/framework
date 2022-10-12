@@ -1,12 +1,11 @@
 <?php
 
-//演示网站：https://echarts.apache.org/examples/zh/index.html#chart-type-pie
-
 namespace Webguosai\Chart;
 
 use Hisune\EchartsPHP\ECharts as EchartsPHP;
 use Webguosai\Helper\Arr;
 
+//演示网站：https://echarts.apache.org/examples/zh/index.html#chart-type-pie
 class Echarts
 {
     protected $chart;

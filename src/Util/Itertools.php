@@ -1,5 +1,9 @@
 <?php
 
+namespace Webguosai\Util;
+
+use Webguosai\Helper\Str;
+
 /**
  * 仿python itertools模块
  *
@@ -23,11 +27,6 @@
 
     print(shuffled_permutations("abc"))
  */
-
-namespace Webguosai\Util;
-
-use Webguosai\Helper\Str;
-
 class Itertools
 {
     public static function slice($start_or_stop, $stop = PHP_INT_MAX, $step = 1)

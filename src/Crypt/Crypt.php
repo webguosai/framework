@@ -1,12 +1,11 @@
 <?php
 
+namespace Webguosai\Crypt;
+
 /**
  * 对称加密类
  *
  */
-
-namespace Webguosai\Crypt;
-
 class Crypt
 {
     private static $key = '123';

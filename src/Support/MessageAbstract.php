@@ -1,10 +1,10 @@
 <?php
 
+namespace Webguosai\Support;
+
 /**
  * 消息发送抽象类
  */
-namespace Webguosai\Support;
-
 abstract class MessageAbstract
 {
     /**

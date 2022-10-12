@@ -1,13 +1,13 @@
 <?php
 
-/**
- * faker假数据
- */
 namespace Webguosai\Util;
 
 use Webguosai\Helper\Arr;
 use Webguosai\Helper\Str;
 
+/**
+ * faker假数据
+ */
 class Faker
 {
     /**

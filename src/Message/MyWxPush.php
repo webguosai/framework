@@ -1,16 +1,16 @@
 <?php
-/**
- * 自定义的微信推送
- *
- * 服务入口：http://wxpush.otayy.cn
- *
- */
 
 namespace Webguosai\Message;
 
 use Webguosai\HttpClient;
 use Webguosai\Support\MessageAbstract;
 
+/**
+ * 自定义的微信推送
+ *
+ * 服务入口：http://wxpush.otayy.cn
+ *
+ */
 class MyWxPush extends MessageAbstract
 {
     protected $config = [

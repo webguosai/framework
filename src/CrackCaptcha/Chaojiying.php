@@ -1,18 +1,17 @@
 <?php
 
-/**
- * 超级鹰
- * 官网：@see https://www.chaojiying.com/
- * 试用测试：@see https://www.chaojiying.com/demo.html
- * 文档：@see http://www.chaojiying.com/api-5.html
- */
-
 namespace Webguosai\CrackCaptcha;
 
 use Exception;
 use Webguosai\Helper\Arr;
 use Webguosai\HttpClient;
 
+/**
+ * 超级鹰
+ * 官网：@see https://www.chaojiying.com/
+ * 试用测试：@see https://www.chaojiying.com/demo.html
+ * 文档：@see http://www.chaojiying.com/api-5.html
+ */
 class Chaojiying
 {
     protected $config = [

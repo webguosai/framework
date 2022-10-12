@@ -1,14 +1,14 @@
 <?php
 
-/**
- * 非谷歌官网接口，解的是页面：https://translate.google.cn/?sl=zh-CN&tl=en&text=%E4%B8%AD%E5%9B%BD&op=translate
- *
- */
 namespace Webguosai\Translate;
 
 use Webguosai\HttpClient;
 use Exception;
 
+/**
+ * 非谷歌官网接口，解的是页面：https://translate.google.cn/?sl=zh-CN&tl=en&text=%E4%B8%AD%E5%9B%BD&op=translate
+ *
+ */
 class Google
 {
     protected $apiUrl = 'https://translate.google.cn/_/TranslateWebserverUi/data/batchexecute';

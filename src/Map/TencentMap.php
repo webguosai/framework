@@ -1,15 +1,15 @@
 <?php
-/**
- * 腾讯地图
- * 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceGcoder
- * key申请：https://lbs.qq.com/dev/console/application/mine
- */
 
 namespace Webguosai\Map;
 
 use Webguosai\HttpClient;
 use Exception;
 
+/**
+ * 腾讯地图
+ * 文档：https://lbs.qq.com/service/webService/webServiceGuide/webServiceGcoder
+ * key申请：https://lbs.qq.com/dev/console/application/mine
+ */
 class TencentMap
 {
     protected $key = '';

@@ -1,17 +1,16 @@
 <?php
 
+namespace Webguosai\Ai;
+
+use Webguosai\Helper\Arr;
+use Webguosai\HttpClient;
+
 /**
  * 百度语音识别
  * key获取地址：https://console.bce.baidu.com/ai/?_=1641611467179&fromai=1#/ai/speech/app/list
  * api:https://ai.baidu.com/ai-doc/IMAGEPROCESS/Ok3bclt78
  *
  */
-
-namespace Webguosai\Ai;
-
-use Webguosai\Helper\Arr;
-use Webguosai\HttpClient;
-
 class BaiduAi
 {
     protected $apiKey;

@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Webguosai\Util;
-
 
 class Zip
 {
     /**
-     * @var 实例
+     * @var mixed 实例
      */
-    static $instance;
+    static $instance = null;
 
     /**
      * 压缩

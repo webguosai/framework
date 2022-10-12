@@ -1,5 +1,7 @@
 <?php
 
+namespace Webguosai\Util;
+
 /**
  * env 操作类
  * 演示：
@@ -24,9 +26,6 @@ EnvHandle::remove('key');
 EnvHandle::exists('key');
  *
  */
-
-namespace Webguosai\Util;
-
 class EnvHandle
 {
     protected static $path;

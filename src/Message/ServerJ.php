@@ -1,15 +1,15 @@
 <?php
-/**
- * server酱 (每天只能发5条)
- *
- * 申请key：https://sct.ftqq.com/sendkey
- */
 
 namespace Webguosai\Message;
 
 use Webguosai\HttpClient;
 use Webguosai\Support\MessageAbstract;
 
+/**
+ * server酱 (每天只能发5条)
+ *
+ * 申请key：https://sct.ftqq.com/sendkey
+ */
 class ServerJ extends MessageAbstract
 {
     protected $config = [

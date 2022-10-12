@@ -1,18 +1,16 @@
 <?php
 
+namespace Webguosai\Map;
+
+use Webguosai\HttpClient;
+use Exception;
+
 /**
  * 高德地图
  *
  * 文档：https://lbs.amap.com/api/webservice/gettingstarted
  *
  */
-
-namespace Webguosai\Map;
-
-
-use Webguosai\HttpClient;
-use Exception;
-
 class GaodeMap
 {
     protected $key;
