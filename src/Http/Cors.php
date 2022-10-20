@@ -6,6 +6,7 @@ class Cors
 {
     /**
      * 设置跨域header头
+     *  如果需要携带cookie则需要这样写：Cors::setting($_SERVER['HTTP_ORIGIN'], '*', '*', 'true');
      *
      * @param string|mixed $origin
      * @param string|mixed $headers
