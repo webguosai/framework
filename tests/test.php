@@ -47,6 +47,7 @@ use Webguosai\Util\Qrcode;
 use Webguosai\Util\Jwt;
 use Webguosai\Util\Runtime;
 use Webguosai\Util\Csv;
+use Webguosai\Util\Session;
 use Webguosai\Util\Step;
 use Webguosai\Http\Response;
 use Webguosai\Api\Push;
@@ -57,6 +58,30 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** session **/
+//设置session保存路径
+//Session::setPath('F:\www\framework\tests');
+//Session::getInstance()->set('user', ['a', 'b', 'c', 'd']);
+//dump(Session::getInstance()->get('user'));
+//Session::getInstance()->delete('user');
+
+
+
+/** 鉴权 **/
+//$jwt = new \Webguosai\Authentication\Drive\Jwt();
+//dump($jwt->authenticate([
+//    'name' => 'guosai',
+//    'password' => 'guosai',
+//    'avatar' => 'guosai.png',
+//], 10));
+//try {
+//
+//    dump($jwt->parse());
+//} catch (\Exception $e) {
+//    dump($e->getMessage());
+//}
+
 
 /** 跨域 **/
 //Cors::setting();

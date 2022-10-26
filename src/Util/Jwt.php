@@ -22,6 +22,15 @@ class Jwt
         self::$key = $key;
         self::$domain = $domain;
     }
+
+    /**
+     * 加密
+     * @param $data
+     * @param int $exp
+     * @param string|null $iss
+     * @param string|null $aud
+     * @return string
+     */
     public static function encode($data, int $exp = 3600, string $iss = null, string $aud = null)
     {
         $time = time();
@@ -42,6 +51,11 @@ class Jwt
         return \Firebase\JWT\JWT::encode($token, self::$key, self::ALG);
     }
 
+    /**
+     * 解码
+     * @param string $jwt
+     * @return mixed|null
+     */
     public static function decode(string $jwt)
     {
         try {

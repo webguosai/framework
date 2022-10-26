@@ -28,14 +28,15 @@ class Request
      * 获取参数
      *
      * @param null $key
+     * @param null $default
      * @return array|mixed|null
      */
-    public static function get($key = null)
+    public static function get($key = null, $default = null)
     {
         $data = self::all();
 
         if ($key) {
-            return isset($data[$key]) ? $data[$key] : null;
+            return isset($data[$key]) ? $data[$key] : $default;
         }
 
         return $data;
