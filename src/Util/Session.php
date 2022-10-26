@@ -17,24 +17,42 @@ class Session
     public static $path = null;
 
     /**
+     * 过期时间
+     * @var int
+     */
+    public static $lifeTime = 1440;
+
+    /**
+     * 过期时间key名
+     * @var string
+     */
+//    protected $expireKeyName = '__Session_Expire_Time__';
+
+    /**
      * 初始化session环境
      */
     protected function init()
     {
-        session_save_path(static::$path);
-//        ini_set('session.gc_maxlifetime', 10);
-        session_start();
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            ini_set('session.gc_maxlifetime', static::$lifeTime);
+            session_save_path(static::$path);
+            session_start();
+
+//            $this->setExpireTime();
+        }
 
         return $this;
     }
 
     /**
      * 设置session保存路径
-     * @param string $path
+     * @param string $path session保存路径
+     * @param int $lifeTime 过期时间(秒)
      */
-    public static function setPath($path)
+    public static function setConfig($path, $lifeTime = 1440)
     {
-        static::$path = $path;
+        static::$path     = $path;
+        static::$lifeTime = $lifeTime;
     }
 
     /**
@@ -57,6 +75,11 @@ class Session
      */
     public function get($name)
     {
+//        if ($this->isExpire()) {
+//            $this->delete(null);
+//            return null;
+//        }
+
         if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
         }
@@ -77,8 +100,35 @@ class Session
      * 删除
      * @param string $name
      */
-    public function delete($name)
+    public function delete($name = null)
     {
-        unset($_SESSION[$name]);
+        if (is_null($name)) {
+            $_SESSION = [];
+            unset($_SESSION);
+        } else {
+            unset($_SESSION[$name]);
+        }
     }
+
+
+    /**
+     * 设置过期时间
+     */
+//    protected function setExpireTime()
+//    {
+//        if (empty($_SESSION[$this->expireKeyName])) {
+//            $this->set($this->expireKeyName, time() + static::$lifeTime);
+//        }
+//    }
+
+    /**
+     * 是否过期
+     * @return bool
+     */
+//    protected function isExpire()
+//    {
+//        $expireTime = $_SESSION[$this->expireKeyName];
+//        return $expireTime < time();
+//    }
+
 }

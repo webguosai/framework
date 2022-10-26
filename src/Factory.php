@@ -2,7 +2,6 @@
 
 namespace Webguosai;
 
-
 use Webguosai\Helper\Str;
 
 class Factory

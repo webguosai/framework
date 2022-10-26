@@ -60,16 +60,17 @@ use Webguosai\Util\Itertools;
 require_once '../vendor/autoload.php';
 
 /** session **/
-//设置session保存路径
-//Session::setPath('F:\www\framework\tests');
+//设置
+//Session::setConfig('F:\www\framework\tests');
 //Session::getInstance()->set('user', ['a', 'b', 'c', 'd']);
+//dump(Session::getInstance()->get('user'));
+//sleep(3);
 //dump(Session::getInstance()->get('user'));
 //Session::getInstance()->delete('user');
 
 
-
 /** 鉴权 **/
-//$jwt = new \Webguosai\Authentication\Drive\Jwt();
+//$jwt = new \Webguosai\Authentication\Driver\Jwt();
 //dump($jwt->authenticate([
 //    'name' => 'guosai',
 //    'password' => 'guosai',
