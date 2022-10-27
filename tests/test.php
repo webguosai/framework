@@ -5,6 +5,7 @@ namespace Tests;
 use Graze\ArrayMerger\RecursiveArrayMerger;
 use Graze\ArrayMerger\ValueMerger\LastNonNullValue;
 use Webguosai\Ai\BaiduAi;
+use Webguosai\Core\Container;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
@@ -58,6 +59,32 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** 容器 **/
+//Container::getInstance()->bind('test', 'this is test');
+//Container::getInstance()->bind('test', 111);
+//Container::getInstance()->bind('test', [1,2,3,4]);
+//Container::getInstance()->bind('test', function(){
+//    return 'sb';
+//});
+//Container::getInstance()->bind([
+//    'test' => [1,2,3,4],
+//    'test2' => 'this is test2'
+//]);
+//Container::getInstance()->bind(Faker::class);
+//dump(Container::getInstance()->bindings);
+//dump(Container::getInstance()->make(Faker::class));
+
+
+//Container::getInstance()->bind('cache', function($name, $name2){return 'cache '.$name.'  '. $name2;});
+////dump(Container::getInstance()->bindings);
+//dump(Container::getInstance()->make('cache', ['haha', 'hehe']));
+
+
+//Container::getInstance()->bind('cache2');
+////dump(Container::getInstance()->bindings);
+//dump(Container::getInstance()->make('cache2'));
+
 
 /** session **/
 //设置
