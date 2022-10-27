@@ -65,7 +65,7 @@ require_once '../vendor/autoload.php';
 //Container::getInstance()->bind('test', 111);
 //Container::getInstance()->bind('test', [1,2,3,4]);
 //Container::getInstance()->bind('test', function(){
-//    return 'sb';
+//    return 'test';
 //});
 //Container::getInstance()->bind([
 //    'test' => [1,2,3,4],
@@ -73,7 +73,7 @@ require_once '../vendor/autoload.php';
 //]);
 //Container::getInstance()->bind(Faker::class);
 //dump(Container::getInstance()->bindings);
-//dump(Container::getInstance()->make(Faker::class));
+
 
 
 //Container::getInstance()->bind('cache', function($name, $name2){return 'cache '.$name.'  '. $name2;});

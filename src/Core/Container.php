@@ -20,7 +20,7 @@ class Container
      * 绑定到容器
      * @param mixed $abstract
      * @param null $concrete
-     * @return $this
+     * @return null
      */
     public function bind($abstract, $concrete = null)
     {
@@ -38,21 +38,20 @@ class Container
 
             $this->bindings[$abstract] = $concrete;
         }
-
-        return $this;
     }
 
     /**
      * 取出容器中的数据
      * @param mixed $abstract
      * @param array $params
-     * @return mixed|object|$abstract
+     * @return mixed
      */
     public function make($abstract, $params = [])
     {
-//        if (!isset($this->bindings[$abstract])) {
-//            throw new \Exception('没有在容器中找到');
-//        }
+        // 容器中没有就绑定
+        if (!isset($this->bindings[$abstract])) {
+            $this->bind($abstract);
+        }
 
         $concrete = $this->bindings[$abstract];
         if ($concrete instanceof \Closure) {
@@ -70,7 +69,7 @@ class Container
 
     /**
      * 获取实例
-     * @return $this
+     * @return static
      */
     public static function getInstance()
     {
