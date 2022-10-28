@@ -1,30 +1,37 @@
 <?php
 
-namespace Webguosai\Authentication\Driver;
+namespace Webguosai\Authentication;
 
-use Webguosai\Authentication\Authentication;
 use Webguosai\Authentication\Exception\TokenExpiredException;
 use Webguosai\Authentication\Exception\TokenInvalidException;
 use Webguosai\Http\Request;
 use Webguosai\Util\Jwt as JWTUtil;
 
-class Jwt implements Authentication
+class JwtToken
 {
     protected $queryKey = 'token';
     public $pre = 'Bearer ';
 
+    public function __construct($jwtSecret)
+    {
+        JWTUtil::setConfig($jwtSecret);
+    }
+
     /**
      * 解析
+     * @param null $jwt
      * @return mixed
      * @throws TokenExpiredException
      * @throws TokenInvalidException
      */
-    public function parse()
+    public function parse($jwt = null)
     {
-        $jwt = $this->fromQuery();
-
         if (is_null($jwt)) {
-            $jwt = $this->fromHeader();
+            $jwt = $this->fromQuery();
+
+            if (is_null($jwt)) {
+                $jwt = $this->fromHeader();
+            }
         }
 
         return $this->parseJwt($jwt);

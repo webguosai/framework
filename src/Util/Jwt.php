@@ -2,22 +2,12 @@
 
 namespace Webguosai\Util;
 
-/**
- * jwt类
- * 演示：
- *
-Jwt::setConfig('key123456', 'domain.com');
-$code = Jwt::encode(1111, 5);
-dump($code);
-dd(JWT::decode($code));
- *
- */
 class Jwt
 {
     const ALG = 'HS256';
     private static $key = 'GkhFiMmJQYFeiUJ8NxXjr22tbgFXFg6IHSaQR2HK8qU3tMHFlYWBTs6gn2kN7QEq';
-    private static $domain = '';
-    public static function setConfig($key, $domain)
+    private static $domain;
+    public static function setConfig($key, $domain = '')
     {
         self::$key = $key;
         self::$domain = $domain;
@@ -43,7 +33,7 @@ class Jwt
             "iat" => $time,
             // 定义在什么时间之前，该jwt都是不可用的
             "nbf" => $time,
-            'data' => json_encode($data)
+            'data' => serialize($data)
         ];
         if ($exp) {
             $token['exp'] = $time + $exp;
@@ -60,7 +50,8 @@ class Jwt
     {
         try {
             $params = \Firebase\JWT\JWT::decode($jwt, new \Firebase\JWT\Key(self::$key, self::ALG));
-            return json_decode($params->data, true);
+//            return json_decode($params->data, true);
+            return unserialize($params->data);
         } catch (\Exception $e) {
             return null;
         }

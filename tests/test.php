@@ -97,7 +97,7 @@ require_once '../vendor/autoload.php';
 
 
 /** 鉴权 **/
-//$jwt = new \Webguosai\Authentication\Driver\Jwt();
+//$jwt = new \Webguosai\Authentication\JwtToken('123');
 //dump($jwt->authenticate([
 //    'name' => 'guosai',
 //    'password' => 'guosai',
@@ -381,10 +381,9 @@ require_once '../vendor/autoload.php';
 
 /** JWT **/
 //Jwt::setConfig('key123456', 'domain.com');
-//$code = Jwt::encode(1111, 5);
+//$code = Jwt::encode([1,2,3,4], 5);
 //dump($code);
 //dd(JWT::decode($code));
-
 
 /** 将整数秒转换成xx天xx时xx分xx秒格式 **/
 //dump(CountdownFormat::getFormat(60*60*24*30+1));//最简单的调用
