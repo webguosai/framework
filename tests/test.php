@@ -104,7 +104,6 @@ require_once '../vendor/autoload.php';
 //    'avatar' => 'guosai.png',
 //], 10));
 //try {
-//
 //    dump($jwt->parse());
 //} catch (\Exception $e) {
 //    dump($e->getMessage());
