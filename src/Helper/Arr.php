@@ -286,4 +286,24 @@ class Arr
         return $mainList;
     }
 
+    /**
+     * 平铺数组
+     * @param array $array
+     * @param string $link
+     * @return array
+     */
+    public static function dot($array, $link = '.') {
+        $results = [];
+
+        foreach ($array as $key => $value) {
+            if (is_array($value) && ! empty($value)) {
+                $results = array_merge($results, static::dot($value, $key.$link));
+            } else {
+                $results[$key] = $value;
+            }
+        }
+
+        return $results;
+    }
+
 }
