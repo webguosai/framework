@@ -289,17 +289,18 @@ class Arr
     /**
      * 平铺数组
      * @param array $array
-     * @param string $link
+     * @param string $link 连接符号
+     * @param string $prepend
      * @return array
      */
-    public static function dot($array, $link = '.') {
+    public static function dot($array, $link = '.', $prepend = '') {
         $results = [];
 
         foreach ($array as $key => $value) {
             if (is_array($value) && ! empty($value)) {
-                $results = array_merge($results, static::dot($value, $key.$link));
+                $results = array_merge($results, static::dot($value, $link, $prepend.$key.$link));
             } else {
-                $results[$key] = $value;
+                $results[$prepend.$key] = $value;
             }
         }
 

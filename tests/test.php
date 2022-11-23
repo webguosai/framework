@@ -413,7 +413,17 @@ require_once '../vendor/autoload.php';
 //dd(Str::mask('1801234567中'));
 //dump(Arr::in('user.info', ['user.del', 'user.info', 'user.show']));
 //dump(Arr::in(['user.get', 'user.index'], ['user.del', 'user.*', 'user.show', 'user.create']));
-
+//dump(Arr::dot([
+//    'id' => 1,
+//    'user' => [
+//        'name' => "gs",
+//        'age' =>100,
+//        'user2' => [
+//            'name' => "gs",
+//            'age' =>11
+//        ]
+//    ]
+//], '_'));
 
 
 
