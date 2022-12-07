@@ -44,33 +44,6 @@ class Response
     }
 
     /**
-     * cli下输出
-     *
-     * @param string $message
-     * @param string $status
-     */
-    public static function cliResponse($message = '', $status = 'info')
-    {
-        /**
-         * 颜色值对照
-         * @see:https://blog.yzmcms.com/php/219.html
-         */
-        // 默认白色
-        $fontColor = 34;
-        if ($status == 'error') {
-            $fontColor = 31;
-        } elseif ($status == 'success') {
-            $fontColor = 32;
-        }
-
-        if (is_array($message)) {
-            $message = json_encode($message, JSON_UNESCAPED_UNICODE);
-        }
-
-        echo "\e[;{$fontColor}m[". date('Y-m-d H:i:s')."] {$message} \e[0m\e[0m\n";
-    }
-
-    /**
      * 响应
      *
      * @param $code
@@ -79,7 +52,7 @@ class Response
      * @param array $var
      * @param int $httpCode
      */
-    protected static function response($code, $message = '', $data = [], $var = [], $httpCode = 200)
+    public static function response($code, $message = '', $data = [], $var = [], $httpCode = 200)
     {
         $json = [
             'code'    => $code,

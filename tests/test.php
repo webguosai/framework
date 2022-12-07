@@ -10,6 +10,7 @@ use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
 use Webguosai\Http\Cors;
+use Webguosai\Util\Cli;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
@@ -59,6 +60,33 @@ use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 
 require_once '../vendor/autoload.php';
+
+/** cli **/
+//echo '请输入中文：';
+//dump(Cli::getChinaInput());
+//Cli::info('info');
+//Cli::error('error');
+//Cli::success('success');
+//Cli::printLine('一行数据');
+//Cli::printLine('一行数据', 'error');
+//Cli::printLine('一行数据', 'success');
+Cli::table([
+    [ '张三', '男', '20'],
+    [ '李四', '女', '19']
+]);
+Cli::table([
+    [
+        '名称' => '张三',
+        '性别' => '男',
+        '年龄' => '20',
+    ], [
+        '名称' => '李四',
+        '性别' => '女',
+        '年龄' => '19',
+    ]
+]);
+Cli::getClimate()->tab()->out('I am all sorts of indented.');
+
 
 /** 容器 **/
 //Container::getInstance()->bind('test', 'this is test');
