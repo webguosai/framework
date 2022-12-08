@@ -65,27 +65,28 @@ require_once '../vendor/autoload.php';
 //echo '请输入中文：';
 //dump(Cli::getChinaInput());
 //Cli::info('info');
-//Cli::error('error');
+//Cli::error('error', false);
 //Cli::success('success');
 //Cli::printLine('一行数据');
 //Cli::printLine('一行数据', 'error');
 //Cli::printLine('一行数据', 'success');
-Cli::table([
-    [ '张三', '男', '20'],
-    [ '李四', '女', '19']
-]);
-Cli::table([
-    [
-        '名称' => '张三',
-        '性别' => '男',
-        '年龄' => '20',
-    ], [
-        '名称' => '李四',
-        '性别' => '女',
-        '年龄' => '19',
-    ]
-]);
-Cli::getClimate()->tab()->out('I am all sorts of indented.');
+//Cli::table([
+//    [ '张三', '男', '20'],
+//    [ '李四', '女', '19']
+//]);
+//Cli::table([
+//    [
+//        '名称' => '张三',
+//        '性别' => '男',
+//        '年龄' => '20',
+//    ], [
+//        '名称' => '李四',
+//        '性别' => '女',
+//        '年龄' => '19',
+//    ]
+//]);
+// 使用Climate
+//Cli::getClimate()->tab()->out('I am all sorts of indented.');
 
 
 /** 容器 **/

@@ -28,19 +28,19 @@ class Cli
         return trim(fgets(STDIN));
     }
 
-    public static function info($text)
+    public static function info($text, $isLine = true)
     {
-        echo "\e[;34m" . $text . "\e[0m\e[0m\n";
+        echo "\e[;34m" . $text . "\e[0m\e[0m".($isLine?"\n":'');
     }
 
-    public static function error($text)
+    public static function error($text, $isLine = true)
     {
-        echo "\e[;31m" . $text . "\e[0m\e[0m\n";
+        echo "\e[;31m" . $text . "\e[0m\e[0m".($isLine?"\n":'');
     }
 
-    public static function success($text)
+    public static function success($text, $isLine = true)
     {
-        echo "\e[;32m" . $text . "\e[0m\e[0m\n";
+        echo "\e[;32m" . $text . "\e[0m\e[0m".($isLine?"\n":'');
     }
 
     public static function table($data)
