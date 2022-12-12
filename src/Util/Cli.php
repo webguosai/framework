@@ -30,7 +30,7 @@ class Cli
 
     public static function info($text, $isLine = true)
     {
-        echo "\e[;34m" . $text . "\e[0m\e[0m".($isLine?"\n":'');
+        echo "\e[;36m" . $text . "\e[0m\e[0m".($isLine?"\n":'');
     }
 
     public static function error($text, $isLine = true)
