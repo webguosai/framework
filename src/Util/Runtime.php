@@ -4,7 +4,7 @@ namespace Webguosai\Util;
 
 class Runtime
 {
-    static $starts = [];
+    protected static $columns = [];
 
     /**
      * 开始一个标记
@@ -13,33 +13,25 @@ class Runtime
      */
     public static function start($key = 'key1')
     {
-        static::$starts[$key] = self::getMicrosecond();
+        static::$columns[$key] = self::getMicrosecond();
     }
 
     /**
      * 显示一个标记的时间
      *
      * @param mixed $key
-     * @param string $format
+     * @param array $format
      * @param int $floatNum
      * @return string
      */
-    static function show($key = 'key1', $format = '', $floatNum = 2)
+    static function show($key = 'key1', $format = ['ms' => 'ms ', 's' => 's ', 'i' => 'm ', 'h' => 'H ', 'd' => 'D '], $floatNum = 2)
     {
+        //$format = ['ms' => '毫秒', 's'  => '秒', 'i'  => '分', 'h'  => '小时','d'  => '天'];
+
         $endTime      = self::getMicrosecond();
-        $runtimeStart = self::$starts[$key];
+        $runtimeStart = self::$columns[$key];
 
         $timeDiff = $endTime - $runtimeStart;
-        if (!is_array($format)) {
-            //$format = ['ms' => '毫秒', 's'  => '秒', 'i'  => '分', 'h'  => '小时','d'  => '天'];
-            $format = [
-                'ms' => 'ms ',
-                's'  => 's ',
-                'i'  => 'm ',
-                'h'  => 'H ',
-                'd'  => 'D '
-            ];
-        }
 
         if ($timeDiff < 1) return '0' . $format['s'];
         $str = '';
@@ -52,7 +44,6 @@ class Runtime
             $timeDiff = $timeDiff % 60;
         }
         if ($timeDiff > 0) {
-
             $str .= round($timeDiff, $floatNum) . $format['s'];//'秒';
         }
         return $str;
