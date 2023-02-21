@@ -58,8 +58,66 @@ use Webguosai\Util\Tools;
 use Webguosai\Util\Url;
 use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
+use Webguosai\Xml\Array2Xml;
+use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
+
+/** xml **/
+// xml to array
+//$xml = '<propertyList>
+//  <rental modTime="2021-12-01-05:56:34" status="leased">
+//    <agentID>002442</agentID>
+//    <uniqueID>R2-3020378</uniqueID>
+//    <underOffer value="no"/>
+//    <priceView>Deposit Taken</priceView>
+//    <rent period="week" display="yes">780</rent>
+//    <bond/>
+//  </rental>
+//</propertyList>';
+//
+//$array = Xml2Array::createArray($xml);
+//File::save('1.php', $array);
+//dd($array);
+
+// 输出为xml
+//$array = array (
+//    'propertyList' =>
+//        array (
+//            'rental' =>
+//                array (
+//                    'agentID' => '002442',
+//                    'uniqueID' => 'R2-3020378',
+//                    'underOffer' =>
+//                        array (
+//                            '@value' => '',
+//                            '@attributes' =>
+//                                array (
+//                                    'value' => 'no',
+//                                ),
+//                        ),
+//                    'priceView' => 'Deposit Taken',
+//                    'rent' =>
+//                        array (
+//                            '@value' => '780',
+//                            '@attributes' =>
+//                                array (
+//                                    'period' => 'week',
+//                                    'display' => 'yes',
+//                                ),
+//                        ),
+//                    'bond' => '',
+//                    '@attributes' =>
+//                        array (
+//                            'modTime' => '2021-12-01-05:56:34',
+//                            'status' => 'leased',
+//                        ),
+//                ),
+//        ),
+//);
+//$xml = Array2Xml::createXML($array);
+//$xml->save('1.xml');
+
 
 /** cli **/
 //echo '请输入中文：';
