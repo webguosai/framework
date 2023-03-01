@@ -149,4 +149,16 @@ class Request
         return $_SERVER['HTTP_REFERER'];
     }
 
+    /**
+     * 获取user-agent
+     * @return mixed|string
+     */
+    public static function getUserAgent()
+    {
+        if (empty($_SERVER['HTTP_USER_AGENT'])) {
+            return '';
+        }
+        return $_SERVER['HTTP_USER_AGENT'];
+    }
+
 }
