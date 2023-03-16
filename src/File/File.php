@@ -125,7 +125,7 @@ class File
         $cdir   = scandir($dir);
         foreach ($cdir as $key => $value) {
             if (!in_array($value, array(".", ".."))) {
-                $path = $dir . DIRECTORY_SEPARATOR . $value;
+                $path = $dir . '/' . $value;
                 if (is_dir($path)) {
                     $result = array_merge($result, self::getAllFiles($path));
                 } else {
