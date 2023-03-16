@@ -10,6 +10,7 @@ use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
 use Webguosai\Http\Cors;
+use Webguosai\Translate\CaiYun;
 use Webguosai\Util\Cli;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
@@ -62,6 +63,7 @@ use Webguosai\Xml\Array2Xml;
 use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
+
 
 /** xml **/
 // xml to array
@@ -346,16 +348,21 @@ require_once '../vendor/autoload.php';
 //        'proxyIps' => ['127.0.0.1:9528']
 //    ]
 //]);
+//$b = new CaiYun([
+////    'token' => '3975l6lr5pcbvidl6jl2',//官方
+//    'token' => 'hlgg9mzpucpmih3p3795'
+//]);
+
 //
-while (true) {
-    try {
-        dump($b->translate('源文本的格式，HTML（默认）或纯文本。值html表示 HTML，值text 表示纯文本。', 'en'));
-//        dump($b->translate('china.', 'zh-CN'));
-//        dump($b->language('中国'));
-    } catch (\Exception $e) {
-        dump('错误：'.$e->getMessage());
-    }
-}
+//while (true) {
+//    try {
+//        dump($b->translate('源文本的格式', 'en'));
+////        dump($b->translate('china.', 'zh-CN'));
+////        dump($b->language('中国'));
+//    } catch (\Exception $e) {
+//        Cli::error($e->getMessage());
+//    }
+//}
 
 
 /** Helper **/
