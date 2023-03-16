@@ -6,23 +6,36 @@ use Webguosai\HttpClient;
 use Exception;
 
 /**
- * 非谷歌官网接口，解的是页面：https://translate.google.cn/?sl=zh-CN&tl=en&text=%E4%B8%AD%E5%9B%BD&op=translate
+ * 谷歌翻译云接口
+ * 文档：https://cloud.google.com/translate/docs/reference/rest/v2/translate
+ * 注意需要科学上网
  *
+ * 演示：
+new Google([
+    'key'  => 'AIzaSyC1pvAVod6kZa5g8LOhArHrAchbLHEXUd0',
+    'http' => [
+        'proxyIps' => ['127.0.0.1:9528']
+    ]
+]);
  */
 class Google
 {
-    protected $apiUrl = 'https://translate.google.cn/_/TranslateWebserverUi/data/batchexecute';
-    protected $cookie = 'NID=511=WOyrUe8e9jpFev16Qo0vv0742I-JSthmwn5_aAuIQOzvJwbVFDgKDQJfUYw0VMWzduUUJIzSHHP-n6NBDEEk0Y44lCNzVu75Y1EnniInn8bU93FMsO_tFNsBOPx9EU6K8IhBDm9I-f2xQt4SGUkqLt_wEhTF484GFdtB0iK9GZM';
-    public function __construct($cookie = null)
+    protected $apiUrl = 'https://translation.googleapis.com/language/translate/v2';
+    protected $options = [
+        'key' => '',
+        'http' => [
+            'proxyIps' => ['']
+        ],
+    ];
+
+    public function __construct($options)
     {
-        if ($cookie) {
-            $this->cookie = $cookie;
-        }
+        $this->options = array_merge($this->options, $options);
     }
 
     /**
      * 翻译
-     * https://translate.google.cn/?sl=zh-CN&tl=en&text=%E4%B8%AD%E5%9B%BD&op=translate
+     * https://cloud.google.com/translate/docs/reference/rest/v2/translate
      *
      * @param string $query 翻译的内容
      * @param string $to 要翻译的语言 (zh-CH,en)
@@ -30,37 +43,31 @@ class Google
      * @return mixed
      * @throws Exception
      */
-    public function translate($query, $to, $from = 'auto')
+    public function translate($query, $to, $from = '')
     {
-        $data = http_build_query([
-//            'f.req' => '[[["MkEWBc","[[\"'.$query.'\",\"zh-CN\",\"en\",true],[null]]",null,"generic"]]]'
-            'f.req' => '[[["MkEWBc","[[\"'.$query.'\",\"'.$from.'\",\"'.$to.'\",true],[null]]",null,"generic"]]]'
-        ]);
-        $ret = $this->request($data);
-
-        if (preg_match('/null,null,null,\[\[\\\"(.+?)\\\"/i', $ret, $mat)) {
-            return $mat[1];
-        }
-
-        throw new Exception('no translation found.');
+        $data = [
+            'q'      => $query,
+            'source' => $from,
+            'target' => $to,
+        ];
+        return $this->request('', $data)['data']['translations'][0]['translatedText'];
     }
 
     /**
      * 请求
      *
-     * @param $data
+     * @param $path
+     * @param array $data
      * @return mixed
      * @throws Exception
      */
-    protected function request($data)
+    protected function request($path, $data = [])
     {
-        $headers = [
-            'cookie' => $this->cookie,
-        ];
-        $response = (new HttpClient())->post($this->apiUrl, $data, $headers);
+        $data['key'] = $this->options['key'];
+        $response = (new HttpClient($this->options['http']))->get($this->apiUrl . $path, $data);
 
         if ($response->ok()) {
-            return $response->body;
+            return $response->json();
         }
         throw new Exception($response->getErrorMsg());
     }

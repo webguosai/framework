@@ -7,8 +7,10 @@ use Exception;
 
 class Baidu
 {
-    private $appId;
-    private $secretKey;
+    protected $options = [
+        'appId' => '',
+        'secretKey' => '',
+    ];
     protected $apiUrl = 'https://fanyi-api.baidu.com';
     protected $error = [
         52000 => '成功',
@@ -25,10 +27,9 @@ class Baidu
         58002 => '服务当前已关闭',
         90107 => '认证未通过或未生效',
     ];
-    public function __construct($appId, $secretKey)
+    public function __construct($options)
     {
-        $this->appId = $appId;
-        $this->secretKey = $secretKey;
+        $this->options = array_merge($this->options, $options);
     }
 
     /**
@@ -48,7 +49,6 @@ class Baidu
             'q'     => $query,
             'from'  => $from,
             'to'    => $to,
-            'appid' => $this->appId,
             'salt'  => $salt,
             'sign'  => $this->getSign($query, $salt),
         ];
@@ -69,7 +69,6 @@ class Baidu
         $salt = $this->getSalt();
         $data = [
             'q'     => $query,
-            'appid' => $this->appId,
             'salt'  => $salt,
             'sign'  => $this->getSign($query, $salt),
         ];
@@ -92,6 +91,7 @@ class Baidu
      */
     protected function request($path, $data)
     {
+        $data['appid'] = $this->options['appId'];
         $response = (new HttpClient(['timeout' => 5]))->get($this->apiUrl . $path, $data);
 
 //        dd($response->body);
@@ -120,7 +120,7 @@ class Baidu
 
     protected function getSign($query, $salt)
     {
-        return md5($this->appId.$query.$salt.$this->secretKey);
+        return md5($this->options['appId'].$query.$salt.$this->options['secretKey']);
     }
 
 }

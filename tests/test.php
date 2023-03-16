@@ -331,23 +331,31 @@ require_once '../vendor/autoload.php';
 //dd(Aes::decrypt($encode));
 
 /** 翻译 **/
-// 20220726001283686
-// UzhkImxnMMMw9a4FchQe
-
-//$b = new Baidu('20220726001283686', 'UzhkImxnMMMw9a4FchQe');
-//$b = new YouDao('7fda4dee3e6448ec', 'WgWk79cH1WK0EYKZagvvm1NTjiDnePTS');
+//$b = new Baidu([
+//    'appId' => '20200729000529030',
+//    'secretKey' => 'ATTEvDOWLO1U5rD8U3ft'
+//]);
+//$b = new YouDao([
+//    'appId'     => '7fda4dee3e6448ec',
+//    'secretKey' => 'WgWk79cH1WK0EYKZagvvm1NTjiDnePTS',
+//]);
 //$b = new Translatedlabs();
-//$b = new Google();
-////
-//while (true) {
-//    try {
-//        dump($b->translate('中国军人', 'en'));
-////        dump($b->translate('china.', 'zh-CN'));
-////        dump($b->language('中国'));
-//    } catch (\Exception $e) {
-//        dump('错误：'.$e->getMessage());
-//    }
-//}
+//$b = new Google([
+//    'key'  => 'AIzaSyC1pvAVod6kZa5g8LOhArHrAchbLHEXUd0',
+//    'http' => [
+//        'proxyIps' => ['127.0.0.1:9528']
+//    ]
+//]);
+//
+while (true) {
+    try {
+        dump($b->translate('源文本的格式，HTML（默认）或纯文本。值html表示 HTML，值text 表示纯文本。', 'en'));
+//        dump($b->translate('china.', 'zh-CN'));
+//        dump($b->language('中国'));
+    } catch (\Exception $e) {
+        dump('错误：'.$e->getMessage());
+    }
+}
 
 
 /** Helper **/
@@ -546,6 +554,7 @@ require_once '../vendor/autoload.php';
 
 
 /** 文件类 **/
+//dump(File::getAllFiles('./a/b/c/d'));
 //$a = File::mkFile('./a/b/c/d\\asp.txt');
 //$a = File::mkFile('asp2.txt');
 //$a = File::mkFile('c/');

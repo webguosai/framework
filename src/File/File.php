@@ -115,6 +115,28 @@ class File
     }
 
     /**
+     * 获取指定目录下的所有文件
+     * @param $dir
+     * @return array
+     */
+    public static function getAllFiles($dir)
+    {
+        $result = array();
+        $cdir   = scandir($dir);
+        foreach ($cdir as $key => $value) {
+            if (!in_array($value, array(".", ".."))) {
+                $path = $dir . DIRECTORY_SEPARATOR . $value;
+                if (is_dir($path)) {
+                    $result = array_merge($result, self::getAllFiles($path));
+                } else {
+                    $result[] = $path;
+                }
+            }
+        }
+        return $result;
+    }
+
+    /**
      * 文件大小转移为单位
      *
      * @param int $size
