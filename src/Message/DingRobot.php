@@ -22,7 +22,6 @@ class DingRobot extends MessageAbstract
     public function send($title, $content = '', $jumpUrl = '')
     {
         if ($jumpUrl) {
-            //$content.= " [链接>>]({$jumpUrl})";
             $content = "[{$content}]({$jumpUrl})";
         }
 

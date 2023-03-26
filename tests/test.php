@@ -10,6 +10,7 @@ use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
 use Webguosai\Helper\Helper;
 use Webguosai\Http\Cors;
+use Webguosai\Message\Iyuu;
 use Webguosai\Translate\CaiYun;
 use Webguosai\Util\Cli;
 use Webguosai\Util\Ip;
@@ -64,6 +65,7 @@ use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
 
+$a = 'http://baidu.com';
 
 /** xml **/
 // xml to array

@@ -12,7 +12,7 @@ use Webguosai\Support\MessageAbstract;
  */
 class Qmsg extends MessageAbstract
 {
-    public $config = [
+    protected $config = [
         'key' => '',
     ];
     public function send($title, $content, $jumpUrl = '')
