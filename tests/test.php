@@ -289,6 +289,7 @@ $a = 'http://baidu.com';
 
 /** Request **/
 //dump(Request::getFullUrl());
+//dump(Request::getSiteUrl());
 //dump(Request::getReferer());
 //dump(Request::server('argv'));
 //dump(Request::getHeaders());

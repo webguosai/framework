@@ -110,11 +110,10 @@ class Request
     }
 
     /**
-     * 获取完整的url
-     *
+     * 获取协议加域名加端口地址
      * @return string
      */
-    public static function getFullUrl()
+    public static function getSiteUrl()
     {
         if (Environment::isCli()) {
             return '';
@@ -129,6 +128,21 @@ class Request
 
         if ($_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443') {
             $url .= ':' . $_SERVER['SERVER_PORT'];
+        }
+
+        return $url;
+    }
+
+    /**
+     * 获取完整的url
+     *
+     * @return string
+     */
+    public static function getFullUrl()
+    {
+        $url = self::getSiteUrl();
+        if (empty($url)) {
+            return '';
         }
 
         $url .= $_SERVER['REQUEST_URI'];
