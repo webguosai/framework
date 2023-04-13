@@ -24,10 +24,11 @@ class Response
      * @param string $message
      * @param array $data
      * @param array $var
+     * @param int $code
      */
-    public static function success($message = '', $data = [], $var = [])
+    public static function success($message = '', $data = [], $var = [], $code = 0)
     {
-        static::response(0, $message, $data, $var);
+        static::response($code, $message, $data, $var);
     }
 
     /**
