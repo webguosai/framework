@@ -14,7 +14,8 @@ class Response
      *
      * @param $type
      */
-    public static function setType($type) {
+    public static function setType($type)
+    {
         self::$outputType = $type;
     }
 

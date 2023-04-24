@@ -19,9 +19,7 @@ class Request
         $data = json_decode($data, true);
         $data = $data ? $data : [];
 
-        $data = array_merge($request, $data);
-
-        return $data;
+        return array_merge($request, $data);
     }
 
     /**
@@ -36,7 +34,7 @@ class Request
         $data = self::all();
 
         if ($key) {
-            return isset($data[$key]) ? $data[$key] : $default;
+            return $data[$key] ?? $default;
         }
 
         return $data;
@@ -64,16 +62,12 @@ class Request
      * @param null $default 默认值
      * @return array|false|null
      */
-    public static function getHeaders($name = '', $default = null)
+    public static function getHeaders(string $name = '', $default = null)
     {
         $headers = [];
         if (!empty($name)) {
             $name = "HTTP_" . str_replace('-', '_', strtoupper($name));
-            if (isset($_SERVER[$name])) {
-                return $_SERVER[$name];
-            } else {
-                return $default;
-            }
+            return self::server($name) ?? $default;
         }
         if (!function_exists('getallheaders')) {
             foreach ($_SERVER as $key => $value)
@@ -94,7 +88,7 @@ class Request
      *
      * @return bool
      */
-    public static function isPost()
+    public static function isPost(): bool
     {
         return $_SERVER['REQUEST_METHOD'] == 'POST' && (empty($_SERVER['HTTP_REFERER']) || preg_replace("~https?:\/\/([^\:\/]+).*~i", "\\1", $_SERVER['HTTP_REFERER']) == preg_replace("~([^\:]+).*~", "\\1", $_SERVER['HTTP_HOST']));
     }
@@ -104,7 +98,7 @@ class Request
      *
      * @return bool
      */
-    public static function isAjax()
+    public static function isAjax(): bool
     {
         return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
@@ -113,7 +107,7 @@ class Request
      * 获取协议加域名加端口地址
      * @return string
      */
-    public static function getSiteUrl()
+    public static function getSiteUrl(): string
     {
         if (Environment::isCli()) {
             return '';
@@ -121,13 +115,13 @@ class Request
 
         $url = 'http';
 
-        if ($_SERVER['HTTPS'] == 'on') {
+        if (self::server('HTTPS') == 'on') {
             $url .= 's';
         }
-        $url .= '://' . $_SERVER['SERVER_NAME'];
+        $url .= '://' . self::server('SERVER_NAME');
 
-        if ($_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443') {
-            $url .= ':' . $_SERVER['SERVER_PORT'];
+        if (self::server('SERVER_PORT') !== '80' && self::server('SERVER_PORT') !== '443') {
+            $url .= ':' . self::server('SERVER_PORT');
         }
 
         return $url;
@@ -138,14 +132,14 @@ class Request
      *
      * @return string
      */
-    public static function getFullUrl()
+    public static function getFullUrl(): string
     {
         $url = self::getSiteUrl();
         if (empty($url)) {
             return '';
         }
 
-        $url .= $_SERVER['REQUEST_URI'];
+        $url .= self::server('REQUEST_URI');
 
         return $url;
     }
@@ -153,26 +147,20 @@ class Request
     /**
      * 获取来源
      *
-     * @return mixed|string
+     * @return mixed
      */
     public static function getReferer()
     {
-        if (empty($_SERVER['HTTP_REFERER'])) {
-            return '';
-        }
-        return $_SERVER['HTTP_REFERER'];
+        return self::server('HTTP_REFERER', '');
     }
 
     /**
      * 获取user-agent
-     * @return mixed|string
+     * @return mixed
      */
     public static function getUserAgent()
     {
-        if (empty($_SERVER['HTTP_USER_AGENT'])) {
-            return '';
-        }
-        return $_SERVER['HTTP_USER_AGENT'];
+        return self::server('HTTP_USER_AGENT', '');
     }
 
 }
