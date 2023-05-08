@@ -20,20 +20,23 @@ class Runtime
      * 显示一个标记的时间
      *
      * @param mixed $key
-     * @param array $format
+     * @param array|null $format
      * @param int $floatNum
      * @return string
      */
-    static function show($key = 'key1', $format = ['ms' => 'ms ', 's' => 's ', 'i' => 'm ', 'h' => 'H ', 'd' => 'D '], $floatNum = 2)
+    public static function show($key = 'key1', array $format = null, int $floatNum = 2): string
     {
         //$format = ['ms' => '毫秒', 's'  => '秒', 'i'  => '分', 'h'  => '小时','d'  => '天'];
+
+        if ($format === null){
+            $format = ['ms' => 'ms ', 's' => 's ', 'i' => 'm ', 'h' => 'H ', 'd' => 'D '];
+        }
 
         $endTime      = self::getMicrosecond();
         $runtimeStart = self::$columns[$key];
 
         $timeDiff = $endTime - $runtimeStart;
 
-        if ($timeDiff < 1) return '0' . $format['s'];
         $str = '';
         if ($timeDiff >= 3600) {
             $str      .= floor($timeDiff / 3600) . $format['h'];//'小时';

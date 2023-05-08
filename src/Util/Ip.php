@@ -2,6 +2,10 @@
 
 namespace Webguosai\Util;
 
+use Webguosai\Core\Container;
+use Webguosai\Helper\Arr;
+use Webguosai\Helper\Str;
+
 class Ip
 {
     /**
@@ -45,7 +49,7 @@ class Ip
      *
      * @return string
      */
-    public static function getChinaRandom()
+    public static function getChinaRandom(): string
     {
         $ip_long  = array(
             array('607649792', '608174079'), //36.56.0.0-36.63.255.255
@@ -66,5 +70,74 @@ class Ip
         );
         $rand_key = mt_rand(0, 14);
         return long2ip(mt_rand($ip_long[$rand_key][0], $ip_long[$rand_key][1]));
+    }
+
+    /**
+     * 生成随机ip
+     * @return string
+     */
+    public static function getRandomIp(): string
+    {
+        return Arr::implode([
+            mt_rand(1, 255), mt_rand(1, 255),mt_rand(1, 255),mt_rand(1, 255)
+        ], '.');
+    }
+
+    /**
+     * 输出ip地区信息
+     * @param string $ip
+     * @param null $file 文件位置
+     * @param string $me
+     * @param string $sep
+     * @param string $unknown
+     * @return string
+     */
+    public static function showLocation(string $ip, $file = null, string $me = '我', string $sep = ' ', string $unknown = '未知'): string
+    {
+        if ($me && Ip::getReadIp() == $ip) {
+            return $me;
+        }
+        $shows = [];
+
+        if ($file === null) {
+//            $file = dirname(__DIR__) . '/../assets/ip/qqwry.dat';
+            $file = dirname(__DIR__) . '/../assets/ip/ip2region.xdb';
+        }
+
+        // 使用纯真库  composer require itbdw/ip-database
+//        $location = \itbdw\Ip\IpLocation::getLocation($ip, $file);
+//        if ($location['country'] == '中国') {
+//            $shows[] = $location['province']; // 省份
+//            $shows[] = $location['city'];     // 城市
+//        } else {
+//            $shows[] = $location['country']; // 外国
+//        }
+
+        // 使用ip2region  composer require chinayin/ip2region-core
+        try {
+            // TODO 待优化：每次运行不必要再实例化来读取文件
+            $obj = \ip2region\XdbSearcher::newWithFileOnly($file);
+            $location = $obj->search($ip);
+            $arr = Str::explode($location, '|');
+
+            if ($arr[0] == '中国') {
+                $shows[] = $arr[2]; // 省份
+                $shows[] = $arr[3]; // 城市
+            } else {
+                $shows[] = $arr[0]; // 外国
+            }
+
+            $shows = array_filter($shows); // 去空
+        } catch (\Exception $e) {
+
+        }
+
+        if (empty($shows)) {
+            $showText = $unknown;
+        } else {
+            $showText = Arr::implode($shows, $sep);
+        }
+
+        return $showText;
     }
 }

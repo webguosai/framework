@@ -65,7 +65,19 @@ use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
 
-$a = 'http://baidu.com';
+/** ip地址库 **/
+//while (true) {
+//    $ip = Ip::getChinaRandom();
+////    $ip = Ip::getRandomIp();
+//    Runtime::start('k');
+//
+//    dump($ip . ' ' . Ip::showLocation($ip) . ' ' . Runtime::show('k', null, 5));
+//
+//    usleep(1000);
+//}
+
+
+
 
 /** xml **/
 // xml to array
@@ -166,7 +178,6 @@ $a = 'http://baidu.com';
 //dump(Container::getInstance()->bindings);
 
 
-
 //Container::getInstance()->bind('cache', function($name, $name2){return 'cache '.$name.'  '. $name2;});
 ////dump(Container::getInstance()->bindings);
 //dump(Container::getInstance()->make('cache', ['haha', 'hehe']));
@@ -242,7 +253,6 @@ $a = 'http://baidu.com';
 //dump(\Webguosai\Tests\Enum\UserTypeEnum::comment());
 
 
-
 /** url **/
 //dd(Url::isUrl('https://www.php.cn/php-weizijiaocheng-329439.html'));
 //dump(Url::getExtension('12.3.jpg'));
@@ -280,7 +290,6 @@ $a = 'http://baidu.com';
 //dump($id->getMobile());
 //dump($id->getWeChat());
 //dump($id->getIdCard());
-
 
 
 /** Ip **/
@@ -533,7 +542,6 @@ $a = 'http://baidu.com';
 //], '_'));
 
 
-
 /** 代理ip **/
 //$xq = new Xq([
 //    'uid'  => '81275',
@@ -594,7 +602,6 @@ $a = 'http://baidu.com';
 //dump($category->getTree($list));
 
 
-
 /** 文字识别 **/
 //$apiKey    = 'HvqDpHrvdGGcdUvGo9N1InNF';
 //$secretKey = 'UL8T85fw3joAj4ZZ3nKlojkA5BBIZH22';
@@ -633,7 +640,6 @@ $a = 'http://baidu.com';
 
 //dump(Arr::column($arr, 'num'));
 //dump($arr);
-
 
 
 /** 推送测试 **/
