@@ -13,6 +13,7 @@ use Webguosai\Http\Cors;
 use Webguosai\Message\Iyuu;
 use Webguosai\Translate\CaiYun;
 use Webguosai\Util\Cli;
+use Webguosai\Util\Data;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
@@ -64,6 +65,17 @@ use Webguosai\Xml\Array2Xml;
 use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
+
+Data::load([
+    'url' => 'http://',
+    'people' => [
+        'name' => '张三',
+        'sex' => '男'
+    ]
+]);
+dump(Data::get('people'));
+dump(Data::get('people.name'));
+dump(Data::get('people2'));
 
 /** ip地址库 **/
 //while (true) {
