@@ -293,18 +293,39 @@ class Arr
      * @param string $prepend
      * @return array
      */
-    public static function dot($array, $link = '.', $prepend = '') {
+    public static function dot($array, $link = '.', $prepend = '')
+    {
         $results = [];
 
         foreach ($array as $key => $value) {
-            if (is_array($value) && ! empty($value)) {
-                $results = array_merge($results, static::dot($value, $link, $prepend.$key.$link));
+            if (is_array($value) && !empty($value)) {
+                $results = array_merge($results, static::dot($value, $link, $prepend . $key . $link));
             } else {
-                $results[$prepend.$key] = $value;
+                $results[$prepend . $key] = $value;
             }
         }
 
         return $results;
     }
 
+    /**
+     * 数组转换为表单的label、value格式
+     * @param $array
+     * @param string $labelKeyName
+     * @param string $valueKeyName
+     * @param string $labelName
+     * @param string $valueName
+     * @return array
+     */
+    public static function options($array, string $labelKeyName = 'name', string $valueKeyName = 'id', string $labelName = 'label', string $valueName = 'value')
+    {
+        $options = [];
+        foreach ($array as $value) {
+            $options[] = [
+                $labelName => $value[$labelKeyName],
+                $valueName => $value[$valueKeyName],
+            ];
+        }
+        return $options;
+    }
 }
