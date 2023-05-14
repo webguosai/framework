@@ -66,16 +66,28 @@ use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
 
-Data::load([
-    'url' => 'http://',
-    'people' => [
-        'name' => '张三',
-        'sex' => '男'
-    ]
-]);
-dump(Data::get('people'));
-dump(Data::get('people.name'));
-dump(Data::get('people2'));
+//$array = [
+//    ['id' => 1, 'name' => 'aaa'],
+//    ['id' => 2, 'name' => 'bbb'],
+//    ['id' => 3, 'name' => 'ccc'],
+//];
+////$array = [
+////    "gong" => "公办",
+////    "min" => "民办"
+////];
+//dd(Arr::options($array));
+
+/** 数据获取 **/
+//Data::load([
+//    'url' => 'http://',
+//    'people' => [
+//        'name' => '张三',
+//        'sex' => '男'
+//    ]
+//]);
+//dump(Data::get('people'));
+//dump(Data::get('people.name'));
+//dump(Data::get('people2'));
 
 /** ip地址库 **/
 //while (true) {

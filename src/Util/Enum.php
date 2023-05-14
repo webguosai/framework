@@ -73,6 +73,26 @@ class Enum
     }
 
     /**
+     * 转换为options
+     *
+     * @param string $labelKeyName
+     * @param string $valueKeyName
+     * @return array
+     */
+    public static function toOptions(string $labelKeyName = 'label', string $valueKeyName = 'value')
+    {
+        $maps = static::maps();
+        $options = [];
+        foreach ($maps as $key => $value) {
+            $options[] = [
+                $labelKeyName => $value,
+                $valueKeyName => $key,
+            ];
+        }
+        return $options;
+    }
+
+    /**
      * 获取映射后的内容值
      *
      * @param string|mixed $key

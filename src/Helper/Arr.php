@@ -320,11 +320,19 @@ class Arr
     public static function options($array, string $labelKeyName = 'name', string $valueKeyName = 'id', string $labelName = 'label', string $valueName = 'value')
     {
         $options = [];
-        foreach ($array as $value) {
-            $options[] = [
-                $labelName => $value[$labelKeyName],
-                $valueName => $value[$valueKeyName],
-            ];
+        foreach ($array as $key => $value) {
+//            if (is_array($value)) {
+                $options[] = [
+                    $labelName => $value[$labelKeyName],
+                    $valueName => $value[$valueKeyName],
+                ];
+//            } else {
+//                $options[] = [
+//                    $labelName => $value,
+//                    $valueName => $key,
+//                ];
+//            }
+
         }
         return $options;
     }
