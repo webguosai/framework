@@ -21,10 +21,10 @@ class Data
     /**
      * 获取数据
      * @param string $key
-     * @param string $default 默认值
+     * @param mixed $default 默认值
      * @return mixed|string
      */
-    public static function get(string $key, string $default = '')
+    public static function get(string $key, $default = '')
     {
         if (isset(self::$data[$key])) {
             return self::$data[$key];
