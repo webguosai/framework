@@ -279,9 +279,11 @@ require_once '../vendor/autoload.php';
 
 /** url **/
 //dd(Url::isUrl('https://www.php.cn/php-weizijiaocheng-329439.html'));
-//dump(Url::getExtension('12.3.jpg'));
-//dump(Url::getFileName('https://github.com/top-think/think-validate/blob/master/src/Validate.php'));
-//dump(Url::getBaseName('https://github.com/top-think/think-validate/blob/master/src/Validate.php'));
+//dump(Url::getExtension('12.3.jpg')); // jpg
+//dump(Url::getFileName('https://github.com/top-think/think-validate/blob/master/src/Validate.php')); // Validate
+//dump(Url::getBaseName('https://github.com/top-think/think-validate/blob/master/src/Validate.php')); // Validate.php
+//dump(Url::getPath('http://192.168.31.148:9011/uploads/images/20230425/30a91322c446495b79f7a9fc3b03cf0c.png')); // /uploads/images/20230425/30a91322c446495b79f7a9fc3b03cf0c.png
+//dump(Url::getPath('javascript:alert(123);')); // 不是url
 
 /** 二维码 **/
 // 生成二维码

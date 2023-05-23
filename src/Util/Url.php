@@ -54,4 +54,19 @@ class Url
         return pathinfo($url, PATHINFO_BASENAME);
     }
 
+    /**
+     * 获取url中的路径部分
+     *
+     * @param $url
+     * @return array|false|int|string|null
+     */
+    public static function getPath($url)
+    {
+        if (self::isUrl($url)) {
+            // 必须是url地址
+            $url = parse_url($url, PHP_URL_PATH);
+        }
+
+        return $url;
+    }
 }
