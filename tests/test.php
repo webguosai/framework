@@ -284,6 +284,9 @@ require_once '../vendor/autoload.php';
 //dump(Url::getBaseName('https://github.com/top-think/think-validate/blob/master/src/Validate.php')); // Validate.php
 //dump(Url::getPath('http://192.168.31.148:9011/uploads/images/20230425/30a91322c446495b79f7a9fc3b03cf0c.png')); // /uploads/images/20230425/30a91322c446495b79f7a9fc3b03cf0c.png
 //dump(Url::getPath('javascript:alert(123);')); // 不是url
+//dump(Url::getPath('http://127.0.0.1:9011/index.php?m=content&c=index&a=lists&catid=12#123')); // 不是url
+//dump(Url::getPath('http://127.0.0.1:9011/ab.php?s=/a/b/c/')); // 不是url
+//dump(Url::getPath('http://127.0.0.1:9011')); // 不是url
 
 /** 二维码 **/
 // 生成二维码

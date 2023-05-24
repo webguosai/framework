@@ -64,7 +64,9 @@ class Url
     {
         if (self::isUrl($url)) {
             // 必须是url地址
-            $url = parse_url($url, PHP_URL_PATH);
+            if (preg_match('#\w(/[\s\S]+)$#i', $url, $mat)) {
+                $url = $mat[1];
+            }
         }
 
         return $url;
