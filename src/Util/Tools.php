@@ -78,5 +78,15 @@ class Tools
         ];
     }
 
+    /**
+     * 获取分页数
+     * @param string|number $total 总数
+     * @param string|number $size 每页数
+     * @return int
+     */
+    public static function getPageNum($total, $size = 30)
+    {
+        return (int)ceil($total / $size);
+    }
 
 }
