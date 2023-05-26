@@ -135,6 +135,8 @@ class Header
      */
     public static function setHeader($string, $replace = true, $http_response_code = null)
     {
-        return header($string, $replace, $http_response_code);
+        ob_start();
+        header($string, $replace, $http_response_code);
+        ob_get_clean();
     }
 }
