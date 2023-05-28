@@ -273,7 +273,8 @@ require_once '../vendor/autoload.php';
 //dump(\Webguosai\Tests\Enum\UserTypeEnum::in(['client2', 'client']));
 //dump(\Webguosai\Tests\Enum\UserTypeEnum::in('client'));
 //dump(\Webguosai\Tests\Enum\UserTypeEnum::getDefault());
-//dump(\Webguosai\Tests\Enum\UserTypeEnum::getMap('client'));
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::getMapValue('client'));
+//dump(\Webguosai\Tests\Enum\UserTypeEnum::getMapKey('客户'));
 //dump(\Webguosai\Tests\Enum\UserTypeEnum::comment());
 
 
