@@ -93,28 +93,28 @@ class Enum
     }
 
     /**
-     * 查找映射中指定key的value值
+     * 从映射中获取指定key的value值
      *
-     * @param string|mixed $key
+     * @param string|mixed $findKey 要查找的key值
      * @return mixed
      */
-    public static function findMapValue($key)
+    public static function getMapValue($findKey)
     {
-        return self::maps()[$key];
+        return self::maps()[$findKey];
     }
 
     /**
-     * 查找映射中指定value的key值
+     * 从映射中获取指定value的key值
      *
-     * @param string|mixed $value
+     * @param string|mixed $findValue 要查找的value值
      * @return mixed
      */
-    public static function findMapKey($value)
+    public static function getMapKey($findValue)
     {
         $maps = self::maps();
 
-        foreach ($maps as $key => $data) {
-            if ($data == $value) {
+        foreach ($maps as $key => $value) {
+            if ($value == $findValue) {
                 return $key;
             }
         }
