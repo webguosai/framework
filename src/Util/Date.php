@@ -221,7 +221,7 @@ class Date
      * @param string $endDateTime 2022-02-01 00:00:00
      * @return int
      */
-    public static function diffDay($startDateTime, $endDateTime)
+    public static function diffDay(string $startDateTime, string $endDateTime)
     {
         $t1 = strtotime($startDateTime);
         $t2 = strtotime($endDateTime);

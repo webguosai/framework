@@ -14,6 +14,7 @@ use Webguosai\Message\Iyuu;
 use Webguosai\Translate\CaiYun;
 use Webguosai\Util\Cli;
 use Webguosai\Util\Data;
+use Webguosai\Util\Format;
 use Webguosai\Util\Ip;
 use Webguosai\Robot\TuLing;
 use Webguosai\Translate\Baidu;
@@ -409,8 +410,14 @@ require_once '../vendor/autoload.php';
 //}
 
 
-/** Helper **/
-//dd(Helper::formatMoneyCurrency('9999999999999', '$', 0, 'right'));
+/** Format **/
+//dd(Format::formatMoneyCurrency('9999999999999', 0, '$',  'right'));
+dump(Format::formatNumber(999));
+dump(Format::formatNumber(9999));
+dump(Format::formatNumber(12600));
+dump(Format::formatNumber(88888888));
+dump(Format::formatNumber(99990000));
+dump(Format::formatNumber(188888888));
 
 /** Date **/
 //dump(Date::getRangeDateTime([
