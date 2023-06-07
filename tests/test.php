@@ -67,6 +67,8 @@ use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
 
+
+
 //$array = [
 //    ['id' => 1, 'name' => 'aaa'],
 //    ['id' => 2, 'name' => 'bbb'],
@@ -418,6 +420,8 @@ require_once '../vendor/autoload.php';
 //dump(Format::formatNumber(88888888));
 //dump(Format::formatNumber(99990000));
 //dump(Format::formatNumber(188888888));
+//dump(Format::reserveDecimal(888.993456789, 2));
+//dump(Format::reserveDecimal(2.7800000000000002, 2));
 
 /** Date **/
 //dump(Date::getRangeDateTime([

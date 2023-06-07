@@ -8,6 +8,17 @@ namespace Webguosai\Util;
 class Format
 {
     /**
+     * 保留小数点后指定位数的数字，如：3.1415926 保留两位后为：3.14(不会四舍五入)
+     * @param $number
+     * @param int $decimals
+     * @return array|string|string[]|null
+     */
+    public static function reserveDecimal($number, int $decimals = 2)
+    {
+        return preg_replace("/(\.\d{{$decimals}})\d+/", "\\1", $number);
+    }
+
+    /**
      * 格式化数字后缀带k w e单位
      * @param mixed $number 数字
      * @param int $decimals 保留小数点位数
@@ -29,7 +40,7 @@ class Format
             $unit   = $units[2];
         }
 
-        $number = preg_replace("/(\.\d{{$decimals}})\d+/", "\\1", $number);
+        $number = self::reserveDecimal($number, $decimals);
 
         return $number . $unit;
     }
