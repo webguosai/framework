@@ -86,13 +86,22 @@ require_once '../vendor/autoload.php';
 //    'people' => [
 //        'name' => '张三',
 //        'sex' => '男'
+//    ],
+//    'levels' => [
+//        ['id' => 1, 'name' => '111'],
+//        ['id' => 2, 'name' => '222'],
+//        ['id' => 3, 'name' => '333'],
+//        ['id' => 4, 'name' => '444'],
+//        ['id' => 5, 'name' => '555'],
 //    ]
 //]);
 //dump(Data::get('people'));
+//dump(Data::getIds('levels', 'id'));
 //dump(Data::get('people.name'));
 //dump(Data::get('people2'));
 
 /** ip地址库 **/
+//dd(Ip::showLocation('1.32.238.255'));
 //while (true) {
 //    $ip = Ip::getChinaRandom();
 ////    $ip = Ip::getRandomIp();

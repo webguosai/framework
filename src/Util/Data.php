@@ -6,7 +6,10 @@ use Webguosai\Helper\Arr;
 
 class Data
 {
-    protected static $data = [];
+    // 原始数据
+    protected static $rawData = [];
+    // 平铺后的数据
+    protected static $dotData = [];
 
     /**
      * 加载数据
@@ -15,21 +18,40 @@ class Data
      */
     public static function load(array $array = [])
     {
-        self::$data = array_merge($array, Arr::dot($array, '.'));
+        self::$rawData = $array;
+        self::$dotData = array_merge($array, Arr::dot($array, '.'));
     }
 
     /**
      * 获取数据
-     * @param string $key
+     * @param string $keyName
      * @param mixed $default 默认值
      * @return mixed|string
      */
-    public static function get(string $key, $default = '')
+    public static function get(string $keyName, $default = '')
     {
-        if (isset(self::$data[$key])) {
-            return self::$data[$key];
+        if (isset(self::$dotData[$keyName])) {
+            return self::$dotData[$keyName];
         }
 
         return $default;
+    }
+
+    /**
+     * 获取ids
+     * @param string $keyName
+     * @param string $valueName
+     * @param mixed $default 默认值
+     * @return array|mixed 如果是正确返回则是一个数组
+     */
+    public static function getIds(string $keyName, string $valueName = 'id', $default = [])
+    {
+        if (!isset(self::$rawData[$keyName]) || empty(self::$rawData[$keyName])) {
+            return $default;
+        }
+
+        return array_map(function ($value) use ($valueName) {
+            return $value[$valueName];
+        }, self::$rawData[$keyName]);
     }
 }

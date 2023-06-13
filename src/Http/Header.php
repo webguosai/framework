@@ -139,4 +139,17 @@ class Header
         header($string, $replace, $http_response_code);
         ob_get_clean();
     }
+
+    /**
+     * 自动获取授权header头
+     * @return mixed|string
+     */
+    public static function getAuthorization()
+    {
+        $authorization = '';
+        if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+            $authorization = $_SERVER['HTTP_AUTHORIZATION'];
+        }
+        return $authorization;
+    }
 }
