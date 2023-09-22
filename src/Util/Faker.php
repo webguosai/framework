@@ -710,5 +710,10 @@ class Faker
         ]);
     }
 
+    // 生成katex格式的公式代码
+    public static function katex($symbol = '$')
+    {
+        return $symbol.'\frac{'.mt_rand(1, 100).'}{'.mt_rand(100, 999).'}'.$symbol;
+    }
 
 }
