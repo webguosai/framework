@@ -372,7 +372,7 @@ class Faker
         if ($height === null) {
             $height = self::number(100, 1000);
         }
-        return 'https://dummyimage.com/' . $width . 'x' . $height . '.png/' . self::number(100000, 999999) . '/' . self::number(100000, 999999);
+        return 'https://dummyimage.com/' . $width . 'x' . $height . '.png/' . self::number(100000, 999999) . '/fff'; // fff 表示文字白色颜色
     }
 
     public static function email()
