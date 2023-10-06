@@ -359,6 +359,22 @@ class Faker
             Arr::random($tld);
     }
 
+    public static function url()
+    {
+        return self::website();
+    }
+
+    public function imageUrl($width = null, $height = null)
+    {
+        if ($width === null) {
+            $width = self::number(100, 1000);
+        }
+        if ($height === null) {
+            $height = self::number(100, 1000);
+        }
+        return 'https://dummyimage.com/' . $width . 'x' . $height . '.png/' . self::number(100000, 999999) . '/' . self::number(100000, 999999);
+    }
+
     public static function email()
     {
         $domain = [
@@ -713,7 +729,7 @@ class Faker
     // 生成katex格式的公式代码
     public static function katex($symbol = '$')
     {
-        return $symbol.'\frac{'.mt_rand(1, 100).'}{'.mt_rand(100, 999).'}'.$symbol;
+        return $symbol . '\frac{' . mt_rand(1, 100) . '}{' . mt_rand(100, 999) . '}' . $symbol;
     }
 
 }
