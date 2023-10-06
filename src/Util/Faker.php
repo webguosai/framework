@@ -364,7 +364,7 @@ class Faker
         return self::website();
     }
 
-    public function imageUrl($width = null, $height = null)
+    public static function imageUrl($width = null, $height = null)
     {
         if ($width === null) {
             $width = self::number(100, 1000);
