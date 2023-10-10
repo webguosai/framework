@@ -364,6 +364,12 @@ class Faker
         return self::website();
     }
 
+    public static function html()
+    {
+        $html = '<p>' . self::title() . '</p><p><h3>h3</h3></p><p><img src="' . self::imageUrl() . '"/></p><hr/><p><ul> <li>li 111</li> <li>li 222</li> <li>li 333</li></ul></p><p>pppppppp <a href="#">aaaaa</a> <b>bbbbbb</b><i>iiiii</i></p><table><thead><tr><th>name</th><th>age</th></tr></thead><tbody><tr><td>' . self::name() . '</td><td>' . self::age() . '</td></tr><tr><td>' . self::name() . '</td><td>' . self::age() . '</td></tr></tbody></table>';
+        return $html;
+    }
+
     public static function imageUrl($width = null, $height = null)
     {
         if ($width === null) {
