@@ -87,4 +87,15 @@ class Format
     {
         return (new \Capital\Money($money))->toCapital();
     }
+
+    /**
+     * 手机号码脱敏
+     * @param string $mobile
+     * @param string $padString
+     * @return string
+     */
+    public static function formatMobile(string $mobile, string $padString = '*'): string
+    {
+        return substr($mobile, 0, 3) . str_pad('', 4, $padString) . substr($mobile, -4);
+    }
 }
