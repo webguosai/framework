@@ -51,6 +51,7 @@ use Webguosai\Util\Faker;
 use Webguosai\Util\Lottery;
 use Webguosai\Util\Qrcode;
 use Webguosai\Util\Jwt;
+use Webguosai\Util\Regex;
 use Webguosai\Util\Runtime;
 use Webguosai\Util\Csv;
 use Webguosai\Util\Session;
@@ -66,8 +67,6 @@ use Webguosai\Xml\Array2Xml;
 use Webguosai\Xml\Xml2Array;
 
 require_once '../vendor/autoload.php';
-
-
 
 //$array = [
 //    ['id' => 1, 'name' => 'aaa'],

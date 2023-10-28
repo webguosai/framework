@@ -28,7 +28,6 @@ class Enum
 
     /**
      * 返回所有枚举的值
-     *
      * @return mixed
      */
     public static function values()
@@ -39,7 +38,6 @@ class Enum
 
     /**
      * 映射的对应值
-     *
      * @return array
      */
     public static function maps()
@@ -53,7 +51,6 @@ class Enum
 
     /**
      * 获取注释
-     *
      * @return string
      */
     public static function comment()
@@ -74,7 +71,6 @@ class Enum
 
     /**
      * 转换为options
-     *
      * @param string $labelKeyName
      * @param string $valueKeyName
      * @return array
@@ -94,12 +90,20 @@ class Enum
 
     /**
      * 从映射中获取指定key的value值
-     *
      * @param string|mixed $findKey 要查找的key值
      * @return mixed
      */
     public static function getMapValue($findKey)
     {
+        // 支持数组
+        if (is_array($findKey)) {
+            $arr = [];
+            foreach ($findKey as $keyValue) {
+                $arr[] = self::maps()[$keyValue];
+            }
+            return $arr;
+        }
+
         return self::maps()[$findKey];
     }
 
