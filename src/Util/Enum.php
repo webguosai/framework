@@ -55,14 +55,14 @@ class Enum
      */
     public static function comment()
     {
-        $maps = self::maps();
+        $maps = static::maps();
 
         $temp = [];
         foreach ($maps as $key => $map) {
             if ($key == $map) {
                 $temp[] = $map;
             } else {
-                $temp[] = $key.'='.$map;
+                $temp[] = $key . '=' . $map;
             }
         }
 
@@ -77,7 +77,7 @@ class Enum
      */
     public static function toOptions(string $labelKeyName = 'label', string $valueKeyName = 'value')
     {
-        $maps = static::maps();
+        $maps    = static::maps();
         $options = [];
         foreach ($maps as $key => $value) {
             $options[] = [
@@ -91,31 +91,49 @@ class Enum
     /**
      * 从映射中获取指定key的value值
      * @param string|mixed $findKey 要查找的key值
+     * @param mixed $default 默认值
      * @return mixed
      */
-    public static function getMapValue($findKey)
+    public static function getMapValue($findKey, $default = '')
     {
         // 支持数组
         if (is_array($findKey)) {
             $arr = [];
             foreach ($findKey as $keyValue) {
-                $arr[] = self::maps()[$keyValue];
+                $arr[] = static::findMapValue($keyValue, $default);
             }
             return $arr;
         }
 
-        return self::maps()[$findKey];
+        return static::findMapValue($findKey, $default);
+    }
+
+    /**
+     * 从map中查找对应key的value
+     * @param string|mixed $findKey 要查找的key值
+     * @param $default
+     * @return mixed
+     */
+    protected static function findMapValue($findKey, $default)
+    {
+        $maps = static::maps();
+
+        if (isset($maps[$findKey])) {
+            return $maps[$findKey];
+        }
+
+        return $default;
     }
 
     /**
      * 从映射中获取指定value的key值
-     *
      * @param string|mixed $findValue 要查找的value值
-     * @return mixed
+     * @param string $default 默认值
+     * @return mixed|string
      */
-    public static function getMapKey($findValue)
+    public static function getMapKey($findValue, string $default = '')
     {
-        $maps = self::maps();
+        $maps = static::maps();
 
         foreach ($maps as $key => $value) {
             if ($value == $findValue) {
@@ -123,12 +141,11 @@ class Enum
             }
         }
 
-        return '';
+        return $default;
     }
 
     /**
      * 枚举是否在内容范围内
-     *
      * @param string|array $text
      * @return bool
      */
@@ -139,7 +156,6 @@ class Enum
 
     /**
      * 获取默认枚举
-     *
      * @return null|string
      */
     public static function getDefault()
@@ -149,7 +165,6 @@ class Enum
 
     /**
      * 从常量中获取
-     *
      * @return mixed
      */
     protected static function fromConstants()
