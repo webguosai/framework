@@ -80,7 +80,10 @@ require_once '../vendor/autoload.php';
 //dd(Arr::options($array));
 
 /** 数据获取 **/
-//Data::load([
+// Data::load([
+//    'id'=> 0,
+//    'bid'=> '',
+//    'cid'=> 10,
 //    'url' => 'http://',
 //    'people' => [
 //        'name' => '张三',
@@ -93,8 +96,11 @@ require_once '../vendor/autoload.php';
 //        ['id' => 4, 'name' => '444'],
 //        ['id' => 5, 'name' => '555'],
 //    ]
-//]);
-//dump(Data::get('people'));
+// ]);
+// dump(Data::get('people'));
+// dump(Data::getId('id'));
+// dump(Data::getId('bid'));
+// dump(Data::getId('cid'));
 //dump(Data::getIds('levels', 'id'));
 //dump(Data::get('people.name'));
 //dump(Data::get('people2'));

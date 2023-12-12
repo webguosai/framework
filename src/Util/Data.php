@@ -38,6 +38,23 @@ class Data
     }
 
     /**
+     * 获取id (0或空返回默认值)
+     * @param string $keyName
+     * @param mixed $default
+     * @return int|mixed|string
+     */
+    public static function getId(string $keyName, $default = '')
+    {
+        $number = (int)self::get($keyName, $default);
+
+        if (empty($number)) {
+            return $default;
+        }
+
+        return $number;
+    }
+
+    /**
      * 获取ids
      * @param string $keyName
      * @param string $valueName
