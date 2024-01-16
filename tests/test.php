@@ -8,6 +8,7 @@ use Webguosai\Ai\BaiduAi;
 use Webguosai\Core\Container;
 use Webguosai\Crypt\Aes;
 use Webguosai\Crypt\Crypt;
+use Webguosai\Crypt\Rsa;
 use Webguosai\Helper\Helper;
 use Webguosai\Http\Cors;
 use Webguosai\Message\Iyuu;
@@ -392,6 +393,23 @@ require_once '../vendor/autoload.php';
 //$encode = Aes::encrypt($word);
 //dump($encode);
 //dd(Aes::decrypt($encode));
+
+/** Rsa **/
+// // 1. 密钥 (abc任选一种)
+// // a 一开始我们没有密钥文件,使用如下代码,可以生成密钥文件
+// // $keys = Rsa::createKeysFile();
+// // b 获取来自目录文件中密钥(密钥包含公钥和私钥)
+// // $keys = Rsa::getKeysByDir();
+// // c 生成密钥 (这里获取到的密钥可以自行去保存,读取)
+// $keys = Rsa::createKeys();
+// dump($keys);
+//
+// // 2. 加解密
+// $data       = ['总结：公钥用于加密数据，私钥用于解密数据。公钥可以被分享给其他人，而私钥应该保密。'];
+// $ciphertext = Rsa::encrypt($data, $keys['privateKey']);
+// dump('加密：' . $ciphertext);
+// dump('解密：');
+// dump(Rsa::decrypt($ciphertext, $keys['publicKey']));
 
 /** 翻译 **/
 //$b = new Baidu([
