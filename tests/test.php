@@ -11,6 +11,7 @@ use Webguosai\Crypt\Crypt;
 use Webguosai\Crypt\Rsa;
 use Webguosai\Helper\Helper;
 use Webguosai\Http\Cors;
+use Webguosai\Message\QyWeChat;
 use Webguosai\Message\Iyuu;
 use Webguosai\Translate\CaiYun;
 use Webguosai\Util\Cli;
@@ -253,6 +254,11 @@ require_once '../vendor/autoload.php';
 //    dump($e->getMessage());
 //}
 
+/** 消息推送 **/
+// $message = new QyWeChat([
+//     'key' => ''
+// ]);
+// $message->send('标题', mt_rand(100, 999), 'http://www.baidu.com');
 
 /** 跨域 **/
 //Cors::setting();
