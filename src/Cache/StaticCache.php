@@ -24,4 +24,13 @@ class StaticCache
 
         return self::$cacheMaps[$prefix . $id];
     }
+
+    /**
+     * 清空缓存
+     * @return void
+     */
+    public static function clear()
+    {
+        self::$cacheMaps = [];
+    }
 }
