@@ -18,11 +18,16 @@ class StaticCache
      */
     public static function get($id, callable $callable, string $prefix)
     {
-        if (!isset(self::$cacheMaps[$prefix . $id])) {
-            self::$cacheMaps[$prefix . $id] = $callable();
+        if (!empty($prefix)) {
+            $prefix = $prefix . '.';
+        }
+        $key = $prefix . $id;
+
+        if (!isset(self::$cacheMaps[$key])) {
+            self::$cacheMaps[$key] = $callable();
         }
 
-        return self::$cacheMaps[$prefix . $id];
+        return self::$cacheMaps[$key];
     }
 
     /**
