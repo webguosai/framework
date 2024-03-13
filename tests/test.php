@@ -63,7 +63,6 @@ use Webguosai\Api\Push;
 use Webguosai\Util\TextExtract;
 use Webguosai\Util\Tools;
 use Webguosai\Util\Url;
-use Webguosai\Util\Zip;
 use Webguosai\Util\Itertools;
 use Webguosai\Xml\Array2Xml;
 use Webguosai\Xml\Xml2Array;
@@ -647,11 +646,6 @@ require_once '../vendor/autoload.php';
 //$a = $c->get('F:\www\captcha\assets\captcha/google.jpg');
 //dd($a['pic_str']);
 //$c->getStr(base64_encode(file_get_contents('./captcha/1.jpg')));
-
-/** 压缩 **/
-//$zip = Zip::create('image.zip', 'image');
-
-//Zip::extract('images.zip', '.');
 
 
 /** 文件类 **/
