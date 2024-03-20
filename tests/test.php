@@ -14,6 +14,7 @@ use Webguosai\Http\Cors;
 use Webguosai\Message\QyWeChat;
 use Webguosai\Message\Iyuu;
 use Webguosai\Translate\CaiYun;
+use Webguosai\Translate\Findmyip;
 use Webguosai\Util\Cli;
 use Webguosai\Util\Data;
 use Webguosai\Util\Format;
@@ -436,19 +437,20 @@ require_once '../vendor/autoload.php';
 ////    'token' => '3975l6lr5pcbvidl6jl2',//官方
 //    'token' => 'hlgg9mzpucpmih3p3795'
 //]);
+// $b = new Findmyip();
 
 //
 
 //
-//while (true) {
+// while (true) {
 //    try {
-//        dump($b->translate('源文本的格式', 'en'));
-////        dump($b->translate('china.', 'zh-CN'));
-////        dump($b->language('中国'));
+//        dump($b->translate('你好，世界', 'en'));
+//        // dump($b->translate('china.', 'zh-CN'));
+//        // dump($b->language('中国'));
 //    } catch (\Exception $e) {
 //        Cli::error($e->getMessage());
 //    }
-//}
+// }
 
 
 /** Format **/
